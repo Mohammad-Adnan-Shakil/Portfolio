@@ -1,8 +1,8 @@
 import React from 'react'
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
-import askflowImage from '../assets//askflow.jpeg';
-import brainboardImage from '../assets//brain-board.jpeg';
-
+import askflowImage from '../assets/askflow.jpeg';
+import brainboardImage from '../assets/brain-board.jpeg';
+import gptImage from '../assets/gptclone.jpeg'; 
 
 const projects = [
   {
@@ -24,7 +24,18 @@ const projects = [
     demoUrl: "https://brain-board-2-0.vercel.app/",
     githubUrl: "https://github.com/Mohammad-Adnan-Shakil/Brain-Board-2.0",
   },
+  {
+    id: 3,
+    title: "ChatGPT Clone",
+    description:
+      "A web-based AI chatbot application built with React that mimics ChatGPT’s conversational interface. It allows users to send prompts and receive intelligent, context-aware responses in real time, with a clean and responsive UI for an engaging chat experience.",
+    tags: ["React", "CSS"],
+    image: gptImage,
+    demoUrl: "https://chat-gpt-clone-pi-woad.vercel.app/",
+    githubUrl: "https://github.com/Mohammad-Adnan-Shakil/ChatGPT-clone",
+  },
 ];
+
 
 
 const ProjectsSection = () => {
