@@ -60,14 +60,23 @@ const Projects = () => {
       {/* Featured Card - Deltabox */}
       <div ref={revealRef(2)} className="mb-16">
         <div
-          className="grid grid-cols-1 md:grid-cols-2 relative overflow-hidden transition-all duration-300"
+          className="featured-card-grid relative overflow-hidden transition-all duration-300"
           style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
             border: '1px solid rgba(0,255,136,0.12)',
             background: 'rgba(255,255,255,0.02)'
           }}
           onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(0,255,136,0.35)'}
           onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(0,255,136,0.12)'}
         >
+          <style>{`
+            @media (max-width: 768px) {
+              .featured-card-grid {
+                grid-template-columns: 1fr !important;
+              }
+            }
+          `}</style>
           {/* Gradient overlay */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -122,8 +131,10 @@ const Projects = () => {
 
             {/* Top-left data overlay */}
             <div
-              className="absolute top-6 left-6"
+              className="absolute"
               style={{
+                top: '1.5rem',
+                left: '1.5rem',
                 fontFamily: 'JetBrains Mono',
                 fontSize: '0.6rem',
                 color: 'rgba(0,255,136,0.45)',
@@ -137,8 +148,10 @@ const Projects = () => {
 
             {/* Bottom-right data overlay */}
             <div
-              className="absolute bottom-6 right-6 text-right"
+              className="absolute text-right"
               style={{
+                bottom: '1.5rem',
+                right: '1.5rem',
                 fontFamily: 'JetBrains Mono',
                 fontSize: '0.6rem',
                 color: 'rgba(0,255,136,0.45)',

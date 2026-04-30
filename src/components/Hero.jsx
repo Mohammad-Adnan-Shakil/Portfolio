@@ -235,7 +235,13 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.6 }}
-        className="absolute bottom-8 right-16 flex flex-col gap-6 text-right"
+        className="absolute flex flex-col gap-6 text-right"
+        style={{
+          bottom: '3rem',
+          right: '4rem',
+          zIndex: 2,
+          top: 'auto'
+        }}
       >
         <div>
           <div
