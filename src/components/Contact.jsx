@@ -40,7 +40,7 @@ const Contact = () => {
     <section 
       id="contact"
       style={{ 
-        padding: '5rem 4rem',
+        padding: '4rem 4rem',
         borderTop: '1px solid rgba(0,255,136,0.12)',
         textAlign: 'center'
       }}

@@ -6,19 +6,19 @@ const Skills = () => {
   const skillGroups = [
     {
       title: 'Frontend',
-      skills: ['React + Redux (state-heavy UI, dynamic dashboards)', 'Tailwind CSS (rapid UI development)', 'JavaScript ES6+ (modern patterns)', 'HTML / CSS']
+      skills: ['React + Redux — building state-heavy UI and dynamic dashboards', 'Tailwind CSS — rapid UI development with modern patterns', 'JavaScript ES6+ — modern frontend patterns', 'HTML / CSS']
     },
     {
       title: 'Backend',
-      skills: ['Spring Boot (REST APIs, authentication, RBAC, system design)', 'Java (type-safe backend development)', 'Node.js + Express (API layer, middleware)', 'JWT Auth (secure authentication)']
+      skills: ['Spring Boot — building secure, scalable REST APIs with authentication, RBAC, and caching', 'Java — type-safe backend development', 'Node.js + Express — API layer and middleware', 'JWT Auth — secure authentication systems']
     },
     {
       title: 'ML / Data',
-      skills: ['Python (XGBoost, Random Forest, inference pipelines)', 'Scikit-learn (feature engineering, model training)', 'Librosa (audio feature extraction)', 'Linear Regression']
+      skills: ['Python — XGBoost, Random Forest, and inference pipelines', 'Scikit-learn — feature engineering and model training', 'Librosa — audio feature extraction', 'Linear Regression']
     },
     {
       title: 'Infrastructure',
-      skills: ['PostgreSQL (relational data, complex queries)', 'MongoDB (document storage, flexible schemas)', 'Git / GitHub (version control, CI/CD)', 'Vercel (deployment, edge caching)', 'Maven', 'Postman']
+      skills: ['PostgreSQL — relational data with complex queries', 'MongoDB — document storage with flexible schemas', 'Git / GitHub — version control and CI/CD', 'Vercel — deployment and edge caching', 'Maven', 'Postman']
     }
   ];
 
@@ -26,7 +26,7 @@ const Skills = () => {
     <section 
       id="skills"
       style={{ 
-        padding: '5rem 4rem',
+        padding: '4rem 4rem',
         borderTop: '1px solid rgba(0,255,136,0.12)'
       }}
     >

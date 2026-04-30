@@ -13,7 +13,8 @@ const Projects = () => {
       number: '02 —',
       title: 'CentSight',
       badge: '🏆 Hackathon — Build With TRAE · Future Finance Theme',
-      description: 'AI financial decision simulator that predicts savings trajectory before spending decisions. Built full pipeline: React frontend → Node.js/Express backend → Python ML models (Scikit-learn). Implemented JWT auth and real-time risk scoring with financial health classification.',
+      description: 'AI financial decision simulator predicting savings trajectory before spending decisions. Built full pipeline: React frontend → Node.js/Express backend → Python ML models (Scikit-learn). Implemented JWT auth and real-time risk scoring with financial health classification.',
+      bullets: ['Full-stack pipeline with React + Node.js + Python ML models', 'JWT authentication + real-time risk scoring system', 'Financial health classification with instant feedback'],
       tags: ['React', 'Node.js', 'Express', 'Python', 'Scikit-learn', 'MongoDB', 'JWT'],
       github: 'https://github.com/Mohammad-Adnan-Shakil/CentSight'
     },
@@ -22,13 +23,14 @@ const Projects = () => {
       title: 'FakeOut AI',
       badge: '🏆 Hackathon Project',
       description: 'Voice deepfake detection system using dual-model ML ensemble (XGBoost + Random Forest). Extracted 40 MFCC coefficients and spectral features from audio for classification. FastAPI backend serving ML inference with React frontend for audio upload/analysis.',
+      bullets: ['Dual-model ensemble (XGBoost + Random Forest) for classification', '40 MFCC coefficients + spectral features from audio', 'FastAPI backend serving ML inference with React frontend'],
       tags: ['React', 'FastAPI', 'Python', 'XGBoost', 'Random Forest', 'Librosa', 'TailwindCSS'],
       github: 'https://github.com/FuncLexa/FakeOut-AI'
     }
   ];
 
   return (
-    <section id="projects" style={{ padding: '6rem 4rem' }}>
+    <section id="projects" style={{ padding: '4.5rem 4rem' }}>
       {/* Section Label */}
       <div ref={revealRef(0)} className="mb-4">
         <p
@@ -204,29 +206,33 @@ const Projects = () => {
               style={{
                 fontFamily: 'Syne',
                 fontWeight: 800,
-                fontSize: '2.4rem',
+                fontSize: '2.6rem',
                 letterSpacing: '-0.02em',
-                lineHeight: 1.1
+                lineHeight: 1.05
               }}
             >
               Deltabox
             </h3>
 
             {/* Description */}
-            <p
+            <div
               className="mb-8"
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: '0.8rem',
-                color: '#6b6b80',
-                lineHeight: 1.85
+                color: '#5a5a70',
+                lineHeight: 1.95
               }}
             >
-              Built an AI-powered F1 analytics platform that processes real-time race data and predicts outcomes using ML models.
-              Implemented Java (Spring Boot) backend integrated with Python ML models via subprocess orchestration.
-              Designed what-if simulation engine and caching layer for performance optimization.
-              Features JWT authentication, RBAC, and confidence scoring for race predictions.
-            </p>
+              <p className="mb-4">
+                AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.
+              </p>
+              <div style={{ paddingLeft: '1rem' }}>
+                <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
+                <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
+                <div>• JWT authentication + RBAC-secured APIs with 87.3% prediction confidence</div>
+              </div>
+            </div>
 
             {/* Tech Tags */}
             <div className="flex flex-wrap gap-2 mb-8">
@@ -345,25 +351,35 @@ const Projects = () => {
               style={{
                 fontFamily: 'Syne',
                 fontWeight: 700,
-                fontSize: '1.25rem',
-                letterSpacing: '-0.01em'
+                fontSize: '1.35rem',
+                letterSpacing: '-0.01em',
+                lineHeight: 1.2
               }}
             >
               {project.title}
             </h3>
 
             {/* Description */}
-            <p
+            <div
               className="mb-6"
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: '0.76rem',
-                color: '#6b6b80',
-                lineHeight: 1.75
+                color: '#5a5a70',
+                lineHeight: 1.85
               }}
             >
-              {project.description}
-            </p>
+              <p className="mb-3">
+                {project.description}
+              </p>
+              <div style={{ paddingLeft: '1rem' }}>
+                {project.bullets.map((bullet, idx) => (
+                  <div key={idx} className="mb-2">
+                    • {bullet}
+                  </div>
+                ))}
+              </div>
+            </div>
 
             {/* Tech Tags */}
             <div className="flex flex-wrap gap-2 mb-6">
