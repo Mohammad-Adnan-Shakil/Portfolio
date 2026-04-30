@@ -7,7 +7,7 @@ const About = () => {
     <section 
       id="about"
       style={{ 
-        padding: '8rem 4rem',
+        padding: '5rem 4rem',
         borderTop: '1px solid rgba(0,255,136,0.12)'
       }}
     >
@@ -27,7 +27,7 @@ const About = () => {
       </div>
 
       {/* Section Title */}
-      <div ref={revealRef(1)} className="mb-8">
+      <div ref={revealRef(1)} className="mb-6">
         <h2
           style={{
             fontFamily: 'Syne',
@@ -40,7 +40,7 @@ const About = () => {
       </div>
 
       {/* Horizontal Line */}
-      <div ref={revealRef(2)} className="mb-8">
+      <div ref={revealRef(2)} className="mb-6">
         <div
           style={{
             width: '60px',
@@ -53,38 +53,32 @@ const About = () => {
 
       {/* Paragraphs */}
       <div style={{ maxWidth: '720px' }}>
-        <p ref={revealRef(3)} className="mb-6" style={{
+        <p ref={revealRef(3)} className="mb-4" style={{
           fontFamily: 'JetBrains Mono',
           fontSize: '0.83rem',
           color: '#6b6b80',
           lineHeight: 1.9
         }}>
-          I'm <span style={{ color: '#e8e8f0' }}>Mohammad Adnan Shakil</span>, a second-year Computer Science student at
-          <span style={{ color: '#e8e8f0' }}> Presidency University</span>, Bengaluru. I'm not waiting to graduate to build real
-          things — I'm building them now.
+          I'm <span style={{ color: '#e8e8f0' }}>Mohammad Adnan Shakil</span>, a second-year Computer Science student at Presidency University, Bengaluru.
+          I build full-stack systems where backend logic meets ML models to make actual decisions.
         </p>
 
-        <p ref={revealRef(4)} className="mb-6" style={{
+        <p ref={revealRef(4)} className="mb-4" style={{
           fontFamily: 'JetBrains Mono',
           fontSize: '0.83rem',
           color: '#6b6b80',
           lineHeight: 1.9
         }}>
-          My focus is on systems where the <span style={{ color: '#00ff88' }}>backend thinks</span> — full-stack platforms that
-          integrate ML models to make actual decisions, not just display data. Deltabox is
-          my flagship: a live F1 analytics platform with AI race prediction, what-if
-          simulation, and confidence scoring.
+          My focus is on production-grade applications: Deltabox demonstrates Java calling Python ML models for real-time predictions, with JWT + RBAC security and caching for performance.
         </p>
 
-        <p ref={revealRef(5)} className="mb-6" style={{
+        <p ref={revealRef(5)} className="mb-4" style={{
           fontFamily: 'JetBrains Mono',
           fontSize: '0.83rem',
           color: '#6b6b80',
           lineHeight: 1.9
         }}>
-          I work fast, build aggressively, and care deeply about clean architecture.
-          Discipline isn't just something I preach — I live it in the gym, in my code,
-          and in how I approach every project.
+          I work fast, ship aggressively, and care about clean architecture. Discipline in code, gym, and execution.
         </p>
 
         <p ref={revealRef(6)} style={{
@@ -93,8 +87,7 @@ const About = () => {
           color: '#6b6b80',
           lineHeight: 1.9
         }}>
-          Currently targeting software engineering internships for <span style={{ color: '#00ff88' }}>mid-2026</span>. If you're
-          building something ambitious, let's talk.
+          Targeting software engineering internships for mid-2026.
         </p>
       </div>
     </section>

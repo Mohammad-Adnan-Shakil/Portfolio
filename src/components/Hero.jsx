@@ -86,7 +86,7 @@ const Hero = () => {
             }}
           >
             <span style={{ color: '#6b6b80' }}>&gt; </span>
-            Mohammad Adnan Shakil · Bengaluru, India
+            Mohammad Adnan Shakil · Full-Stack + ML Systems · Bengaluru
           </p>
         </motion.div>
 
@@ -126,9 +126,8 @@ const Hero = () => {
               lineHeight: 1.55
             }}
           >
-            Second-year CS student. Already shipping production-grade apps with real ML
-            inside. Not tutorials. Not templates. Actual systems — and hiring me early is
-            the smart move.
+            Full-stack engineer building production systems that integrate ML models into real applications.
+            Working with Spring Boot, React, and Python to ship systems that make decisions — not just display data.
           </p>
         </motion.div>
 
@@ -143,8 +142,7 @@ const Hero = () => {
               lineHeight: 1.8
             }}
           >
-            Full-stack engineer working across React, Spring Boot, and Python ML —
-            currently building Deltabox, an AI-powered F1 analytics platform.
+            Currently building Deltabox: Java backend calling Python ML models via subprocess for real-time race predictions with JWT + RBAC security.
           </p>
         </motion.div>
 
@@ -169,7 +167,7 @@ const Hero = () => {
             onMouseEnter={(e) => e.target.style.background = '#ffffff'}
             onMouseLeave={(e) => e.target.style.background = '#00ff88'}
           >
-            View Projects ↓
+            View Systems ↓
           </Link>
           <a
             href="https://github.com/Mohammad-Adnan-Shakil"

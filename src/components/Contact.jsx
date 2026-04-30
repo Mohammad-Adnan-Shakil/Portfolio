@@ -40,7 +40,7 @@ const Contact = () => {
     <section 
       id="contact"
       style={{ 
-        padding: '8rem 4rem',
+        padding: '5rem 4rem',
         borderTop: '1px solid rgba(0,255,136,0.12)',
         textAlign: 'center'
       }}
@@ -56,7 +56,7 @@ const Contact = () => {
             textTransform: 'uppercase'
           }}
         >
-          // 04 — Contact
+          // 05 — Contact
         </p>
       </div>
 
@@ -71,7 +71,7 @@ const Contact = () => {
             lineHeight: 1
           }}
         >
-          Let's build something <span style={{ color: '#00ff88' }}>real.</span>
+          Let's build <span style={{ color: '#00ff88' }}>production systems.</span>
         </h2>
       </div>
 
@@ -84,7 +84,8 @@ const Contact = () => {
             color: '#6b6b80'
           }}
         >
-          Open to internship opportunities, collaborations, and interesting problems.
+          Actively looking for software engineering internships (mid-2026).
+          Open to backend, full-stack, or ML infrastructure roles.
         </p>
       </div>
 

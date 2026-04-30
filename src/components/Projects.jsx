@@ -13,7 +13,7 @@ const Projects = () => {
       number: '02 —',
       title: 'CentSight',
       badge: '🏆 Hackathon — Build With TRAE · Future Finance Theme',
-      description: 'AI financial decision simulator that predicts your savings trajectory before you spend. Input income, expenses, and a planned purchase — get an ML-powered risk score and financial health classification instantly.',
+      description: 'AI financial decision simulator that predicts savings trajectory before spending decisions. Built full pipeline: React frontend → Node.js/Express backend → Python ML models (Scikit-learn). Implemented JWT auth and real-time risk scoring with financial health classification.',
       tags: ['React', 'Node.js', 'Express', 'Python', 'Scikit-learn', 'MongoDB', 'JWT'],
       github: 'https://github.com/Mohammad-Adnan-Shakil/CentSight'
     },
@@ -21,14 +21,14 @@ const Projects = () => {
       number: '03 —',
       title: 'FakeOut AI',
       badge: '🏆 Hackathon Project',
-      description: 'Voice deepfake detection system using a dual-model ML ensemble. Upload or record audio — XGBoost + RandomForest analyze 40 MFCC coefficients and spectral features to determine if a voice is AI-generated or real.',
+      description: 'Voice deepfake detection system using dual-model ML ensemble (XGBoost + Random Forest). Extracted 40 MFCC coefficients and spectral features from audio for classification. FastAPI backend serving ML inference with React frontend for audio upload/analysis.',
       tags: ['React', 'FastAPI', 'Python', 'XGBoost', 'Random Forest', 'Librosa', 'TailwindCSS'],
       github: 'https://github.com/FuncLexa/FakeOut-AI'
     }
   ];
 
   return (
-    <section id="projects" style={{ padding: '8rem 4rem' }}>
+    <section id="projects" style={{ padding: '6rem 4rem' }}>
       {/* Section Label */}
       <div ref={revealRef(0)} className="mb-4">
         <p
@@ -45,7 +45,7 @@ const Projects = () => {
       </div>
 
       {/* Section Title */}
-      <div ref={revealRef(1)} className="mb-16">
+      <div ref={revealRef(1)} className="mb-12">
         <h2
           style={{
             fontFamily: 'Syne',
@@ -222,10 +222,10 @@ const Projects = () => {
                 lineHeight: 1.85
               }}
             >
-              AI-powered F1 analytics platform with live driver/constructor standings,
-              race calendar, and a full ML prediction engine. Features what-if simulation,
-              confidence scoring, performance insights, and JWT + RBAC security. Java
-              calls Python ML models via subprocess for real predictions.
+              Built an AI-powered F1 analytics platform that processes real-time race data and predicts outcomes using ML models.
+              Implemented Java (Spring Boot) backend integrated with Python ML models via subprocess orchestration.
+              Designed what-if simulation engine and caching layer for performance optimization.
+              Features JWT authentication, RBAC, and confidence scoring for race predictions.
             </p>
 
             {/* Tech Tags */}

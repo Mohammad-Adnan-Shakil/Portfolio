@@ -6,19 +6,19 @@ const Skills = () => {
   const skillGroups = [
     {
       title: 'Frontend',
-      skills: ['React.js', 'Redux Toolkit', 'Tailwind CSS', 'JavaScript ES6+', 'HTML / CSS']
+      skills: ['React + Redux (state-heavy UI, dynamic dashboards)', 'Tailwind CSS (rapid UI development)', 'JavaScript ES6+ (modern patterns)', 'HTML / CSS']
     },
     {
       title: 'Backend',
-      skills: ['Spring Boot', 'Java', 'Node.js', 'Express.js', 'REST APIs', 'JWT Auth']
+      skills: ['Spring Boot (REST APIs, authentication, RBAC, system design)', 'Java (type-safe backend development)', 'Node.js + Express (API layer, middleware)', 'JWT Auth (secure authentication)']
     },
     {
       title: 'ML / Data',
-      skills: ['Python', 'XGBoost', 'Random Forest', 'Linear Regression', 'Scikit-learn', 'Librosa']
+      skills: ['Python (XGBoost, Random Forest, inference pipelines)', 'Scikit-learn (feature engineering, model training)', 'Librosa (audio feature extraction)', 'Linear Regression']
     },
     {
       title: 'Infrastructure',
-      skills: ['PostgreSQL', 'MongoDB', 'Git / GitHub', 'Vercel', 'Maven', 'Postman']
+      skills: ['PostgreSQL (relational data, complex queries)', 'MongoDB (document storage, flexible schemas)', 'Git / GitHub (version control, CI/CD)', 'Vercel (deployment, edge caching)', 'Maven', 'Postman']
     }
   ];
 
@@ -26,7 +26,7 @@ const Skills = () => {
     <section 
       id="skills"
       style={{ 
-        padding: '8rem 4rem',
+        padding: '5rem 4rem',
         borderTop: '1px solid rgba(0,255,136,0.12)'
       }}
     >
@@ -46,7 +46,7 @@ const Skills = () => {
       </div>
 
       {/* Section Title */}
-      <div ref={revealRef(1)} className="mb-12">
+      <div ref={revealRef(1)} className="mb-8">
         <h2
           style={{
             fontFamily: 'Syne',
