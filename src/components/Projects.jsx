@@ -216,7 +216,7 @@ const Projects = () => {
 
             {/* Description */}
             <div
-              className="mb-8"
+              className="mb-6"
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: '0.8rem',
@@ -231,6 +231,101 @@ const Projects = () => {
                 <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
                 <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
                 <div>• JWT authentication + RBAC-secured APIs with 87.3% prediction confidence</div>
+              </div>
+            </div>
+
+            {/* Circuit Context */}
+            <div
+              className="mb-8 p-4 transition-all duration-300"
+              style={{
+                border: '1px solid rgba(0,255,136,0.15)',
+                background: 'rgba(0,255,136,0.02)',
+                opacity: 0.8
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(0,255,136,0.35)';
+                e.currentTarget.style.background = 'rgba(0,255,136,0.04)';
+                e.currentTarget.style.opacity = '1';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(0,255,136,0.15)';
+                e.currentTarget.style.background = 'rgba(0,255,136,0.02)';
+                e.currentTarget.style.opacity = '0.8';
+              }}
+            >
+              <div className="flex items-start gap-4">
+                {/* Track Outline SVG */}
+                <div
+                  className="flex-shrink-0"
+                  style={{
+                    width: '80px',
+                    height: '50px',
+                    position: 'relative'
+                  }}
+                >
+                  <svg
+                    viewBox="0 0 100 60"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      stroke: 'rgba(0,255,136,0.4)',
+                      strokeWidth: '1.5',
+                      fill: 'none',
+                      strokeLinecap: 'round',
+                      strokeLinejoin: 'round'
+                    }}
+                  >
+                    {/* Monaco-style circuit outline */}
+                    <path d="M10,30 L20,10 L40,10 L50,20 L70,20 L80,10 L90,10 L90,50 L70,50 L60,40 L40,40 L30,50 L10,50 L10,30 Z" />
+                  </svg>
+                </div>
+
+                {/* Circuit Info */}
+                <div style={{ flex: 1 }}>
+                  <div
+                    className="mb-2"
+                    style={{
+                      fontFamily: 'JetBrains Mono',
+                      fontSize: '0.65rem',
+                      color: '#00ff88',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase'
+                    }}
+                  >
+                    Track Context
+                  </div>
+                  <div
+                    className="mb-2"
+                    style={{
+                      fontFamily: 'Syne',
+                      fontWeight: 700,
+                      fontSize: '0.95rem',
+                      color: '#e8e8f0'
+                    }}
+                  >
+                    Monaco Grand Prix Circuit
+                  </div>
+                  <div
+                    className="mb-3"
+                    style={{
+                      fontFamily: 'JetBrains Mono',
+                      fontSize: '0.7rem',
+                      color: '#5a5a70'
+                    }}
+                  >
+                    Length: 3.34 km • Corners: 19 • Difficulty: High
+                  </div>
+                  <div
+                    style={{
+                      fontFamily: 'JetBrains Mono',
+                      fontSize: '0.68rem',
+                      color: '#6b6b80',
+                      lineHeight: 1.6
+                    }}
+                  >
+                    Tight street circuits increase race variance — model adjusts prediction confidence accordingly.
+                  </div>
+                </div>
               </div>
             </div>
 
