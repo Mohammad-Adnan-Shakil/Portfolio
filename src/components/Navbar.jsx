@@ -1,143 +1,262 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  const navLinks = ['Projects', 'Skills', 'About', 'Engineering', 'Contact'];
+
+  // Close menu on ESC key
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const navLinks = ['Projects', 'Skills', 'About', 'Contact'];
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [menuOpen]);
 
-  const scrollToSection = (section) => {
+  const scrollToSection = useCallback((section) => {
     const element = document.getElementById(section.toLowerCase());
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setMobileMenuOpen(false);
+      setMenuOpen(false);
     }
+  }, []);
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMenuOpen(false);
+  }, []);
+
+  // Get menu width based on viewport
+  const getMenuWidth = () => {
+    if (typeof window === 'undefined') return '360px';
+    const width = window.innerWidth;
+    if (width <= 320) return '70vw';
+    if (width <= 768) return '320px';
+    return '360px';
   };
+
+  const [menuWidth, setMenuWidth] = useState(getMenuWidth());
+
+  useEffect(() => {
+    const handleResize = () => setMenuWidth(getMenuWidth());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
+      {/* Navbar Header */}
       <nav
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={{
-          padding: '1.5rem 4rem',
-          backdropFilter: scrolled ? 'blur(24px)' : 'none',
-          background: scrolled ? 'rgba(10,10,15,0.85)' : 'transparent',
-          borderBottom: scrolled ? '1px solid rgba(0,255,136,0.12)' : 'none'
-        }}
+        className="fixed top-0 left-0 z-50"
+        style={{ padding: '1.5rem 2rem' }}
       >
-        <div className="flex justify-between items-center">
-          <div 
+        <div className="flex items-center gap-4">
+          {/* Logo */}
+          <div
             className="font-bold cursor-pointer"
-            style={{ 
-              fontFamily: 'JetBrains Mono', 
+            style={{
+              fontFamily: 'JetBrains Mono',
               fontSize: '0.9rem',
               color: '#00ff88'
             }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={scrollToTop}
           >
             MAS.dev
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8">
-            {navLinks.map((link) => (
-              <button
-                key={link}
-                onClick={() => scrollToSection(link)}
-                className="transition-colors duration-200"
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '0.72rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.12em',
-                  color: '#6b6b80'
-                }}
-                onMouseEnter={(e) => e.target.style.color = '#00ff88'}
-                onMouseLeave={(e) => e.target.style.color = '#6b6b80'}
-              >
-                {link}
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile Hamburger */}
+          {/* Hamburger Button */}
           <button
-            className="md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '8px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '5px'
+            }}
+            aria-label="Toggle menu"
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
-              <div
-                style={{
-                  width: '24px',
-                  height: '2px',
-                  backgroundColor: '#00ff88',
-                  transition: 'all 0.3s ease'
-                }}
-              />
-              <div
-                style={{
-                  width: '24px',
-                  height: '2px',
-                  backgroundColor: '#00ff88',
-                  transition: 'all 0.3s ease'
-                }}
-              />
-              <div
-                style={{
-                  width: '24px',
-                  height: '2px',
-                  backgroundColor: '#00ff88',
-                  transition: 'all 0.3s ease'
-                }}
-              />
-            </div>
+            <motion.div
+              animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                width: '24px',
+                height: '2px',
+                backgroundColor: '#00ff88',
+                borderRadius: '1px'
+              }}
+            />
+            <motion.div
+              animate={menuOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: '24px' }}
+              transition={{ duration: 0.3 }}
+              style={{
+                height: '2px',
+                backgroundColor: '#00ff88',
+                borderRadius: '1px'
+              }}
+            />
+            <motion.div
+              animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                width: '24px',
+                height: '2px',
+                backgroundColor: '#00ff88',
+                borderRadius: '1px'
+              }}
+            />
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Backdrop Overlay */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {menuOpen && (
           <motion.div
-            initial={{ x: '100%' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40"
+            style={{ background: 'rgba(0,0,0,0.5)' }}
+            onClick={() => setMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Slide-in Menu Panel */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ x: '-100%' }}
             animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-40 md:hidden flex items-center justify-center"
-            style={{ background: '#0a0a0f' }}
+            exit={{ x: '-100%' }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="fixed top-0 left-0 h-full z-50"
+            style={{
+              width: menuWidth,
+              maxWidth: '360px',
+              background: 'rgba(10,10,15,0.95)',
+              backdropFilter: 'blur(20px)',
+              borderRight: '1px solid rgba(0,255,136,0.2)',
+              boxShadow: '4px 0 30px rgba(0,0,0,0.5)'
+            }}
           >
-            <div className="flex flex-col gap-8">
+            {/* Menu Header */}
+            <div
+              className="flex items-center gap-4"
+              style={{ padding: '1.5rem 2rem', borderBottom: '1px solid rgba(0,255,136,0.1)' }}
+            >
+              <div
+                className="font-bold cursor-pointer"
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.9rem',
+                  color: '#00ff88'
+                }}
+                onClick={scrollToTop}
+              >
+                MAS.dev
+              </div>
+              <button
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '8px',
+                  marginLeft: 'auto'
+                }}
+                aria-label="Close menu"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00ff88" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Menu Items */}
+            <div
+              className="flex flex-col"
+              style={{ padding: '2rem 1.5rem' }}
+            >
               {navLinks.map((link, index) => (
                 <motion.button
                   key={link}
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
                   onClick={() => scrollToSection(link)}
+                  className="menu-item"
                   style={{
                     fontFamily: 'JetBrains Mono',
-                    fontSize: '1.5rem',
+                    fontSize: 'clamp(1.5rem, 4vw, 2rem)',
                     textTransform: 'uppercase',
                     letterSpacing: '0.12em',
                     color: '#e8e8f0',
                     background: 'none',
                     border: 'none',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    padding: '1rem 0.5rem',
+                    textAlign: 'left',
+                    transition: 'all 0.3s ease',
+                    borderLeft: '2px solid transparent'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.color = '#00ff88';
+                    e.target.style.transform = 'translateX(8px)';
+                    e.target.style.borderLeftColor = '#00ff88';
+                    e.target.style.textShadow = '0 0 20px rgba(0,255,136,0.5)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.color = '#e8e8f0';
+                    e.target.style.transform = 'translateX(0)';
+                    e.target.style.borderLeftColor = 'transparent';
+                    e.target.style.textShadow = 'none';
                   }}
                 >
                   {link}
                 </motion.button>
               ))}
+            </div>
+
+            {/* Menu Footer */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                padding: '1.5rem',
+                borderTop: '1px solid rgba(0,255,136,0.1)'
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.65rem',
+                  color: '#6b6b80',
+                  letterSpacing: '0.1em'
+                }}
+              >
+                Full-Stack + ML Systems
+              </p>
             </div>
           </motion.div>
         )}
