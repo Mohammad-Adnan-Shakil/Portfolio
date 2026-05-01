@@ -78,230 +78,414 @@ const Projects = () => {
             }}
           />
 
-          {/* Left Column - F1 Telemetry Dashboard */}
+          {/* Split-Screen Engineering Dashboard */}
           <div
-            className="relative overflow-hidden order-1 lg:order-1"
+            className="flex flex-col lg:flex-row order-1 lg:order-1"
             style={{ 
               background: '#13131e', 
-              minHeight: 'clamp(320px, 50vh, 520px)',
+              minHeight: 'clamp(400px, 60vh, 600px)',
               height: 'auto'
             }}
           >
-            {/* F1 Telemetry Dashboard Background Grid */}
+            {/* Left Panel - Project Intelligence (40% on desktop) */}
             <div 
-              className="absolute inset-0 pointer-events-none"
+              className="lg:w-2/5 w-full relative overflow-hidden border-r border-green-900/20"
               style={{
-                backgroundImage: `
-                  linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px)
-                `,
-                backgroundSize: '20px 20px',
-                opacity: 0.5
+                background: 'linear-gradient(135deg, rgba(0,255,136,0.02) 0%, transparent 100%)'
               }}
-            />
-            
-            {/* Monaco Grand Prix Circuit - Scaled 2.5x */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none">
-              <svg
-                className="w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[420px] h-auto"
-                viewBox="0 0 280 160"
-                style={{ overflow: 'visible' }}
-              >
-                {/* Monaco Circuit Path - Enhanced with glow */}
-                <path
-                  id="monaco-circuit"
-                  d="M 30,80 
-                   L 35,45 
-                   Q 45,25 65,30 
-                   L 95,35 
-                   Q 115,38 125,45 
-                   L 140,65 
-                   Q 145,75 155,70 
-                   L 185,45 
-                   Q 205,35 225,40 
-                   L 245,65 
-                   Q 250,75 245,85 
-                   L 235,105 
-                   Q 225,115 210,115 
-                   L 185,110 
-                   Q 165,108 150,95 
-                   L 135,85 
-                   Q 125,78 115,80 
-                   L 95,85 
-                   Q 75,88 65,85 
-                   L 45,80 
-                   Q 35,80 30,80 Z"
-                  fill="none"
-                  stroke="rgba(0,255,136,0.4)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  filter="url(#circuit-glow)"
-                />
+            >
+              {/* Terminal Grid Background */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '15px 15px',
+                  opacity: 0.3
+                }}
+              />
+              
+              {/* DELTABOX Header */}
+              <div className="relative p-4 sm:p-6 border-b border-green-900/20">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 
+                    className="text-green-400 font-mono font-bold"
+                    style={{
+                      fontSize: 'clamp(0.9rem, 3vw, 1.1rem)',
+                      fontFamily: 'JetBrains Mono',
+                      textShadow: '0 0 10px rgba(0,255,136,0.5)'
+                    }}
+                  >
+                    DELTABOX v1.0
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                    <span 
+                      className="text-green-400 text-xs font-mono"
+                      style={{ fontFamily: 'JetBrains Mono' }}
+                    >
+                      ONLINE
+                    </span>
+                  </div>
+                </div>
                 
-                {/* Inner track line for depth */}
-                <path
-                  d="M 35,80 
-                   L 38,50 
-                   Q 47,32 65,36 
-                   L 93,40 
-                   Q 112,42 122,48 
-                   L 137,63 
-                   Q 142,72 152,68 
-                   L 182,48 
-                   Q 202,38 220,43 
-                   L 240,65 
-                   Q 245,73 242,82 
-                   L 232,100 
-                   Q 222,110 208,110 
-                   L 183,105 
-                   Q 163,103 148,92 
-                   L 133,83 
-                   Q 123,76 113,78 
-                   L 93,82 
-                   Q 73,85 63,82 
-                   L 43,78 
-                   Q 35,78 35,80 Z"
-                  fill="none"
-                  stroke="rgba(0,255,136,0.2)"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                {/* System Status */}
+                <div 
+                  className="text-green-400 font-mono text-sm mb-2"
+                  style={{ fontFamily: 'JetBrains Mono' }}
+                >
+                  RACE PREDICTION: <span className="text-white font-bold animate-pulse">ACTIVE</span>
+                </div>
+              </div>
+              
+              {/* Metrics Panel */}
+              <div className="relative p-4 sm:p-6 space-y-4">
+                {/* Model Info */}
+                <div className="space-y-2">
+                  <div 
+                    className="text-green-400 font-mono text-xs uppercase tracking-wider"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    Model Architecture
+                  </div>
+                  <div 
+                    className="text-white font-mono text-sm"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    XGBoost + Random Forest
+                  </div>
+                </div>
                 
-                {/* Racing telemetry dot with enhanced glow */}
-                <circle r="5" fill="#00ff88" filter="url(#telemetry-glow)">
-                  <animateMotion
-                    dur="7s"
-                    repeatCount="indefinite"
-                    rotate="auto"
-                    path="M 30,80 
-                     L 35,45 
-                     Q 45,25 65,30 
-                     L 95,35 
-                     Q 115,38 125,45 
-                     L 140,65 
-                     Q 145,75 155,70 
-                     L 185,45 
-                     Q 205,35 225,40 
-                     L 245,65 
-                     Q 250,75 245,85 
-                     L 235,105 
-                     Q 225,115 210,115 
-                     L 185,110 
-                     Q 165,108 150,95 
-                     L 135,85 
-                     Q 125,78 115,80 
-                     L 95,85 
-                     Q 75,88 65,85 
-                     L 45,80 
-                     Q 35,80 30,80 Z"
-                  />
-                </circle>
+                {/* Confidence Metric */}
+                <div className="space-y-2">
+                  <div 
+                    className="text-green-400 font-mono text-xs uppercase tracking-wider"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    Prediction Confidence
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span 
+                      className="text-white font-mono text-2xl font-bold"
+                      style={{ fontFamily: 'JetBrains Mono' }}
+                    >
+                      87.3%
+                    </span>
+                    <div className="flex gap-1">
+                      <div className="w-1 h-3 bg-green-400" />
+                      <div className="w-1 h-4 bg-green-400" />
+                      <div className="w-1 h-2 bg-green-400/50" />
+                      <div className="w-1 h-1 bg-green-400/30" />
+                    </div>
+                  </div>
+                </div>
                 
-                {/* Trail effect following the dot */}
-                <circle r="3" fill="rgba(0,255,136,0.5)" filter="url(#trail-glow)">
-                  <animateMotion
-                    dur="7s"
-                    repeatCount="indefinite"
-                    begin="0.15s"
-                    rotate="auto"
-                    path="M 30,80 
-                     L 35,45 
-                     Q 45,25 65,30 
-                     L 95,35 
-                     Q 115,38 125,45 
-                     L 140,65 
-                     Q 145,75 155,70 
-                     L 185,45 
-                     Q 205,35 225,40 
-                     L 245,65 
-                     Q 250,75 245,85 
-                     L 235,105 
-                     Q 225,115 210,115 
-                     L 185,110 
-                     Q 165,108 150,95 
-                     L 135,85 
-                     Q 125,78 115,80 
-                     L 95,85 
-                     Q 75,88 65,85 
-                     L 45,80 
-                     Q 35,80 30,80 Z"
-                  />
-                </circle>
+                {/* Dataset Stats */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <div 
+                      className="text-green-400 font-mono text-xs uppercase tracking-wider"
+                      style={{ fontFamily: 'JetBrains Mono' }}
+                    >
+                      Drivers
+                    </div>
+                    <div 
+                      className="text-white font-mono text-lg font-bold"
+                      style={{ fontFamily: 'JetBrains Mono' }}
+                    >
+                      20
+                    </div>
+                  </div>
+                  <div className="space-y-1">
+                    <div 
+                      className="text-green-400 font-mono text-xs uppercase tracking-wider"
+                      style={{ fontFamily: 'JetBrains Mono' }}
+                    >
+                      Races
+                    </div>
+                    <div 
+                      className="text-white font-mono text-lg font-bold"
+                      style={{ fontFamily: 'JetBrains Mono' }}
+                    >
+                      24
+                    </div>
+                  </div>
+                </div>
                 
-                {/* Enhanced glow filters and radar rings */}
-                <defs>
-                  <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <filter id="trail-glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <radialGradient id="radar-gradient">
-                    <stop offset="0%" stopColor="rgba(0,255,136,0.3)" />
-                    <stop offset="100%" stopColor="rgba(0,255,136,0)" />
-                  </radialGradient>
-                </defs>
-                
-                {/* Animated radar rings */}
-                <circle cx="140" cy="80" r="30" fill="none" stroke="url(#radar-gradient)" strokeWidth="1" opacity="0.6">
-                  <animate attributeName="r" values="20;35;20" dur="4s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0.6;0.2;0.6" dur="4s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="140" cy="80" r="20" fill="none" stroke="rgba(0,255,136,0.2)" strokeWidth="0.5" opacity="0.4">
-                  <animate attributeName="r" values="10;25;10" dur="4s" repeatCount="indefinite" begin="1s" />
-                  <animate attributeName="opacity" values="0.4;0.1;0.4" dur="4s" repeatCount="indefinite" begin="1s" />
-                </circle>
-                
-                {/* Blinking checkpoints on key corners */}
-                <circle cx="35" cy="45" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="65" cy="30" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.5s" />
-                </circle>
-                <circle cx="125" cy="45" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="1s" />
-                </circle>
-                <circle cx="185" cy="45" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="1.5s" />
-                </circle>
-                <circle cx="245" cy="85" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="2s" />
-                </circle>
-                <circle cx="210" cy="115" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="2.5s" />
-                </circle>
-                <circle cx="150" cy="95" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="3s" />
-                </circle>
-                <circle cx="95" cy="85" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="3.5s" />
-                </circle>
-              </svg>
+                {/* Performance Indicators */}
+                <div className="space-y-2">
+                  <div 
+                    className="text-green-400 font-mono text-xs uppercase tracking-wider"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    System Performance
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center">
+                      <span 
+                        className="text-gray-400 font-mono text-xs"
+                        style={{ fontFamily: 'JetBrains Mono' }}
+                      >
+                        CPU Usage
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-1 bg-gray-700 rounded">
+                          <div className="w-3/4 h-full bg-green-400 rounded" />
+                        </div>
+                        <span 
+                          className="text-green-400 font-mono text-xs"
+                          style={{ fontFamily: 'JetBrains Mono' }}
+                        >
+                          74%
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span 
+                        className="text-gray-400 font-mono text-xs"
+                        style={{ fontFamily: 'JetBrains Mono' }}
+                      >
+                        Memory
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-1 bg-gray-700 rounded">
+                          <div className="w-1/2 h-full bg-green-400 rounded" />
+                        </div>
+                        <span 
+                          className="text-green-400 font-mono text-xs"
+                          style={{ fontFamily: 'JetBrains Mono' }}
+                        >
+                          52%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            {/* F1 Telemetry Dashboard UI */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Right Panel - Monaco Circuit (60% on desktop) */}
+            <div 
+              className="lg:w-3/5 w-full relative overflow-hidden"
+              style={{
+                background: 'linear-gradient(135deg, transparent 0%, rgba(0,255,136,0.02) 100%)'
+              }}
+            >
+              {/* Circuit Background Grid */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '20px 20px',
+                  opacity: 0.4
+                }}
+              />
+              
+              {/* Monaco Circuit Animation */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none">
+                <svg
+                  className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px] h-auto"
+                  viewBox="0 0 280 160"
+                  style={{ overflow: 'visible' }}
+                >
+                  {/* Monaco Circuit Path */}
+                  <path
+                    id="monaco-circuit"
+                    d="M 30,80 
+                     L 35,45 
+                     Q 45,25 65,30 
+                     L 95,35 
+                     Q 115,38 125,45 
+                     L 140,65 
+                     Q 145,75 155,70 
+                     L 185,45 
+                     Q 205,35 225,40 
+                     L 245,65 
+                     Q 250,75 245,85 
+                     L 235,105 
+                     Q 225,115 210,115 
+                     L 185,110 
+                     Q 165,108 150,95 
+                     L 135,85 
+                     Q 125,78 115,80 
+                     L 95,85 
+                     Q 75,88 65,85 
+                     L 45,80 
+                     Q 35,80 30,80 Z"
+                    fill="none"
+                    stroke="rgba(0,255,136,0.5)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    filter="url(#circuit-glow)"
+                  />
+                  
+                  {/* Inner track line */}
+                  <path
+                    d="M 35,80 
+                     L 38,50 
+                     Q 47,32 65,36 
+                     L 93,40 
+                     Q 112,42 122,48 
+                     L 137,63 
+                     Q 142,72 152,68 
+                     L 182,48 
+                     Q 202,38 220,43 
+                     L 240,65 
+                     Q 245,73 242,82 
+                     L 232,100 
+                     Q 222,110 208,110 
+                     L 183,105 
+                     Q 163,103 148,92 
+                     L 133,83 
+                     Q 123,76 113,78 
+                     L 93,82 
+                     Q 73,85 63,82 
+                     L 43,78 
+                     Q 35,78 35,80 Z"
+                    fill="none"
+                    stroke="rgba(0,255,136,0.25)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  
+                  {/* Racing telemetry dot */}
+                  <circle r="6" fill="#00ff88" filter="url(#telemetry-glow)">
+                    <animateMotion
+                      dur="6s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      path="M 30,80 
+                       L 35,45 
+                       Q 45,25 65,30 
+                       L 95,35 
+                       Q 115,38 125,45 
+                       L 140,65 
+                       Q 145,75 155,70 
+                       L 185,45 
+                       Q 205,35 225,40 
+                       L 245,65 
+                       Q 250,75 245,85 
+                       L 235,105 
+                       Q 225,115 210,115 
+                       L 185,110 
+                       Q 165,108 150,95 
+                       L 135,85 
+                       Q 125,78 115,80 
+                       L 95,85 
+                       Q 75,88 65,85 
+                       L 45,80 
+                       Q 35,80 30,80 Z"
+                    />
+                  </circle>
+                  
+                  {/* Trail effect */}
+                  <circle r="4" fill="rgba(0,255,136,0.6)" filter="url(#trail-glow)">
+                    <animateMotion
+                      dur="6s"
+                      repeatCount="indefinite"
+                      begin="0.1s"
+                      rotate="auto"
+                      path="M 30,80 
+                       L 35,45 
+                       Q 45,25 65,30 
+                       L 95,35 
+                       Q 115,38 125,45 
+                       L 140,65 
+                       Q 145,75 155,70 
+                       L 185,45 
+                       Q 205,35 225,40 
+                       L 245,65 
+                       Q 250,75 245,85 
+                       L 235,105 
+                       Q 225,115 210,115 
+                       L 185,110 
+                       Q 165,108 150,95 
+                       L 135,85 
+                       Q 125,78 115,80 
+                       L 95,85 
+                       Q 75,88 65,85 
+                       L 45,80 
+                       Q 35,80 30,80 Z"
+                    />
+                  </circle>
+                  
+                  {/* Glow filters */}
+                  <defs>
+                    <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <filter id="trail-glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                    <radialGradient id="radar-gradient">
+                      <stop offset="0%" stopColor="rgba(0,255,136,0.4)" />
+                      <stop offset="100%" stopColor="rgba(0,255,136,0)" />
+                    </radialGradient>
+                  </defs>
+                  
+                  {/* Animated radar rings */}
+                  <circle cx="140" cy="80" r="35" fill="none" stroke="url(#radar-gradient)" strokeWidth="1.5" opacity="0.7">
+                    <animate attributeName="r" values="25;45;25" dur="4s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="4s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="140" cy="80" r="25" fill="none" stroke="rgba(0,255,136,0.3)" strokeWidth="1" opacity="0.5">
+                    <animate attributeName="r" values="15;35;15" dur="4s" repeatCount="indefinite" begin="1s" />
+                    <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4s" repeatCount="indefinite" begin="1s" />
+                  </circle>
+                  
+                  {/* Blinking checkpoints */}
+                  <circle cx="35" cy="45" r="3" fill="rgba(0,255,136,0.8)">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="65" cy="30" r="3" fill="rgba(0,255,136,0.8)">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="0.5s" />
+                  </circle>
+                  <circle cx="125" cy="45" r="3" fill="rgba(0,255,136,0.8)">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1s" />
+                  </circle>
+                  <circle cx="185" cy="45" r="3" fill="rgba(0,255,136,0.8)">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1.5s" />
+                  </circle>
+                  <circle cx="245" cy="85" r="3" fill="rgba(0,255,136,0.8)">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="2s" />
+                  </circle>
+                  <circle cx="210" cy="115" r="3" fill="rgba(0,255,136,0.8)">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="2.5s" />
+                  </circle>
+                  <circle cx="150" cy="95" r="3" fill="rgba(0,255,136,0.8)">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="3s" />
+                  </circle>
+                  <circle cx="95" cy="85" r="3" fill="rgba(0,255,136,0.8)">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="3.5s" />
+                  </circle>
+                </svg>
+              </div>
+              
               {/* Scanning Line Effect */}
               <div 
-                className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-50"
+                className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-60"
                 style={{
                   top: '50%',
                   animation: 'scanLine 3s ease-in-out infinite',
@@ -309,88 +493,31 @@ const Projects = () => {
                 }}
               />
               
-              {/* Top Bar - TRACK INFO */}
-              <div 
-                className="absolute top-0 left-0 right-0 flex justify-between items-center px-3 py-2"
-                style={{
-                  background: 'rgba(0,0,0,0.8)',
-                  borderBottom: '1px solid rgba(0,255,136,0.3)',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.65rem, 2vw, 0.75rem)'
-                }}
-              >
-                <div className="text-green-400">TRACK: MONACO GP</div>
-                <div className="text-green-400 hidden sm:block">SECTOR: 3</div>
+              {/* Circuit Info Overlay */}
+              <div className="absolute top-0 left-0 right-0 p-4">
+                <div 
+                  className="text-green-400 font-mono text-sm"
+                  style={{ fontFamily: 'JetBrains Mono' }}
+                >
+                  TRACK: MONACO GP
+                </div>
               </div>
               
-              {/* Left Panel - MODEL INFO */}
-              <div 
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 px-3 py-2"
-                style={{
-                  background: 'rgba(0,0,0,0.7)',
-                  border: '1px solid rgba(0,255,136,0.3)',
-                  borderRight: 'none',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.6rem, 2vw, 0.7rem)',
-                  writingMode: 'vertical-rl'
-                }}
-              >
-                <div className="text-green-400 mb-2">MODEL</div>
-                <div className="text-xs text-gray-400">XGBOOST + RF</div>
-              </div>
-              
-              {/* Right Panel - CONFIDENCE */}
-              <div 
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-2"
-                style={{
-                  background: 'rgba(0,0,0,0.7)',
-                  border: '1px solid rgba(0,255,136,0.3)',
-                  borderLeft: 'none',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.6rem, 2vw, 0.7rem)'
-                }}
-              >
-                <div className="text-green-400 mb-2">CONFIDENCE</div>
-                <div className="text-xs text-gray-400">87.3%</div>
-              </div>
-              
-              {/* Bottom Bar - DATASET INFO */}
-              <div 
-                className="absolute bottom-0 left-0 right-0 flex justify-between items-center px-3 py-2"
-                style={{
-                  background: 'rgba(0,0,0,0.8)',
-                  borderTop: '1px solid rgba(0,255,136,0.3)',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.65rem, 2vw, 0.75rem)'
-                }}
-              >
-                <div className="text-green-400">DATASET: 24 RACES</div>
-                <div className="text-green-400 hidden sm:block">STATUS: ACTIVE</div>
-              </div>
-              
-              {/* Floating Status Indicators */}
-              <div 
-                className="absolute text-xs font-mono text-green-400 opacity-0"
-                style={{
-                  top: '15%',
-                  left: '20%',
-                  animation: 'fadeInOut 4s ease-in-out infinite',
-                  fontFamily: 'JetBrains Mono'
-                }}
-              >
-                PREDICTION ACTIVE
-              </div>
-              
-              <div 
-                className="absolute text-xs font-mono text-green-400 opacity-0 hidden sm:block"
-                style={{
-                  top: '25%',
-                  right: '15%',
-                  animation: 'fadeInOut 4s ease-in-out infinite 1s',
-                  fontFamily: 'JetBrains Mono'
-                }}
-              >
-                ML ONLINE
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <div className="flex justify-between items-center">
+                  <div 
+                    className="text-green-400 font-mono text-xs"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    SECTOR: 3
+                  </div>
+                  <div 
+                    className="text-green-400 font-mono text-xs"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    TELEMETRY: ACTIVE
+                  </div>
+                </div>
               </div>
             </div>
 
