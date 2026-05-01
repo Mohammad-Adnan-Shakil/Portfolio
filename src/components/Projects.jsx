@@ -88,7 +88,7 @@ const Projects = () => {
             }}
           >
             {/* Monaco Circuit Visualization */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none">
               <svg
                 className="w-full max-w-[200px] sm:max-w-[240px] lg:max-w-[280px] h-auto"
                 viewBox="0 0 280 160"
@@ -147,7 +147,7 @@ const Projects = () => {
 
             {/* Top-left data overlay */}
             <div
-              className="absolute"
+              className="absolute pointer-events-none"
               style={{
                 top: 'clamp(0.75rem, 2vw, 1.5rem)',
                 left: 'clamp(0.75rem, 2vw, 1.5rem)',
@@ -164,7 +164,7 @@ const Projects = () => {
 
             {/* Bottom-right data overlay */}
             <div
-              className="absolute text-right"
+              className="absolute text-right pointer-events-none"
               style={{
                 bottom: 'clamp(0.75rem, 2vw, 1.5rem)',
                 right: 'clamp(0.75rem, 2vw, 1.5rem)',
