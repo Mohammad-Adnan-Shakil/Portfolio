@@ -92,43 +92,63 @@ const Projects = () => {
             className="relative overflow-hidden"
             style={{ background: '#13131e', minHeight: '420px' }}
           >
-            {/* F1 Circuit Visual */}
+            {/* Monaco Circuit Visualization */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div
-                className="relative"
-                style={{
-                  width: '280px',
-                  height: '155px',
-                  border: '1.5px solid rgba(0,255,136,0.25)',
-                  borderRadius: '80px',
-                  animation: 'orbit 8s linear infinite'
-                }}
+              <svg
+                width="280"
+                height="160"
+                viewBox="0 0 280 160"
+                style={{ overflow: 'visible' }}
               >
-                {/* Racing dot */}
-                <div
-                  className="absolute"
-                  style={{
-                    width: '10px',
-                    height: '10px',
-                    background: '#00ff88',
-                    borderRadius: '50%',
-                    boxShadow: '0 0 12px #00ff88',
-                    top: '-5px',
-                    left: '50%',
-                    transform: 'translateX(-50%)'
-                  }}
+                {/* Circuit track path - simplified Monaco layout */}
+                <path
+                  id="monaco-circuit"
+                  d="M40,80 L50,40 L80,35 L120,40 L140,55 L160,45 L200,40 L230,50 L240,80 L235,110 L200,120 L160,115 L140,100 L120,110 L80,120 L50,115 L40,80 Z"
+                  fill="none"
+                  stroke="rgba(0,255,136,0.25)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-              </div>
-              {/* Inner oval */}
-              <div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                style={{
-                  width: '200px',
-                  height: '100px',
-                  border: '1px solid rgba(0,255,136,0.12)',
-                  borderRadius: '60px'
-                }}
-              />
+                
+                {/* Inner track line for depth */}
+                <path
+                  d="M45,80 L53,45 L78,40 L118,45 L138,58 L158,50 L198,45 L225,55 L233,80 L228,105 L198,113 L158,108 L138,95 L118,105 L78,113 L53,108 L45,80 Z"
+                  fill="none"
+                  stroke="rgba(0,255,136,0.12)"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                
+                {/* Racing dot - travels along circuit path */}
+                <circle r="5" fill="#00ff88" filter="url(#glow)">
+                  <animateMotion
+                    dur="6s"
+                    repeatCount="indefinite"
+                    path="M40,80 L50,40 L80,35 L120,40 L140,55 L160,45 L200,40 L230,50 L240,80 L235,110 L200,120 L160,115 L140,100 L120,110 L80,120 L50,115 L40,80 Z"
+                  />
+                </circle>
+                
+                {/* Glow filter */}
+                <defs>
+                  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                
+                {/* Corner indicators - subtle glow points */}
+                <circle cx="50" cy="40" r="2" fill="rgba(0,255,136,0.3)" />
+                <circle cx="120" cy="40" r="2" fill="rgba(0,255,136,0.3)" />
+                <circle cx="200" cy="40" r="2" fill="rgba(0,255,136,0.3)" />
+                <circle cx="240" cy="80" r="2" fill="rgba(0,255,136,0.3)" />
+                <circle cx="200" cy="120" r="2" fill="rgba(0,255,136,0.3)" />
+                <circle cx="80" cy="120" r="2" fill="rgba(0,255,136,0.3)" />
+              </svg>
             </div>
 
             {/* Top-left data overlay */}
