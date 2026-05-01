@@ -8,8 +8,7 @@ This portfolio is not designed as a static resume website — it is built as an 
 
 ## 🚀 Live Portfolio
 
-[Add your deployed link here]
-
+https://portfolio-p2jh.vercel.app/
 ---
 
 ## 🎯 Purpose
