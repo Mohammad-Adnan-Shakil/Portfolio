@@ -32,48 +32,51 @@ const Hero = () => {
 
   return (
     <section 
-      className="relative flex flex-col justify-center overflow-hidden"
+      className="relative flex flex-col justify-center overflow-hidden px-4 sm:px-6 lg:px-12 xl:px-16"
       style={{ 
         minHeight: '100vh',
-        padding: '0 4rem'
+        paddingTop: '6rem',
+        paddingBottom: '2rem'
       }}
       id="hero"
     >
-      {/* Radial Glow */}
+      {/* Radial Glow - scaled for mobile */}
       <div
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{
-          width: '700px',
-          height: '700px',
+          width: 'clamp(300px, 80vw, 700px)',
+          height: 'clamp(300px, 80vw, 700px)',
           borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(0,255,136,0.07) 0%, transparent 70%)'
         }}
       />
 
-      {/* Floating Particles */}
-      {particles.map((particle) => (
-        <div
-          key={particle.id}
-          className="absolute pointer-events-none rounded-full"
-          style={{
-            left: `${particle.left}%`,
-            top: `${particle.top}%`,
-            width: '2px',
-            height: '2px',
-            backgroundColor: '#00ff88',
-            opacity: particle.opacity,
-            animation: `float ${particle.duration}s ease-in-out infinite`,
-            animationDelay: `${particle.delay}s`
-          }}
-        />
-      ))}
+      {/* Floating Particles - hidden on mobile */}
+      <div className="hidden sm:block">
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute pointer-events-none rounded-full"
+            style={{
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
+              width: '2px',
+              height: '2px',
+              backgroundColor: '#00ff88',
+              opacity: particle.opacity,
+              animation: `float ${particle.duration}s ease-in-out infinite`,
+              animationDelay: `${particle.delay}s`
+            }}
+          />
+        ))}
+      </div>
 
       {/* Content */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10"
+        className="relative z-10 w-full max-w-7xl mx-auto"
       >
         {/* Tag Line */}
         <motion.div variants={itemVariants} className="mb-6">
@@ -90,13 +93,14 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        {/* Main Heading */}
-        <motion.div variants={itemVariants} className="mb-8">
+        {/* Main Heading - responsive sizes */}
+        <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
           <h1
+            className="text-center sm:text-left"
             style={{
               fontFamily: 'Syne',
               fontWeight: 800,
-              fontSize: 'clamp(3.5rem, 9vw, 8rem)',
+              fontSize: 'clamp(2.5rem, 12vw, 8rem)',
               lineHeight: 0.9,
               letterSpacing: '-0.03em'
             }}
@@ -115,15 +119,15 @@ const Hero = () => {
         </motion.div>
 
         {/* Primary Line */}
-        <motion.div variants={itemVariants} className="mb-6">
+        <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
           <p
+            className="text-center sm:text-left max-w-xl"
             style={{
               fontFamily: 'Syne',
               fontWeight: 600,
-              fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)',
+              fontSize: 'clamp(0.9rem, 4vw, 1.15rem)',
               color: '#e8e8f0',
-              maxWidth: '640px',
-              lineHeight: 1.55
+              lineHeight: 1.6
             }}
           >
             Full-stack engineer building production systems that integrate ML models into real applications.
@@ -132,13 +136,13 @@ const Hero = () => {
         </motion.div>
 
         {/* Sub Line */}
-        <motion.div variants={itemVariants} className="mb-8">
+        <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
           <p
+            className="text-center sm:text-left max-w-lg"
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: '0.82rem',
+              fontSize: 'clamp(0.75rem, 2.5vw, 0.82rem)',
               color: '#6b6b80',
-              maxWidth: '560px',
               lineHeight: 1.8
             }}
           >
@@ -146,13 +150,13 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        {/* CTA Buttons */}
-        <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-16">
+        {/* CTA Buttons - stack vertically on mobile */}
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12 items-center sm:items-start">
           <Link
             to="projects"
             smooth={true}
             duration={500}
-            className="cursor-pointer transition-transform duration-200 hover:-translate-y-1"
+            className="cursor-pointer transition-transform duration-200 hover:-translate-y-1 w-full sm:w-auto text-center"
             style={{
               background: '#00ff88',
               color: '#000',
@@ -173,7 +177,7 @@ const Hero = () => {
             href="https://github.com/Mohammad-Adnan-Shakil"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-transform duration-200 hover:-translate-y-1"
+            className="transition-transform duration-200 hover:-translate-y-1 w-full sm:w-auto text-center"
             style={{
               background: 'transparent',
               border: '1px solid rgba(0,255,136,0.2)',
@@ -198,14 +202,94 @@ const Hero = () => {
             GitHub ↗
           </a>
         </motion.div>
+
+        {/* Stats - horizontal row below CTA on mobile, absolute on desktop */}
+        <div
+          className="flex flex-row sm:flex-col justify-center sm:justify-start gap-6 sm:gap-6 sm:absolute sm:text-right mt-8 sm:mt-0 w-full sm:w-auto"
+          style={{
+            bottom: 'clamp(1rem, 4vh, 3rem)',
+            right: 'clamp(1rem, 4vw, 4rem)',
+            zIndex: 2
+          }}
+        >
+          <div className="text-center sm:text-right">
+            <div
+              style={{
+                fontFamily: 'Syne',
+                fontSize: 'clamp(1.5rem, 5vw, 2.2rem)',
+                fontWeight: 800,
+                color: '#00ff88'
+              }}
+            >
+              3+
+            </div>
+            <div
+              style={{
+                fontFamily: 'JetBrains Mono',
+                fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)',
+                color: '#6b6b80',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase'
+              }}
+            >
+              Production Projects
+            </div>
+          </div>
+          <div className="text-center sm:text-right">
+            <div
+              style={{
+                fontFamily: 'Syne',
+                fontSize: 'clamp(1.5rem, 5vw, 2.2rem)',
+                fontWeight: 800,
+                color: '#00ff88'
+              }}
+            >
+              5+
+            </div>
+            <div
+              style={{
+                fontFamily: 'JetBrains Mono',
+                fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)',
+                color: '#6b6b80',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase'
+              }}
+            >
+              Technologies
+            </div>
+          </div>
+          <div className="text-center sm:text-right">
+            <div
+              style={{
+                fontFamily: 'Syne',
+                fontSize: 'clamp(1.5rem, 5vw, 2.2rem)',
+                fontWeight: 800,
+                color: '#00ff88'
+              }}
+            >
+              2nd
+            </div>
+            <div
+              style={{
+                fontFamily: 'JetBrains Mono',
+                fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)',
+                color: '#6b6b80',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase'
+              }}
+            >
+              Year CSE
+            </div>
+          </div>
+        </div>
       </motion.div>
 
-      {/* Scroll Indicator - Bottom Left */}
+      {/* Scroll Indicator - hidden on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4 }}
-        className="absolute bottom-8 left-16 flex items-center gap-4"
+        className="hidden lg:flex absolute bottom-8 left-16 items-center gap-4"
       >
         <div
           className="w-10"
@@ -226,90 +310,6 @@ const Hero = () => {
         >
           scroll to explore
         </p>
-      </motion.div>
-
-      {/* Stats - Bottom Right */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
-        className="absolute flex flex-col gap-6 text-right"
-        style={{
-          bottom: '3rem',
-          right: '4rem',
-          zIndex: 2,
-          top: 'auto'
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: 'Syne',
-              fontSize: '2.2rem',
-              fontWeight: 800,
-              color: '#00ff88'
-            }}
-          >
-            3+
-          </div>
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: '0.62rem',
-              color: '#6b6b80',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase'
-            }}
-          >
-            Production Projects
-          </div>
-        </div>
-        <div>
-          <div
-            style={{
-              fontFamily: 'Syne',
-              fontSize: '2.2rem',
-              fontWeight: 800,
-              color: '#00ff88'
-            }}
-          >
-            5+
-          </div>
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: '0.62rem',
-              color: '#6b6b80',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase'
-            }}
-          >
-            Technologies
-          </div>
-        </div>
-        <div>
-          <div
-            style={{
-              fontFamily: 'Syne',
-              fontSize: '2.2rem',
-              fontWeight: 800,
-              color: '#00ff88'
-            }}
-          >
-            2nd
-          </div>
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: '0.62rem',
-              color: '#6b6b80',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase'
-            }}
-          >
-            Year CSE
-          </div>
-        </div>
       </motion.div>
     </section>
   );

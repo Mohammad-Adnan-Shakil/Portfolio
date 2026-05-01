@@ -30,7 +30,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" style={{ padding: '4.5rem 4rem' }}>
+    <section id="projects" className="px-4 sm:px-6 lg:px-12 xl:px-16 py-12 sm:py-16 lg:py-20">
       {/* Section Label */}
       <div ref={revealRef(0)} className="mb-4">
         <p
@@ -60,25 +60,16 @@ const Projects = () => {
       </div>
 
       {/* Featured Card - Deltabox */}
-      <div ref={revealRef(2)} className="mb-16">
+      <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
-          className="featured-card-grid relative overflow-hidden transition-all duration-300"
+          className="relative overflow-hidden transition-all duration-300 flex flex-col lg:grid lg:grid-cols-2"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
             border: '1px solid rgba(0,255,136,0.12)',
             background: 'rgba(255,255,255,0.02)'
           }}
           onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(0,255,136,0.35)'}
           onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(0,255,136,0.12)'}
         >
-          <style>{`
-            @media (max-width: 768px) {
-              .featured-card-grid {
-                grid-template-columns: 1fr !important;
-              }
-            }
-          `}</style>
           {/* Gradient overlay */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -89,14 +80,17 @@ const Projects = () => {
 
           {/* Left Column - Visual Panel */}
           <div
-            className="relative overflow-hidden"
-            style={{ background: '#13131e', minHeight: '420px' }}
+            className="relative overflow-hidden order-1 lg:order-1"
+            style={{ 
+              background: '#13131e', 
+              minHeight: 'clamp(220px, 40vh, 420px)',
+              height: 'auto'
+            }}
           >
             {/* Monaco Circuit Visualization */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center">
               <svg
-                width="280"
-                height="160"
+                className="w-full max-w-[200px] sm:max-w-[240px] lg:max-w-[280px] h-auto"
                 viewBox="0 0 280 160"
                 style={{ overflow: 'visible' }}
               >
@@ -155,10 +149,10 @@ const Projects = () => {
             <div
               className="absolute"
               style={{
-                top: '1.5rem',
-                left: '1.5rem',
+                top: 'clamp(0.75rem, 2vw, 1.5rem)',
+                left: 'clamp(0.75rem, 2vw, 1.5rem)',
                 fontFamily: 'JetBrains Mono',
-                fontSize: '0.6rem',
+                fontSize: 'clamp(0.5rem, 1.5vw, 0.6rem)',
                 color: 'rgba(0,255,136,0.45)',
                 lineHeight: 1.8
               }}
@@ -172,10 +166,10 @@ const Projects = () => {
             <div
               className="absolute text-right"
               style={{
-                bottom: '1.5rem',
-                right: '1.5rem',
+                bottom: 'clamp(0.75rem, 2vw, 1.5rem)',
+                right: 'clamp(0.75rem, 2vw, 1.5rem)',
                 fontFamily: 'JetBrains Mono',
-                fontSize: '0.6rem',
+                fontSize: 'clamp(0.5rem, 1.5vw, 0.6rem)',
                 color: 'rgba(0,255,136,0.45)',
                 lineHeight: 1.8
               }}
@@ -195,7 +189,7 @@ const Projects = () => {
           </div>
 
           {/* Right Column - Info Panel */}
-          <div className="flex flex-col justify-between p-12">
+          <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-12 order-2 lg:order-2">
             {/* Badge */}
             <div className="flex items-center gap-3 mb-4">
               <div
@@ -226,7 +220,7 @@ const Projects = () => {
               style={{
                 fontFamily: 'Syne',
                 fontWeight: 800,
-                fontSize: '2.6rem',
+                fontSize: 'clamp(1.75rem, 5vw, 2.6rem)',
                 letterSpacing: '-0.02em',
                 lineHeight: 1.05
               }}
@@ -239,7 +233,7 @@ const Projects = () => {
               className="mb-6"
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: '0.8rem',
+                fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
                 color: '#5a5a70',
                 lineHeight: 1.95
               }}
@@ -247,7 +241,7 @@ const Projects = () => {
               <p className="mb-4">
                 AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.
               </p>
-              <div style={{ paddingLeft: '1rem' }}>
+              <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
                 <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
                 <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
                 <div>• JWT authentication + RBAC-secured APIs with 87.3% prediction confidence</div>
@@ -351,10 +345,10 @@ const Projects = () => {
           <div
             key={project.title}
             ref={revealRef(4 + index)}
-            className="relative overflow-hidden transition-all duration-300"
+            className="relative overflow-hidden transition-all duration-300 w-full"
             style={{
               background: '#0a0a0f',
-              padding: '2.5rem'
+              padding: 'clamp(1.5rem, 4vw, 2.5rem)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#0f0f17';
@@ -406,7 +400,7 @@ const Projects = () => {
               style={{
                 fontFamily: 'Syne',
                 fontWeight: 700,
-                fontSize: '1.35rem',
+                fontSize: 'clamp(1.1rem, 3vw, 1.35rem)',
                 letterSpacing: '-0.01em',
                 lineHeight: 1.2
               }}
@@ -419,7 +413,7 @@ const Projects = () => {
               className="mb-6"
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: '0.76rem',
+                fontSize: 'clamp(0.7rem, 2vw, 0.76rem)',
                 color: '#5a5a70',
                 lineHeight: 1.85
               }}
@@ -427,7 +421,7 @@ const Projects = () => {
               <p className="mb-3">
                 {project.description}
               </p>
-              <div style={{ paddingLeft: '1rem' }}>
+              <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
                 {project.bullets.map((bullet, idx) => (
                   <div key={idx} className="mb-2">
                     • {bullet}

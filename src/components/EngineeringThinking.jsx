@@ -6,8 +6,8 @@ const EngineeringThinking = () => {
   return (
     <section 
       id="engineering"
+      className="px-4 sm:px-6 lg:px-12 xl:px-16 py-12 sm:py-16"
       style={{ 
-        padding: '5rem 4rem',
         borderTop: '1px solid rgba(0,255,136,0.12)'
       }}
     >

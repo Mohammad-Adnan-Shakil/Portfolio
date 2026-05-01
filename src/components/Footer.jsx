@@ -1,12 +1,9 @@
 const Footer = () => {
   return (
     <footer
+      className="px-4 sm:px-6 lg:px-12 xl:px-16 py-6 sm:py-8 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4 sm:gap-0"
       style={{
-        padding: '2rem 4rem',
-        borderTop: '1px solid rgba(0,255,136,0.12)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        borderTop: '1px solid rgba(0,255,136,0.12)'
       }}
     >
       <p
