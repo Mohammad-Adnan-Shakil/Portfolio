@@ -93,20 +93,21 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        {/* Main Heading - responsive sizes */}
-        <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
+        {/* Main Heading - mobile-optimized sizes */}
+        <motion.div variants={itemVariants} className="mb-5 sm:mb-8">
           <h1
             className="text-center sm:text-left"
             style={{
               fontFamily: 'Syne',
               fontWeight: 800,
-              fontSize: 'clamp(2.5rem, 12vw, 8rem)',
-              lineHeight: 0.9,
-              letterSpacing: '-0.03em'
+              fontSize: 'clamp(2.2rem, 10vw, 8rem)',
+              lineHeight: 0.95,
+              letterSpacing: '-0.02em'
             }}
           >
-            <div>ML</div>
+            <div className="whitespace-nowrap">ML</div>
             <div
+              className="whitespace-nowrap"
               style={{
                 WebkitTextStroke: '1.5px rgba(0,255,136,0.5)',
                 color: 'transparent'
@@ -114,20 +115,20 @@ const Hero = () => {
             >
               Engineer
             </div>
-            <div>& Dev.</div>
+            <div className="whitespace-nowrap">& Dev.</div>
           </h1>
         </motion.div>
 
         {/* Primary Line */}
         <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
           <p
-            className="text-center sm:text-left max-w-xl"
+            className="text-center sm:text-left max-w-[90vw] sm:max-w-xl mx-auto sm:mx-0"
             style={{
               fontFamily: 'Syne',
               fontWeight: 600,
-              fontSize: 'clamp(0.9rem, 4vw, 1.15rem)',
+              fontSize: 'clamp(0.85rem, 3.5vw, 1.15rem)',
               color: '#e8e8f0',
-              lineHeight: 1.6
+              lineHeight: 1.55
             }}
           >
             Full-stack engineer building production systems that integrate ML models into real applications.
@@ -138,20 +139,20 @@ const Hero = () => {
         {/* Sub Line */}
         <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
           <p
-            className="text-center sm:text-left max-w-lg"
+            className="text-center sm:text-left max-w-[85vw] sm:max-w-lg mx-auto sm:mx-0"
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: 'clamp(0.75rem, 2.5vw, 0.82rem)',
+              fontSize: 'clamp(0.7rem, 2.5vw, 0.82rem)',
               color: '#6b6b80',
-              lineHeight: 1.8
+              lineHeight: 1.7
             }}
           >
             Currently building Deltabox: Java backend calling Python ML models via subprocess for real-time race predictions with JWT + RBAC security.
           </p>
         </motion.div>
 
-        {/* CTA Buttons - stack vertically on mobile */}
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12 items-center sm:items-start">
+        {/* CTA Buttons - optimized for mobile */}
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-10 items-stretch sm:items-start w-full sm:w-auto">
           <Link
             to="projects"
             smooth={true}
@@ -161,11 +162,11 @@ const Hero = () => {
               background: '#00ff88',
               color: '#000',
               fontFamily: 'JetBrains Mono',
-              fontSize: '0.78rem',
+              fontSize: 'clamp(0.7rem, 2.5vw, 0.78rem)',
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              padding: '0.9rem 2.2rem',
+              padding: 'clamp(0.75rem, 3vw, 0.9rem) clamp(1.5rem, 5vw, 2.2rem)',
               clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))'
             }}
             onMouseEnter={(e) => e.target.style.background = '#ffffff'}
@@ -183,11 +184,11 @@ const Hero = () => {
               border: '1px solid rgba(0,255,136,0.2)',
               color: '#00ff88',
               fontFamily: 'JetBrains Mono',
-              fontSize: '0.78rem',
+              fontSize: 'clamp(0.7rem, 2.5vw, 0.78rem)',
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              padding: '0.9rem 2.2rem',
+              padding: 'clamp(0.75rem, 3vw, 0.9rem) clamp(1.5rem, 5vw, 2.2rem)',
               clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))'
             }}
             onMouseEnter={(e) => {
@@ -203,20 +204,20 @@ const Hero = () => {
           </a>
         </motion.div>
 
-        {/* Stats - horizontal row below CTA on mobile, absolute on desktop */}
+        {/* Stats - horizontal row on mobile, vertical on desktop */}
         <div
-          className="flex flex-row sm:flex-col justify-center sm:justify-start gap-6 sm:gap-6 sm:absolute sm:text-right mt-8 sm:mt-0 w-full sm:w-auto"
+          className="flex flex-row sm:flex-col justify-between sm:justify-start gap-4 sm:gap-6 sm:absolute sm:text-right mt-6 sm:mt-0 w-full sm:w-auto px-2 sm:px-0"
           style={{
-            bottom: 'clamp(1rem, 4vh, 3rem)',
-            right: 'clamp(1rem, 4vw, 4rem)',
+            bottom: 'clamp(0.5rem, 4vh, 3rem)',
+            right: 'clamp(0.5rem, 4vw, 4rem)',
             zIndex: 2
           }}
         >
-          <div className="text-center sm:text-right">
+          <div className="text-center sm:text-right flex-1 sm:flex-none">
             <div
               style={{
                 fontFamily: 'Syne',
-                fontSize: 'clamp(1.5rem, 5vw, 2.2rem)',
+                fontSize: 'clamp(1.3rem, 4vw, 2.2rem)',
                 fontWeight: 800,
                 color: '#00ff88'
               }}
@@ -226,20 +227,20 @@ const Hero = () => {
             <div
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)',
+                fontSize: 'clamp(0.5rem, 2vw, 0.62rem)',
                 color: '#6b6b80',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.08em',
                 textTransform: 'uppercase'
               }}
             >
-              Production Projects
+              Projects
             </div>
           </div>
-          <div className="text-center sm:text-right">
+          <div className="text-center sm:text-right flex-1 sm:flex-none">
             <div
               style={{
                 fontFamily: 'Syne',
-                fontSize: 'clamp(1.5rem, 5vw, 2.2rem)',
+                fontSize: 'clamp(1.3rem, 4vw, 2.2rem)',
                 fontWeight: 800,
                 color: '#00ff88'
               }}
@@ -249,20 +250,20 @@ const Hero = () => {
             <div
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)',
+                fontSize: 'clamp(0.5rem, 2vw, 0.62rem)',
                 color: '#6b6b80',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.08em',
                 textTransform: 'uppercase'
               }}
             >
-              Technologies
+              Tech Stack
             </div>
           </div>
-          <div className="text-center sm:text-right">
+          <div className="text-center sm:text-right flex-1 sm:flex-none">
             <div
               style={{
                 fontFamily: 'Syne',
-                fontSize: 'clamp(1.5rem, 5vw, 2.2rem)',
+                fontSize: 'clamp(1.3rem, 4vw, 2.2rem)',
                 fontWeight: 800,
                 color: '#00ff88'
               }}
@@ -272,9 +273,9 @@ const Hero = () => {
             <div
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)',
+                fontSize: 'clamp(0.5rem, 2vw, 0.62rem)',
                 color: '#6b6b80',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.08em',
                 textTransform: 'uppercase'
               }}
             >

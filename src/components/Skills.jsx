@@ -58,21 +58,21 @@ const Skills = () => {
         </h2>
       </div>
 
-      {/* Skills Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* Skills Grid - 2 columns on mobile, 4 on desktop */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
         {skillGroups.map((group, groupIndex) => (
           <div key={group.title} ref={revealRef(2 + groupIndex)}>
             {/* Group Title */}
             <h3
-              className="mb-6"
+              className="mb-4 sm:mb-6"
               style={{
                 fontFamily: 'JetBrains Mono',
-                fontSize: '0.62rem',
+                fontSize: 'clamp(0.55rem, 1.5vw, 0.62rem)',
                 color: '#00ff88',
-                letterSpacing: '0.2em',
+                letterSpacing: '0.15em',
                 textTransform: 'uppercase',
                 borderBottom: '1px solid rgba(0,255,136,0.12)',
-                paddingBottom: '0.75rem'
+                paddingBottom: '0.5rem sm:0.75rem'
               }}
             >
               {group.title}
@@ -83,8 +83,8 @@ const Skills = () => {
               {group.skills.map((skill, skillIndex) => (
                 <div
                   key={skill}
-                  className="flex items-center gap-2 transition-colors duration-200 cursor-default"
-                  style={{ padding: '0.45rem 0' }}
+                  className="flex items-start gap-2 transition-colors duration-200 cursor-default"
+                  style={{ padding: '0.35rem 0' }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = '#e8e8f0';
                   }}
@@ -93,9 +93,10 @@ const Skills = () => {
                   }}
                 >
                   <span
+                    className="mt-1.5 flex-shrink-0"
                     style={{
                       color: 'rgba(0,255,136,0.15)',
-                      fontSize: '0.6rem'
+                      fontSize: '0.5rem'
                     }}
                   >
                     —
@@ -103,8 +104,9 @@ const Skills = () => {
                   <span
                     style={{
                       fontFamily: 'JetBrains Mono',
-                      fontSize: '0.78rem',
-                      color: '#6b6b80'
+                      fontSize: 'clamp(0.68rem, 2vw, 0.78rem)',
+                      color: '#6b6b80',
+                      lineHeight: 1.5
                     }}
                   >
                     {skill}

@@ -145,9 +145,9 @@ const Projects = () => {
               </svg>
             </div>
 
-            {/* Top-left data overlay */}
+            {/* Top-left data overlay - hidden on small mobile */}
             <div
-              className="absolute pointer-events-none"
+              className="absolute pointer-events-none hidden sm:block"
               style={{
                 top: 'clamp(0.75rem, 2vw, 1.5rem)',
                 left: 'clamp(0.75rem, 2vw, 1.5rem)',
@@ -162,9 +162,9 @@ const Projects = () => {
               <div>MODEL: XGBoost + RF</div>
             </div>
 
-            {/* Bottom-right data overlay */}
+            {/* Bottom-right data overlay - hidden on small mobile */}
             <div
-              className="absolute text-right pointer-events-none"
+              className="absolute text-right pointer-events-none hidden sm:block"
               style={{
                 bottom: 'clamp(0.75rem, 2vw, 1.5rem)',
                 right: 'clamp(0.75rem, 2vw, 1.5rem)',
@@ -248,19 +248,19 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* Prediction Engine Status */}
+            {/* Prediction Engine Status - compact on mobile */}
             <div
-              className="mb-8 p-4"
+              className="mb-6 sm:mb-8 p-3 sm:p-4"
               style={{
                 border: '1px solid rgba(0,255,136,0.12)',
                 background: 'rgba(0,255,136,0.02)'
               }}
             >
               <div
-                className="mb-3"
+                className="mb-2 sm:mb-3"
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: '0.65rem',
+                  fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)',
                   color: '#00ff88',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase'
@@ -269,31 +269,32 @@ const Projects = () => {
                 Prediction Engine
               </div>
               <div
+                className="grid grid-cols-2 sm:grid-cols-1 gap-1 sm:gap-0"
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: '0.72rem',
+                  fontSize: 'clamp(0.65rem, 2vw, 0.72rem)',
                   color: '#5a5a70',
-                  lineHeight: 1.8
+                  lineHeight: 1.6
                 }}
               >
                 <div>Accuracy: <span style={{ color: '#e8e8f0' }}>87.3%</span></div>
-                <div>Drivers: <span style={{ color: '#e8e8f0' }}>20</span></div>
-                <div>Races: <span style={{ color: '#e8e8f0' }}>24</span></div>
-                <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + Random Forest</span></div>
+                <div className="hidden sm:block">Drivers: <span style={{ color: '#e8e8f0' }}>20</span></div>
+                <div className="hidden sm:block">Races: <span style={{ color: '#e8e8f0' }}>24</span></div>
+                <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + RF</span></div>
               </div>
             </div>
 
             {/* Tech Tags */}
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6 sm:mb-8">
               {techTags.map((tag) => (
                 <span
                   key={tag}
                   style={{
                     fontFamily: 'JetBrains Mono',
-                    fontSize: '0.62rem',
+                    fontSize: 'clamp(0.55rem, 1.8vw, 0.62rem)',
                     color: '#00c8ff',
                     border: '1px solid rgba(0,200,255,0.18)',
-                    padding: '0.28rem 0.65rem'
+                    padding: 'clamp(0.2rem, 1vw, 0.28rem) clamp(0.4rem, 2vw, 0.65rem)'
                   }}
                 >
                   {tag}
@@ -302,7 +303,7 @@ const Projects = () => {
             </div>
 
             {/* Links */}
-            <div className="flex gap-8">
+            <div className="flex gap-4 sm:gap-8">
               <a
                 href="https://github.com/Mohammad-Adnan-Shakil/DeltaBox"
                 target="_blank"
@@ -310,7 +311,7 @@ const Projects = () => {
                 className="transition-all duration-200"
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: '0.72rem',
+                  fontSize: 'clamp(0.65rem, 2vw, 0.72rem)',
                   color: '#00ff88',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em'
@@ -324,7 +325,7 @@ const Projects = () => {
                 className="transition-all duration-200 cursor-pointer"
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: '0.72rem',
+                  fontSize: 'clamp(0.65rem, 2vw, 0.72rem)',
                   color: '#00ff88',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em'

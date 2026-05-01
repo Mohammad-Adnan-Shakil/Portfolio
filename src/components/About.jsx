@@ -52,12 +52,12 @@ const About = () => {
       </div>
 
       {/* Paragraphs */}
-      <div style={{ maxWidth: '720px' }}>
+      <div className="max-w-full sm:max-w-[720px]">
         <p ref={revealRef(3)} className="mb-4" style={{
           fontFamily: 'JetBrains Mono',
-          fontSize: '0.83rem',
+          fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
           color: '#6b6b80',
-          lineHeight: 1.9
+          lineHeight: 1.75
         }}>
           I'm <span style={{ color: '#e8e8f0' }}>Mohammad Adnan Shakil</span>, a second-year CS student at Presidency University, Bengaluru.
           I focus on building systems where backend logic drives real decisions, not just UI.
@@ -65,18 +65,18 @@ const About = () => {
 
         <p ref={revealRef(4)} className="mb-4" style={{
           fontFamily: 'JetBrains Mono',
-          fontSize: '0.83rem',
+          fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
           color: '#6b6b80',
-          lineHeight: 1.9
+          lineHeight: 1.75
         }}>
           Deltabox demonstrates my approach: Java calling Python ML models for real-time predictions, with JWT + RBAC security and caching for performance.
         </p>
 
         <p ref={revealRef(5)} style={{
           fontFamily: 'JetBrains Mono',
-          fontSize: '0.83rem',
+          fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
           color: '#6b6b80',
-          lineHeight: 1.9
+          lineHeight: 1.75
         }}>
           I work fast, ship aggressively, and care about clean architecture. Discipline in code, gym, and execution.
           Targeting software engineering internships for mid-2026.

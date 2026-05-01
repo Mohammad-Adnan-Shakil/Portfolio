@@ -40,12 +40,12 @@ const Navbar = () => {
     setMenuOpen(false);
   }, []);
 
-  // Get menu width based on viewport
+  // Get menu width based on viewport - full width on very small screens
   const getMenuWidth = () => {
-    if (typeof window === 'undefined') return '360px';
+    if (typeof window === 'undefined') return '100%';
     const width = window.innerWidth;
-    if (width <= 320) return '70vw';
-    if (width <= 768) return '320px';
+    if (width <= 380) return '100%';
+    if (width <= 640) return '85vw';
     return '360px';
   };
 
@@ -61,16 +61,16 @@ const Navbar = () => {
     <>
       {/* Navbar Header */}
       <nav
-        className="fixed top-0 left-0 z-50"
-        style={{ padding: '1.5rem 2rem' }}
+        className="fixed top-0 left-0 z-50 w-full flex justify-between items-center"
+        style={{ padding: 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 2rem)' }}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           {/* Logo */}
           <div
             className="font-bold cursor-pointer"
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: '0.9rem',
+              fontSize: 'clamp(0.8rem, 2.5vw, 0.9rem)',
               color: '#00ff88'
             }}
             onClick={scrollToTop}
@@ -85,25 +85,25 @@ const Navbar = () => {
               background: 'none',
               border: 'none',
               cursor: 'pointer',
-              padding: '8px',
+              padding: '6px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '5px'
+              gap: '4px'
             }}
             aria-label="Toggle menu"
           >
             <motion.div
-              animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+              animate={menuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
               style={{
-                width: '24px',
+                width: '20px',
                 height: '2px',
                 backgroundColor: '#00ff88',
                 borderRadius: '1px'
               }}
             />
             <motion.div
-              animate={menuOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: '24px' }}
+              animate={menuOpen ? { opacity: 0, width: 0 } : { opacity: 1, width: '20px' }}
               transition={{ duration: 0.3 }}
               style={{
                 height: '2px',
@@ -112,10 +112,10 @@ const Navbar = () => {
               }}
             />
             <motion.div
-              animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+              animate={menuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.3 }}
               style={{
-                width: '24px',
+                width: '20px',
                 height: '2px',
                 backgroundColor: '#00ff88',
                 borderRadius: '1px'
@@ -194,7 +194,7 @@ const Navbar = () => {
             {/* Menu Items */}
             <div
               className="flex flex-col"
-              style={{ padding: '2rem 1.5rem' }}
+              style={{ padding: 'clamp(1.5rem, 5vw, 2rem) clamp(1rem, 4vw, 1.5rem)' }}
             >
               {navLinks.map((link, index) => (
                 <motion.button
@@ -206,14 +206,14 @@ const Navbar = () => {
                   className="menu-item"
                   style={{
                     fontFamily: 'JetBrains Mono',
-                    fontSize: 'clamp(1.5rem, 4vw, 2rem)',
+                    fontSize: 'clamp(1.1rem, 4vw, 1.8rem)',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.12em',
+                    letterSpacing: '0.1em',
                     color: '#e8e8f0',
                     background: 'none',
                     border: 'none',
                     cursor: 'pointer',
-                    padding: '1rem 0.5rem',
+                    padding: 'clamp(0.75rem, 3vw, 1rem) 0.5rem',
                     textAlign: 'left',
                     transition: 'all 0.3s ease',
                     borderLeft: '2px solid transparent'

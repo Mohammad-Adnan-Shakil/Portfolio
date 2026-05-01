@@ -11,7 +11,7 @@ import useCustomCursor from './hooks/useCustomCursor';
 import './index.css';
 
 function App() {
-  const { dotStyle, ringStyle } = useCustomCursor();
+  const { dotStyle, ringStyle, isTouchDevice } = useCustomCursor();
 
   useEffect(() => {
     // Add Google Fonts
@@ -33,9 +33,13 @@ function App() {
 
   return (
     <>
-      {/* Custom Cursor */}
-      <div style={dotStyle} />
-      <div style={ringStyle} />
+      {/* Custom Cursor - only render on non-touch devices */}
+      {!isTouchDevice && (
+        <>
+          <div style={dotStyle} />
+          <div style={ringStyle} />
+        </>
+      )}
 
       {/* Components */}
       <Navbar />

@@ -61,14 +61,14 @@ const Contact = () => {
       </div>
 
       {/* Headline */}
-      <div ref={revealRef(1)} className="mb-4">
+      <div ref={revealRef(1)} className="mb-3 sm:mb-4 px-2 sm:px-0">
         <h2
           style={{
             fontFamily: 'Syne',
             fontWeight: 800,
-            fontSize: 'clamp(2.5rem, 6vw, 5rem)',
-            letterSpacing: '-0.03em',
-            lineHeight: 1
+            fontSize: 'clamp(1.8rem, 6vw, 5rem)',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1
           }}
         >
           Let's build <span style={{ color: '#00ff88' }}>production systems.</span>
@@ -76,12 +76,14 @@ const Contact = () => {
       </div>
 
       {/* Sub */}
-      <div ref={revealRef(2)} className="mb-12">
+      <div ref={revealRef(2)} className="mb-8 sm:mb-12 px-4 sm:px-0">
         <p
+          className="max-w-[90vw] sm:max-w-none mx-auto"
           style={{
             fontFamily: 'JetBrains Mono',
-            fontSize: '0.82rem',
-            color: '#6b6b80'
+            fontSize: 'clamp(0.72rem, 2.5vw, 0.82rem)',
+            color: '#6b6b80',
+            lineHeight: 1.6
           }}
         >
           Actively looking for software engineering internships (mid-2026).
@@ -89,23 +91,23 @@ const Contact = () => {
         </p>
       </div>
 
-      {/* Contact Buttons */}
-      <div ref={revealRef(3)} className="flex justify-center gap-6 flex-wrap">
+      {/* Contact Buttons - stack on mobile, row on desktop */}
+      <div ref={revealRef(3)} className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-6 px-4 sm:px-0">
         {contactLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 transition-all duration-250"
+            className="flex items-center justify-center sm:justify-start gap-3 transition-all duration-250"
             style={{
               fontFamily: 'JetBrains Mono',
-              fontSize: '0.78rem',
+              fontSize: 'clamp(0.7rem, 2.5vw, 0.78rem)',
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
               color: '#6b6b80',
               border: '1px solid rgba(0,255,136,0.12)',
-              padding: '1rem 2rem'
+              padding: 'clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 2rem)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = '#00ff88';
@@ -120,7 +122,7 @@ const Contact = () => {
               e.currentTarget.style.transform = 'translateY(0)';
             }}
           >
-            {link.icon}
+            <span className="flex-shrink-0">{link.icon}</span>
             {link.label}
           </a>
         ))}
