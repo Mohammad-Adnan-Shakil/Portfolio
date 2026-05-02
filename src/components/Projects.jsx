@@ -268,9 +268,11 @@ const Projects = () => {
             
             {/* Right Panel - Monaco Circuit (60% on desktop) */}
             <div 
-              className="lg:w-3/5 w-full relative overflow-hidden"
+              className="lg:w-3/5 w-full relative overflow-hidden flex items-center justify-center"
               style={{
-                background: 'linear-gradient(135deg, transparent 0%, rgba(0,255,136,0.02) 100%)'
+                background: 'linear-gradient(135deg, transparent 0%, rgba(0,255,136,0.02) 100%)',
+                height: '100%',
+                minHeight: 'clamp(250px, 40vh, 400px)'
               }}
             >
               {/* Circuit Background Grid */}
@@ -287,10 +289,11 @@ const Projects = () => {
               />
               
               {/* Monaco Circuit Animation */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none">
+              <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
                 <svg
-                  className="w-full max-w-[280px] sm:max-w-[320px] lg:max-w-[380px] h-auto"
+                  className="w-full h-auto lg:w-4/5 md:w-[70%] sm:w-[75%] w-[85%]"
                   viewBox="0 0 280 160"
+                  preserveAspectRatio="xMidYMid meet"
                   style={{ overflow: 'visible' }}
                 >
                   {/* Monaco Circuit Path */}
