@@ -59,12 +59,12 @@ const Projects = () => {
         </h2>
       </div>
 
-      {/* Featured Card - Deltabox - True 2-column layout */}
+      {/* Featured Card - Deltabox - Premium Cyber Background */}
       <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
           className="relative overflow-hidden"
           style={{
-            background: 'linear-gradient(135deg, #0a0a0f 0%, #0f0f17 50%, #13131e 100%)',
+            background: 'linear-gradient(135deg, #0a0a0f 0%, #0f1419 35%, #1a1f29 70%, #0f1419 100%)',
             border: '1px solid rgba(0,255,136,0.12)',
             minHeight: '550px',
             maxHeight: '650px',
@@ -74,8 +74,142 @@ const Projects = () => {
             gap: '2rem'
           }}
         >
-          {/* LEFT COLUMN - DELTABOX CONTENT (48%) */}
-          <div className="p-8 lg:p-10">
+          {/* PREMIUM CYBER AI SYSTEMS BACKGROUND LAYERS */}
+          
+          {/* Base: Deep matte black + navy gradient */}
+          <div className="absolute inset-0 pointer-events-none" />
+          
+          {/* Grid: Very subtle glowing system grid lines */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(0,255,136,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,136,0.015) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px',
+              opacity: 0.8
+            }}
+          />
+          
+          {/* Particles: Tiny floating system particles, neon dots, and subtle signal pulses */}
+          <div className="absolute inset-0 pointer-events-none">
+            {/* Floating system particles */}
+            {[...Array(15)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  width: Math.random() > 0.7 ? '2px' : '1px',
+                  height: Math.random() > 0.7 ? '2px' : '1px',
+                  backgroundColor: `rgba(0,255,136,${0.2 + Math.random() * 0.3})`,
+                  animation: `float ${2 + Math.random() * 3}s ease-in-out infinite`,
+                  animationDelay: `${Math.random() * 2}s`
+                }}
+              />
+            ))}
+            
+            {/* Neon dots at key positions */}
+            <div className="absolute w-2 h-2 rounded-full" style={{
+              left: '15%', top: '25%', backgroundColor: 'rgba(0,255,136,0.6)',
+              animation: 'pulse 3s ease-in-out infinite'
+            }} />
+            <div className="absolute w-2 h-2 rounded-full" style={{
+              left: '75%', top: '20%', backgroundColor: 'rgba(0,255,136,0.5)',
+              animation: 'pulse 3s ease-in-out infinite 0.5s'
+            }} />
+            <div className="absolute w-2 h-2 rounded-full" style={{
+              left: '25%', top: '70%', backgroundColor: 'rgba(0,255,136,0.4)',
+              animation: 'pulse 3s ease-in-out infinite 1s'
+            }} />
+            <div className="absolute w-2 h-2 rounded-full" style={{
+              left: '80%', top: '75%', backgroundColor: 'rgba(0,255,136,0.3)',
+              animation: 'pulse 3s ease-in-out infinite 1.5s'
+            }} />
+            
+            {/* Subtle signal pulses */}
+            <div className="absolute w-1 h-1 rounded-full" style={{
+              left: '45%', top: '35%', backgroundColor: 'rgba(0,255,136,0.8)',
+              animation: 'fadeInOut 2s ease-in-out infinite'
+            }} />
+            <div className="absolute w-1 h-1 rounded-full" style={{
+              left: '60%', top: '60%', backgroundColor: 'rgba(0,255,136,0.6)',
+              animation: 'fadeInOut 2s ease-in-out infinite 0.8s'
+            }} />
+            <div className="absolute w-1 h-1 rounded-full" style={{
+              left: '30%', top: '45%', backgroundColor: 'rgba(0,255,136,0.4)',
+              animation: 'fadeInOut 2s ease-in-out infinite 1.6s'
+            }} />
+          </div>
+          
+          {/* System text: Extremely faint technical labels */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div
+              style={{
+                position: 'absolute',
+                top: '8%',
+                left: '4%',
+                fontFamily: 'JetBrains Mono',
+                fontSize: '0.45rem',
+                color: 'rgba(0,255,136,0.08)',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                fontWeight: 500
+              }}
+            >
+              SYNC_ACTIVE
+            </div>
+            <div
+              style={{
+                position: 'absolute',
+                top: '12%',
+                right: '6%',
+                fontFamily: 'JetBrains Mono',
+                fontSize: '0.45rem',
+                color: 'rgba(0,255,136,0.06)',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                fontWeight: 500
+              }}
+            >
+              MODEL_RUNNING
+            </div>
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '15%',
+                left: '5%',
+                fontFamily: 'JetBrains Mono',
+                fontSize: '0.45rem',
+                color: 'rgba(0,255,136,0.05)',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                fontWeight: 500
+              }}
+            >
+              JWT_SECURED
+            </div>
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '10%',
+                right: '4%',
+                fontFamily: 'JetBrains Mono',
+                fontSize: '0.45rem',
+                color: 'rgba(0,255,136,0.04)',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                fontWeight: 500
+              }}
+            >
+              PREDICTION_READY
+            </div>
+          </div>
+
+          {/* LEFT COLUMN - DELTABOX CONTENT */}
+          <div className="p-8 lg:p-10 relative z-10">
             {/* Badge */}
             <div className="flex items-center gap-3 mb-6">
               <div
@@ -224,116 +358,19 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN - ANIMATED CIRCUIT (52%) */}
-          <div
-            className="relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, #0a0a0f 0%, #0f0f17 50%, #13131e 100%)'
-            }}
-          >
-            {/* Subtle grid background */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                backgroundImage: `
-                  linear-gradient(rgba(0,255,136,0.02) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,255,136,0.02) 1px, transparent 1px)
-                `,
-                backgroundSize: '30px 30px',
-                opacity: 0.6
-              }}
-            />
-
-            {/* Soft green radial glow behind circuit */}
+          {/* RIGHT COLUMN - ANIMATED CIRCUIT */}
+          <div className="relative overflow-hidden">
+            {/* Ambient glow: Soft neon green radial glow behind animated circuit */}
             <div
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
               style={{
-                width: '400px',
-                height: '400px',
+                width: '450px',
+                height: '450px',
                 borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 70%)',
-                filter: 'blur(20px)'
+                background: 'radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 60%)',
+                filter: 'blur(25px)'
               }}
             />
-
-            {/* Tiny system particles */}
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(12)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute rounded-full"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    width: '1px',
-                    height: '1px',
-                    backgroundColor: 'rgba(0,255,136,0.3)',
-                    animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
-                    animationDelay: `${Math.random() * 2}s`
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* System labels */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '10%',
-                  left: '5%',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '0.5rem',
-                  color: 'rgba(0,255,136,0.15)',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase'
-                }}
-              >
-                SYNC_ACTIVE
-              </div>
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '15%',
-                  right: '8%',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '0.5rem',
-                  color: 'rgba(0,255,136,0.12)',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase'
-                }}
-              >
-                MODEL_RUNNING
-              </div>
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '20%',
-                  left: '7%',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '0.5rem',
-                  color: 'rgba(0,255,136,0.1)',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase'
-                }}
-              >
-                PREDICTION_READY
-              </div>
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '12%',
-                  right: '6%',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '0.5rem',
-                  color: 'rgba(0,255,136,0.08)',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase'
-                }}
-              >
-                JWT_SECURED
-              </div>
-            </div>
 
             {/* CENTERED ANIMATED CIRCUIT */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center pointer-events-none">
