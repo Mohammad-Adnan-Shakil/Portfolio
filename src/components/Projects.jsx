@@ -59,17 +59,17 @@ const Projects = () => {
         </h2>
       </div>
 
-      {/* Featured Card - Deltabox - Complete AI Systems Background Rebuild */}
+      {/* Featured Card - Deltabox - Fixed Spacing and Composition */}
       <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
           className="relative overflow-hidden"
           style={{
-            minHeight: '500px',
-            maxHeight: '600px',
+            minHeight: '480px',
+            maxHeight: '550px',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             alignItems: 'center',
-            gap: '2rem'
+            gap: '1rem'
           }}
         >
           {/* LAYER 1 — Base: Deep gradient #05070A to #07111C */}
@@ -102,7 +102,7 @@ const Projects = () => {
                 className="absolute rounded-full"
                 style={{
                   left: `${10 + (i * 12)}%`,
-                  top: `${20 + (i * 8)}%`,
+                  top: `${20 + (i * 6)}%`,
                   width: '2px',
                   height: '2px',
                   backgroundColor: 'rgba(0,255,136,0.4)',
@@ -111,7 +111,7 @@ const Projects = () => {
                 }}
               />
             ))}
-            
+          
             {/* Scanning signal lines */}
             <div
               className="absolute w-full h-0.5"
@@ -129,9 +129,9 @@ const Projects = () => {
                 animation: 'scanLine 4s linear infinite 1.5s'
               }}
             />
-            
+          
             {/* Floating digital particles */}
-            {[...Array(12)].map((_, i) => (
+            {[...Array(10)].map((_, i) => (
               <div
                 key={i}
                 className="absolute rounded-full"
@@ -140,7 +140,7 @@ const Projects = () => {
                   top: `${Math.random() * 100}%`,
                   width: Math.random() > 0.6 ? '2px' : '1px',
                   height: Math.random() > 0.6 ? '2px' : '1px',
-                  backgroundColor: `rgba(0,255,136,${0.15 + Math.random() * 0.25})`,
+                  backgroundColor: `rgba(0,255,136,${0.15 + Math.random() * 0.2})`,
                   animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
                   animationDelay: `${Math.random() * 2}s`
                 }}
@@ -152,8 +152,8 @@ const Projects = () => {
           <div
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             style={{
-              width: '420px',
-              height: '420px',
+              width: '380px',
+              height: '380px',
               borderRadius: '50%',
               background: 'radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 65%)',
               filter: 'blur(30px)',
@@ -183,7 +183,7 @@ const Projects = () => {
               style={{
                 position: 'absolute',
                 top: '10%',
-                right: '4%',
+                right: '3%',
                 fontFamily: 'JetBrains Mono',
                 fontSize: '0.42rem',
                 color: 'rgba(0,255,136,0.06)',
@@ -197,7 +197,7 @@ const Projects = () => {
             <div
               style={{
                 position: 'absolute',
-                bottom: '12%',
+                bottom: '10%',
                 left: '3%',
                 fontFamily: 'JetBrains Mono',
                 fontSize: '0.42rem',
@@ -212,8 +212,8 @@ const Projects = () => {
             <div
               style={{
                 position: 'absolute',
-                bottom: '8%',
-                right: '4%',
+                bottom: '6%',
+                right: '3%',
                 fontFamily: 'JetBrains Mono',
                 fontSize: '0.42rem',
                 color: 'rgba(0,255,136,0.04)',
@@ -234,11 +234,11 @@ const Projects = () => {
                 position: 'absolute',
                 top: '15%',
                 left: '8%',
-                width: '60px',
-                height: '52px',
-                border: '1px solid rgba(0,255,136,0.1)',
+                width: '55px',
+                height: '48px',
+                border: '1px solid rgba(0,255,136,0.08)',
                 clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)',
-                opacity: 0.3
+                opacity: 0.25
               }}
             />
             {/* Hexagon 2 */}
@@ -246,33 +246,20 @@ const Projects = () => {
               style={{
                 position: 'absolute',
                 top: '65%',
-                right: '12%',
-                width: '45px',
-                height: '39px',
-                border: '1px solid rgba(0,200,255,0.08)',
-                clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)',
-                opacity: 0.25
-              }}
-            />
-            {/* Hexagon 3 */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '35%',
-                right: '25%',
-                width: '35px',
-                height: '30px',
-                border: '1px solid rgba(0,255,136,0.06)',
+                right: '10%',
+                width: '40px',
+                height: '35px',
+                border: '1px solid rgba(0,200,255,0.06)',
                 clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)',
                 opacity: 0.2
               }}
             />
           </div>
 
-          {/* LEFT COLUMN - DELTABOX CONTENT */}
-          <div className="p-8 lg:p-10 relative z-20">
+          {/* LEFT COLUMN - DELTABOX CONTENT - Fixed spacing and vertical centering */}
+          <div className="p-6 lg:p-8 relative z-20 flex flex-col justify-center">
             {/* Badge */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-4">
               <div
                 className="rounded-full"
                 style={{
@@ -297,7 +284,7 @@ const Projects = () => {
 
             {/* Title */}
             <h3
-              className="mb-6"
+              className="mb-4"
               style={{
                 fontFamily: 'Syne',
                 fontWeight: 800,
@@ -311,7 +298,7 @@ const Projects = () => {
 
             {/* Description */}
             <div
-              className="mb-6"
+              className="mb-4"
               style={{
                 fontFamily: 'JetBrains Mono',
                 fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
@@ -319,7 +306,7 @@ const Projects = () => {
                 lineHeight: 1.95
               }}
             >
-              <p className="mb-4">
+              <p className="mb-3">
                 AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.
               </p>
               <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
@@ -331,14 +318,14 @@ const Projects = () => {
 
             {/* Prediction Engine Status */}
             <div
-              className="mb-6 p-4"
+              className="mb-4 p-3"
               style={{
                 border: '1px solid rgba(0,255,136,0.12)',
                 background: 'rgba(0,255,136,0.02)'
               }}
             >
               <div
-                className="mb-3"
+                className="mb-2"
                 style={{
                   fontFamily: 'JetBrains Mono',
                   fontSize: '0.65rem',
@@ -366,7 +353,7 @@ const Projects = () => {
             </div>
 
             {/* Tech Tags */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2 mb-4">
               {techTags.map((tag) => (
                 <span
                   key={tag}
@@ -419,7 +406,7 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN - MONACO CIRCUIT ANIMATION */}
+          {/* RIGHT COLUMN - MONACO CIRCUIT - Scaled up 20% and centered */}
           <div 
             className="relative overflow-hidden"
             style={{
@@ -432,7 +419,7 @@ const Projects = () => {
               zIndex: 10
             }}
           >
-            {/* MONACO GRAND PRIX CIRCUIT */}
+            {/* MONACO GRAND PRIX CIRCUIT - Scaled 20% larger */}
             <div 
               className="relative"
               style={{
@@ -444,7 +431,7 @@ const Projects = () => {
               }}
             >
               <svg
-                className="w-full max-w-[450px] h-auto"
+                className="w-full max-w-[520px] h-auto"
                 viewBox="0 0 320 180"
                 style={{ overflow: 'visible' }}
               >
@@ -571,7 +558,7 @@ const Projects = () => {
                   />
                 </circle>
 
-                {/* Filters */}
+                {/* Enhanced glow filters */}
                 <defs>
                   <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur stdDeviation="6" result="coloredBlur" />
