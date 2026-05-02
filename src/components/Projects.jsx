@@ -59,294 +59,358 @@ const Projects = () => {
         </h2>
       </div>
 
-      {/* Featured Card - Deltabox - Horizontal Split Layout */}
+      {/* Featured Card - Deltabox - True 2-column layout */}
       <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
-          className="relative overflow-hidden transition-all duration-300"
+          className="relative overflow-hidden"
           style={{
-            background: '#0a0a0f',
-            border: '1px solid rgba(0,255,136,0.12)'
+            background: 'linear-gradient(135deg, #0a0a0f 0%, #0f0f17 50%, #13131e 100%)',
+            border: '1px solid rgba(0,255,136,0.12)',
+            minHeight: '550px',
+            maxHeight: '650px',
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            alignItems: 'center',
+            gap: '2rem'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(0,255,136,0.35)'}
-          onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(0,255,136,0.12)'}
         >
-          {/* Desktop: 2-column grid, Mobile: stacked */}
-          <div className="flex flex-col lg:grid lg:grid-cols-2">
-            {/* LEFT SIDE - DELTABOX CONTENT (45-50% width) */}
-            <div className="lg:col-span-1 p-8 sm:p-10 lg:p-12 order-2 lg:order-1">
-              {/* Badge */}
-              <div className="flex items-center gap-3 mb-6">
-                <div
-                  className="rounded-full"
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    background: '#00ff88',
-                    animation: 'pulse 2s ease-in-out infinite'
-                  }}
-                />
-                <p
-                  style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.62rem',
-                    color: '#00ff88',
-                    letterSpacing: '0.18em',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  Featured Project
-                </p>
-              </div>
-
-              {/* Title */}
-              <h3
-                className="mb-6"
-                style={{
-                  fontFamily: 'Syne',
-                  fontWeight: 800,
-                  fontSize: 'clamp(1.75rem, 5vw, 2.6rem)',
-                  letterSpacing: '-0.02em',
-                  lineHeight: 1.05
-                }}
-              >
-                Deltabox
-              </h3>
-
-              {/* Description */}
+          {/* LEFT COLUMN - DELTABOX CONTENT (48%) */}
+          <div className="p-8 lg:p-10">
+            {/* Badge */}
+            <div className="flex items-center gap-3 mb-6">
               <div
-                className="mb-8"
+                className="rounded-full"
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  background: '#00ff88',
+                  animation: 'pulse 2s ease-in-out infinite'
+                }}
+              />
+              <p
                 style={{
                   fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
-                  color: '#5a5a70',
-                  lineHeight: 1.95
+                  fontSize: '0.62rem',
+                  color: '#00ff88',
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase'
                 }}
               >
-                <p className="mb-4">
-                  AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.
-                </p>
-                <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
-                  <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
-                  <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
-                  <div>• JWT authentication + RBAC-secured APIs with 87.3% prediction confidence</div>
-                </div>
-              </div>
+                Featured Project
+              </p>
+            </div>
 
-              {/* Prediction Engine Status */}
-              <div
-                className="mb-8 p-4"
-                style={{
-                  border: '1px solid rgba(0,255,136,0.12)',
-                  background: 'rgba(0,255,136,0.02)'
-                }}
-              >
-                <div
-                  className="mb-3"
-                  style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.65rem',
-                    color: '#00ff88',
-                    letterSpacing: '0.15em',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  Prediction Engine
-                </div>
-                <div
-                  className="grid grid-cols-2 gap-2"
-                  style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.72rem',
-                    color: '#5a5a70',
-                    lineHeight: 1.6
-                  }}
-                >
-                  <div>Accuracy: <span style={{ color: '#e8e8f0' }}>87.3%</span></div>
-                  <div>Drivers: <span style={{ color: '#e8e8f0' }}>20</span></div>
-                  <div>Races: <span style={{ color: '#e8e8f0' }}>24</span></div>
-                  <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + RF</span></div>
-                </div>
-              </div>
+            {/* Title */}
+            <h3
+              className="mb-6"
+              style={{
+                fontFamily: 'Syne',
+                fontWeight: 800,
+                fontSize: 'clamp(1.75rem, 5vw, 2.6rem)',
+                letterSpacing: '-0.02em',
+                lineHeight: 1.05
+              }}
+            >
+              Deltabox
+            </h3>
 
-              {/* Tech Tags */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                {techTags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      fontFamily: 'JetBrains Mono',
-                      fontSize: '0.62rem',
-                      color: '#00c8ff',
-                      border: '1px solid rgba(0,200,255,0.18)',
-                      padding: '0.28rem 0.65rem'
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Links */}
-              <div className="flex gap-8">
-                <a
-                  href="https://github.com/Mohammad-Adnan-Shakil/DeltaBox"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-all duration-200"
-                  style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.72rem',
-                    color: '#00ff88',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em'
-                  }}
-                  onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
-                >
-                  GitHub →
-                </a>
-                <span
-                  className="transition-all duration-200 cursor-pointer"
-                  style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.72rem',
-                    color: '#00ff88',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em'
-                  }}
-                  onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
-                >
-                  Live Demo →
-                </span>
+            {/* Description */}
+            <div
+              className="mb-6"
+              style={{
+                fontFamily: 'JetBrains Mono',
+                fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
+                color: '#5a5a70',
+                lineHeight: 1.95
+              }}
+            >
+              <p className="mb-4">
+                AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.
+              </p>
+              <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
+                <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
+                <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
+                <div>• JWT authentication + RBAC-secured APIs with 87.3% prediction confidence</div>
               </div>
             </div>
 
-            {/* RIGHT SIDE - ANIMATED CIRCUIT (50-55% width) */}
+            {/* Prediction Engine Status */}
             <div
-              className="lg:col-span-1 relative overflow-hidden order-1 lg:order-2"
+              className="mb-6 p-4"
               style={{
-                background: 'linear-gradient(135deg, #0a0a0f 0%, #0f0f17 50%, #13131e 100%)',
-                minHeight: 'clamp(400px, 60vh, 600px)'
+                border: '1px solid rgba(0,255,136,0.12)',
+                background: 'rgba(0,255,136,0.02)'
               }}
             >
-              {/* CYBER BACKGROUND LAYERS */}
-              
-              {/* Layer 2: Subtle glowing grid lines */}
               <div
-                className="absolute inset-0 pointer-events-none"
+                className="mb-3"
                 style={{
-                  backgroundImage: `
-                    linear-gradient(rgba(0,255,136,0.02) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0,255,136,0.02) 1px, transparent 1px)
-                  `,
-                  backgroundSize: '30px 30px',
-                  opacity: 0.6
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.65rem',
+                  color: '#00ff88',
+                  letterSpacing: '0.15em',
+                  textTransform: 'uppercase'
                 }}
-              />
-
-              {/* Layer 3: Tiny floating system dots and data particles */}
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(12)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute rounded-full"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                      width: '1px',
-                      height: '1px',
-                      backgroundColor: 'rgba(0,255,136,0.3)',
-                      animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
-                      animationDelay: `${Math.random() * 2}s`
-                    }}
-                  />
-                ))}
+              >
+                Prediction Engine
               </div>
-
-              {/* Layer 4: Soft green radial glow behind the circuit */}
               <div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                className="grid grid-cols-2 gap-2"
                 style={{
-                  width: 'clamp(300px, 50vw, 500px)',
-                  height: 'clamp(300px, 50vw, 500px)',
-                  borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 70%)',
-                  filter: 'blur(20px)'
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.72rem',
+                  color: '#5a5a70',
+                  lineHeight: 1.6
                 }}
-              />
-
-              {/* Layer 5: Subtle technical system labels */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '10%',
-                    left: '5%',
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.5rem',
-                    color: 'rgba(0,255,136,0.15)',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  SYNC_ACTIVE
-                </div>
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '15%',
-                    right: '8%',
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.5rem',
-                    color: 'rgba(0,255,136,0.12)',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  MODEL_RUNNING
-                </div>
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '20%',
-                    left: '7%',
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.5rem',
-                    color: 'rgba(0,255,136,0.1)',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  PREDICTION_READY
-                </div>
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '12%',
-                    right: '6%',
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: '0.5rem',
-                    color: 'rgba(0,255,136,0.08)',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase'
-                  }}
-                >
-                  JWT_SECURED
-                </div>
+              >
+                <div>Accuracy: <span style={{ color: '#e8e8f0' }}>87.3%</span></div>
+                <div>Drivers: <span style={{ color: '#e8e8f0' }}>20</span></div>
+                <div>Races: <span style={{ color: '#e8e8f0' }}>24</span></div>
+                <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + RF</span></div>
               </div>
+            </div>
 
-              {/* CENTERED ANIMATED CIRCUIT */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none">
-                <svg
-                  className="w-full max-w-[400px] sm:max-w-[450px] lg:max-w-[500px] h-auto"
-                  viewBox="0 0 320 180"
-                  style={{ overflow: 'visible' }}
+            {/* Tech Tags */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {techTags.map((tag) => (
+                <span
+                  key={tag}
+                  style={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.62rem',
+                    color: '#00c8ff',
+                    border: '1px solid rgba(0,200,255,0.18)',
+                    padding: '0.28rem 0.65rem'
+                  }}
                 >
-                  {/* Monaco Circuit Path - Enhanced with glow */}
-                  <path
-                    id="monaco-circuit"
-                    d="M 40,90 
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Links */}
+            <div className="flex gap-8">
+              <a
+                href="https://github.com/Mohammad-Adnan-Shakil/DeltaBox"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-200"
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.72rem',
+                  color: '#00ff88',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
+                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
+              >
+                GitHub →
+              </a>
+              <span
+                className="transition-all duration-200 cursor-pointer"
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.72rem',
+                  color: '#00ff88',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
+                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
+              >
+                Live Demo →
+              </span>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN - ANIMATED CIRCUIT (52%) */}
+          <div
+            className="relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #0a0a0f 0%, #0f0f17 50%, #13131e 100%)'
+            }}
+          >
+            {/* Subtle grid background */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                backgroundImage: `
+                  linear-gradient(rgba(0,255,136,0.02) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0,255,136,0.02) 1px, transparent 1px)
+                `,
+                backgroundSize: '30px 30px',
+                opacity: 0.6
+              }}
+            />
+
+            {/* Soft green radial glow behind circuit */}
+            <div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+              style={{
+                width: '400px',
+                height: '400px',
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 70%)',
+                filter: 'blur(20px)'
+              }}
+            />
+
+            {/* Tiny system particles */}
+            <div className="absolute inset-0 pointer-events-none">
+              {[...Array(12)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                    width: '1px',
+                    height: '1px',
+                    backgroundColor: 'rgba(0,255,136,0.3)',
+                    animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
+                    animationDelay: `${Math.random() * 2}s`
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* System labels */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '10%',
+                  left: '5%',
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.5rem',
+                  color: 'rgba(0,255,136,0.15)',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase'
+                }}
+              >
+                SYNC_ACTIVE
+              </div>
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '15%',
+                  right: '8%',
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.5rem',
+                  color: 'rgba(0,255,136,0.12)',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase'
+                }}
+              >
+                MODEL_RUNNING
+              </div>
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '20%',
+                  left: '7%',
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.5rem',
+                  color: 'rgba(0,255,136,0.1)',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase'
+                }}
+              >
+                PREDICTION_READY
+              </div>
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '12%',
+                  right: '6%',
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: '0.5rem',
+                  color: 'rgba(0,255,136,0.08)',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase'
+                }}
+              >
+                JWT_SECURED
+              </div>
+            </div>
+
+            {/* CENTERED ANIMATED CIRCUIT */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center pointer-events-none">
+              <svg
+                className="w-full max-w-[500px] h-auto"
+                viewBox="0 0 320 180"
+                style={{ overflow: 'visible' }}
+              >
+                {/* Monaco Circuit Path */}
+                <path
+                  id="monaco-circuit"
+                  d="M 40,90 
+                   L 50,50 
+                   Q 60,25 80,30 
+                   L 110,35 
+                   Q 140,38 150,50 
+                   L 170,75 
+                   Q 180,85 190,80 
+                   L 220,55 
+                   Q 240,45 260,50 
+                   L 280,80 
+                   Q 290,95 285,110 
+                   L 270,130 
+                   Q 255,145 235,145 
+                   L 210,140 
+                   Q 185,138 165,125 
+                   L 145,105 
+                   Q 130,90 115,95 
+                   L 95,100 
+                   Q 75,105 65,100 
+                   L 50,90 
+                   Q 45,90 40,90 Z"
+                  fill="none"
+                  stroke="rgba(0,255,136,0.5)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  filter="url(#circuit-glow)"
+                />
+
+                {/* Inner track line */}
+                <path
+                  d="M 45,90 
+                   L 52,55 
+                   Q 61,32 80,36 
+                   L 108,40 
+                   Q 137,42 147,53 
+                   L 167,73 
+                   Q 177,82 187,78 
+                   L 217,58 
+                   Q 237,48 255,53 
+                   L 275,80 
+                   Q 284,93 280,107 
+                   L 265,125 
+                   Q 250,140 232,140 
+                   L 207,135 
+                   Q 182,133 162,122 
+                   L 142,103 
+                   Q 127,88 112,93 
+                   L 92,98 
+                   Q 72,103 62,98 
+                   L 47,90 
+                   Q 42,90 45,90 Z"
+                  fill="none"
+                  stroke="rgba(0,255,136,0.25)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+
+                {/* Racing telemetry dot */}
+                <circle r="6" fill="#00ff88" filter="url(#telemetry-glow)">
+                  <animateMotion
+                    dur="8s"
+                    repeatCount="indefinite"
+                    rotate="auto"
+                    path="M 40,90 
                      L 50,50 
                      Q 60,25 80,30 
                      L 110,35 
@@ -367,204 +431,65 @@ const Projects = () => {
                      Q 75,105 65,100 
                      L 50,90 
                      Q 45,90 40,90 Z"
-                    fill="none"
-                    stroke="rgba(0,255,136,0.5)"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    filter="url(#circuit-glow)"
                   />
+                </circle>
 
-                  {/* Inner track line for depth */}
-                  <path
-                    d="M 45,90 
-                     L 52,55 
-                     Q 61,32 80,36 
-                     L 108,40 
-                     Q 137,42 147,53 
-                     L 167,73 
-                     Q 177,82 187,78 
-                     L 217,58 
-                     Q 237,48 255,53 
-                     L 275,80 
-                     Q 284,93 280,107 
-                     L 265,125 
-                     Q 250,140 232,140 
-                     L 207,135 
-                     Q 182,133 162,122 
-                     L 142,103 
-                     Q 127,88 112,93 
-                     L 92,98 
-                     Q 72,103 62,98 
-                     L 47,90 
-                     Q 42,90 45,90 Z"
-                    fill="none"
-                    stroke="rgba(0,255,136,0.25)"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                {/* Trail effect */}
+                <circle r="4" fill="rgba(0,255,136,0.6)" filter="url(#trail-glow)">
+                  <animateMotion
+                    dur="8s"
+                    repeatCount="indefinite"
+                    begin="0.2s"
+                    rotate="auto"
+                    path="M 40,90 
+                     L 50,50 
+                     Q 60,25 80,30 
+                     L 110,35 
+                     Q 140,38 150,50 
+                     L 170,75 
+                     Q 180,85 190,80 
+                     L 220,55 
+                     Q 240,45 260,50 
+                     L 280,80 
+                     Q 290,95 285,110 
+                     L 270,130 
+                     Q 255,145 235,145 
+                     L 210,140 
+                     Q 185,138 165,125 
+                     L 145,105 
+                     Q 130,90 115,95 
+                     L 95,100 
+                     Q 75,105 65,100 
+                     L 50,90 
+                     Q 45,90 40,90 Z"
                   />
+                </circle>
 
-                  {/* Racing telemetry dot with enhanced glow */}
-                  <circle r="6" fill="#00ff88" filter="url(#telemetry-glow)">
-                    <animateMotion
-                      dur="8s"
-                      repeatCount="indefinite"
-                      rotate="auto"
-                      path="M 40,90 
-                       L 50,50 
-                       Q 60,25 80,30 
-                       L 110,35 
-                       Q 140,38 150,50 
-                       L 170,75 
-                       Q 180,85 190,80 
-                       L 220,55 
-                       Q 240,45 260,50 
-                       L 280,80 
-                       Q 290,95 285,110 
-                       L 270,130 
-                       Q 255,145 235,145 
-                       L 210,140 
-                       Q 185,138 165,125 
-                       L 145,105 
-                       Q 130,90 115,95 
-                       L 95,100 
-                       Q 75,105 65,100 
-                       L 50,90 
-                       Q 45,90 40,90 Z"
-                    />
-                  </circle>
-
-                  {/* Trail effect following the dot */}
-                  <circle r="4" fill="rgba(0,255,136,0.6)" filter="url(#trail-glow)">
-                    <animateMotion
-                      dur="8s"
-                      repeatCount="indefinite"
-                      begin="0.2s"
-                      rotate="auto"
-                      path="M 40,90 
-                       L 50,50 
-                       Q 60,25 80,30 
-                       L 110,35 
-                       Q 140,38 150,50 
-                       L 170,75 
-                       Q 180,85 190,80 
-                       L 220,55 
-                       Q 240,45 260,50 
-                       L 280,80 
-                       Q 290,95 285,110 
-                       L 270,130 
-                       Q 255,145 235,145 
-                       L 210,140 
-                       Q 185,138 165,125 
-                       L 145,105 
-                       Q 130,90 115,95 
-                       L 95,100 
-                       Q 75,105 65,100 
-                       L 50,90 
-                       Q 45,90 40,90 Z"
-                    />
-                  </circle>
-
-                  {/* Subtle floating neon data nodes */}
-                  <circle cx="80" cy="30" r="2" fill="rgba(0,255,136,0.4)">
-                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="150" cy="50" r="2" fill="rgba(0,255,136,0.4)">
-                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="0.5s" />
-                  </circle>
-                  <circle cx="220" cy="55" r="2" fill="rgba(0,255,136,0.4)">
-                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="1s" />
-                  </circle>
-                  <circle cx="260" cy="50" r="2" fill="rgba(0,255,136,0.4)">
-                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="1.5s" />
-                  </circle>
-                  <circle cx="285" cy="110" r="2" fill="rgba(0,255,136,0.4)">
-                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="2s" />
-                  </circle>
-                  <circle cx="235" cy="145" r="2" fill="rgba(0,255,136,0.4)">
-                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="2.5s" />
-                  </circle>
-
-                  {/* Enhanced glow filters and radar rings */}
-                  <defs>
-                    <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feGaussianBlur stdDeviation="6" result="coloredBlur" />
-                      <feMerge>
-                        <feMergeNode in="coloredBlur" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                    <filter id="trail-glow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                      <feMerge>
-                        <feMergeNode in="coloredBlur" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                    <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                      <feMerge>
-                        <feMergeNode in="coloredBlur" />
-                        <feMergeNode in="SourceGraphic" />
-                      </feMerge>
-                    </filter>
-                    <radialGradient id="radar-gradient">
-                      <stop offset="0%" stopColor="rgba(0,255,136,0.4)" />
-                      <stop offset="100%" stopColor="rgba(0,255,136,0)" />
-                    </radialGradient>
-                  </defs>
-
-                  {/* Animated radar rings - larger and more prominent */}
-                  <circle cx="160" cy="90" r="40" fill="none" stroke="url(#radar-gradient)" strokeWidth="1.5" opacity="0.7">
-                    <animate attributeName="r" values="30;50;30" dur="5s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="5s" repeatCount="indefinite" />
-                  </circle>
-                  <circle cx="160" cy="90" r="25" fill="none" stroke="rgba(0,255,136,0.3)" strokeWidth="1" opacity="0.5">
-                    <animate attributeName="r" values="15;35;15" dur="5s" repeatCount="indefinite" begin="1.5s" />
-                    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="5s" repeatCount="indefinite" begin="1.5s" />
-                  </circle>
-
-                  {/* Soft pulse animation moving across the track */}
-                  <circle r="8" fill="rgba(0,255,136,0.3)" filter="url(#telemetry-glow)">
-                    <animateMotion
-                      dur="10s"
-                      repeatCount="indefinite"
-                      begin="3s"
-                      rotate="auto"
-                      path="M 40,90 
-                       L 50,50 
-                       Q 60,25 80,30 
-                       L 110,35 
-                       Q 140,38 150,50 
-                       L 170,75 
-                       Q 180,85 190,80 
-                       L 220,55 
-                       Q 240,45 260,50 
-                       L 280,80 
-                       Q 290,95 285,110 
-                       L 270,130 
-                       Q 255,145 235,145 
-                       L 210,140 
-                       Q 185,138 165,125 
-                       L 145,105 
-                       Q 130,90 115,95 
-                       L 95,100 
-                       Q 75,105 65,100 
-                       L 50,90 
-                       Q 45,90 40,90 Z"
-                    />
-                  </circle>
-                </svg>
-              </div>
-
-              {/* Scanline effect */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.01) 2px, rgba(0,255,136,0.01) 4px)'
-                }}
-              />
+                {/* Filters */}
+                <defs>
+                  <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+                    <feMerge>
+                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <filter id="trail-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                    <feMerge>
+                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                    <feMerge>
+                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+              </svg>
             </div>
           </div>
         </div>
