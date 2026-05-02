@@ -59,13 +59,11 @@ const Projects = () => {
         </h2>
       </div>
 
-      {/* Featured Card - Deltabox - Fixed Circuit Animation */}
+      {/* Featured Card - Deltabox - Complete AI Systems Background Rebuild */}
       <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
           className="relative overflow-hidden"
           style={{
-            background: 'linear-gradient(135deg, #0a0a0f 0%, #0f1419 35%, #1a1f29 70%, #0f1419 100%)',
-            border: '1px solid rgba(0,255,136,0.12)',
             minHeight: '500px',
             maxHeight: '600px',
             display: 'grid',
@@ -74,85 +72,105 @@ const Projects = () => {
             gap: '2rem'
           }}
         >
-          {/* PREMIUM CYBER AI SYSTEMS BACKGROUND LAYERS */}
-          
-          {/* Base: Deep matte black + navy gradient */}
-          <div className="absolute inset-0 pointer-events-none" />
-          
-          {/* Grid: Very subtle glowing system grid lines */}
-          <div
+          {/* LAYER 1 — Base: Deep gradient #05070A to #07111C */}
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(135deg, #05070A 0%, #07111C 100%)'
+            }}
+          />
+
+          {/* LAYER 2 — Tactical grid: very thin, low opacity, glowing green-blue tint */}
+          <div 
             className="absolute inset-0 pointer-events-none"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(0,255,136,0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,255,136,0.015) 1px, transparent 1px)
+                linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px)
               `,
-              backgroundSize: '40px 40px',
-              opacity: 0.8
+              backgroundSize: '45px 45px',
+              opacity: 0.6
             }}
           />
-          
-          {/* Particles: Tiny floating system particles, neon dots, and subtle signal pulses */}
+
+          {/* LAYER 3 — Data motion: animated telemetry dots, scanning signal lines, floating particles */}
           <div className="absolute inset-0 pointer-events-none">
-            {/* Floating system particles */}
-            {[...Array(15)].map((_, i) => (
+            {/* Animated telemetry dots */}
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  left: `${10 + (i * 12)}%`,
+                  top: `${20 + (i * 8)}%`,
+                  width: '2px',
+                  height: '2px',
+                  backgroundColor: 'rgba(0,255,136,0.4)',
+                  animation: `pulse ${2 + Math.random() * 2}s ease-in-out infinite`,
+                  animationDelay: `${Math.random() * 2}s`
+                }}
+              />
+            ))}
+            
+            {/* Scanning signal lines */}
+            <div
+              className="absolute w-full h-0.5"
+              style={{
+                top: '30%',
+                background: 'linear-gradient(90deg, transparent, rgba(0,255,136,0.3), transparent)',
+                animation: 'scanLine 4s linear infinite'
+              }}
+            />
+            <div
+              className="absolute w-full h-0.5"
+              style={{
+                top: '60%',
+                background: 'linear-gradient(90deg, transparent, rgba(0,200,255,0.2), transparent)',
+                animation: 'scanLine 4s linear infinite 1.5s'
+              }}
+            />
+            
+            {/* Floating digital particles */}
+            {[...Array(12)].map((_, i) => (
               <div
                 key={i}
                 className="absolute rounded-full"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  width: Math.random() > 0.7 ? '2px' : '1px',
-                  height: Math.random() > 0.7 ? '2px' : '1px',
-                  backgroundColor: `rgba(0,255,136,${0.2 + Math.random() * 0.3})`,
-                  animation: `float ${2 + Math.random() * 3}s ease-in-out infinite`,
+                  width: Math.random() > 0.6 ? '2px' : '1px',
+                  height: Math.random() > 0.6 ? '2px' : '1px',
+                  backgroundColor: `rgba(0,255,136,${0.15 + Math.random() * 0.25})`,
+                  animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
                   animationDelay: `${Math.random() * 2}s`
                 }}
               />
             ))}
-            
-            {/* Neon dots at key positions */}
-            <div className="absolute w-2 h-2 rounded-full" style={{
-              left: '15%', top: '25%', backgroundColor: 'rgba(0,255,136,0.6)',
-              animation: 'pulse 3s ease-in-out infinite'
-            }} />
-            <div className="absolute w-2 h-2 rounded-full" style={{
-              left: '75%', top: '20%', backgroundColor: 'rgba(0,255,136,0.5)',
-              animation: 'pulse 3s ease-in-out infinite 0.5s'
-            }} />
-            <div className="absolute w-2 h-2 rounded-full" style={{
-              left: '25%', top: '70%', backgroundColor: 'rgba(0,255,136,0.4)',
-              animation: 'pulse 3s ease-in-out infinite 1s'
-            }} />
-            <div className="absolute w-2 h-2 rounded-full" style={{
-              left: '80%', top: '75%', backgroundColor: 'rgba(0,255,136,0.3)',
-              animation: 'pulse 3s ease-in-out infinite 1.5s'
-            }} />
-            
-            {/* Subtle signal pulses */}
-            <div className="absolute w-1 h-1 rounded-full" style={{
-              left: '45%', top: '35%', backgroundColor: 'rgba(0,255,136,0.8)',
-              animation: 'fadeInOut 2s ease-in-out infinite'
-            }} />
-            <div className="absolute w-1 h-1 rounded-full" style={{
-              left: '60%', top: '60%', backgroundColor: 'rgba(0,255,136,0.6)',
-              animation: 'fadeInOut 2s ease-in-out infinite 0.8s'
-            }} />
-            <div className="absolute w-1 h-1 rounded-full" style={{
-              left: '30%', top: '45%', backgroundColor: 'rgba(0,255,136,0.4)',
-              animation: 'fadeInOut 2s ease-in-out infinite 1.6s'
-            }} />
           </div>
-          
-          {/* System text: Extremely faint technical labels */}
+
+          {/* LAYER 4 — AI glow: radial neon green glow behind Monaco circuit with breathing animation */}
+          <div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            style={{
+              width: '420px',
+              height: '420px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 65%)',
+              filter: 'blur(30px)',
+              animation: 'breathe 6s ease-in-out infinite',
+              zIndex: 2
+            }}
+          />
+
+          {/* LAYER 5 — Hidden system text: 5-10% opacity */}
           <div className="absolute inset-0 pointer-events-none">
             <div
               style={{
                 position: 'absolute',
-                top: '8%',
-                left: '4%',
+                top: '6%',
+                left: '3%',
                 fontFamily: 'JetBrains Mono',
-                fontSize: '0.45rem',
+                fontSize: '0.42rem',
                 color: 'rgba(0,255,136,0.08)',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
@@ -164,10 +182,10 @@ const Projects = () => {
             <div
               style={{
                 position: 'absolute',
-                top: '12%',
-                right: '6%',
+                top: '10%',
+                right: '4%',
                 fontFamily: 'JetBrains Mono',
-                fontSize: '0.45rem',
+                fontSize: '0.42rem',
                 color: 'rgba(0,255,136,0.06)',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
@@ -179,26 +197,11 @@ const Projects = () => {
             <div
               style={{
                 position: 'absolute',
-                bottom: '15%',
-                left: '5%',
+                bottom: '12%',
+                left: '3%',
                 fontFamily: 'JetBrains Mono',
-                fontSize: '0.45rem',
+                fontSize: '0.42rem',
                 color: 'rgba(0,255,136,0.05)',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                fontWeight: 500
-              }}
-            >
-              JWT_SECURED
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '10%',
-                right: '4%',
-                fontFamily: 'JetBrains Mono',
-                fontSize: '0.45rem',
-                color: 'rgba(0,255,136,0.04)',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
                 fontWeight: 500
@@ -206,10 +209,68 @@ const Projects = () => {
             >
               PREDICTION_READY
             </div>
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '8%',
+                right: '4%',
+                fontFamily: 'JetBrains Mono',
+                fontSize: '0.42rem',
+                color: 'rgba(0,255,136,0.04)',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                fontWeight: 500
+              }}
+            >
+              JWT_SECURED
+            </div>
+          </div>
+
+          {/* LAYER 6 — Hex geometry: 2-3 faint wireframe hexagons */}
+          <div className="absolute inset-0 pointer-events-none">
+            {/* Hexagon 1 */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '15%',
+                left: '8%',
+                width: '60px',
+                height: '52px',
+                border: '1px solid rgba(0,255,136,0.1)',
+                clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)',
+                opacity: 0.3
+              }}
+            />
+            {/* Hexagon 2 */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '65%',
+                right: '12%',
+                width: '45px',
+                height: '39px',
+                border: '1px solid rgba(0,200,255,0.08)',
+                clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)',
+                opacity: 0.25
+              }}
+            />
+            {/* Hexagon 3 */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '35%',
+                right: '25%',
+                width: '35px',
+                height: '30px',
+                border: '1px solid rgba(0,255,136,0.06)',
+                clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)',
+                opacity: 0.2
+              }}
+            />
           </div>
 
           {/* LEFT COLUMN - DELTABOX CONTENT */}
-          <div className="p-8 lg:p-10 relative z-10">
+          <div className="p-8 lg:p-10 relative z-20">
             {/* Badge */}
             <div className="flex items-center gap-3 mb-6">
               <div
@@ -325,7 +386,7 @@ const Projects = () => {
             {/* Links */}
             <div className="flex gap-8">
               <a
-                href="https://github.com/Mohammad-Adnan-Shakil/DeltaBox"
+                href="https://github.com/Mohammad-Adnan-Shakil/deltaBox"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-all duration-200"
@@ -358,7 +419,7 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN - MONACO CIRCUIT ANIMATION - FIXED VISIBILITY */}
+          {/* RIGHT COLUMN - MONACO CIRCUIT ANIMATION */}
           <div 
             className="relative overflow-hidden"
             style={{
@@ -367,23 +428,11 @@ const Projects = () => {
               height: '100%',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              zIndex: 10
             }}
           >
-            {/* Ambient glow: Soft neon green radial glow behind animated circuit */}
-            <div
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-              style={{
-                width: '400px',
-                height: '400px',
-                borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 60%)',
-                filter: 'blur(25px)',
-                zIndex: 1
-              }}
-            />
-
-            {/* MONACO GRAND PRIX CIRCUIT - RESTORED WITH PROPER VISIBILITY */}
+            {/* MONACO GRAND PRIX CIRCUIT */}
             <div 
               className="relative"
               style={{
@@ -391,9 +440,7 @@ const Projects = () => {
                 height: '100%',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 10,
-                position: 'relative'
+                justifyContent: 'center'
               }}
             >
               <svg
@@ -401,7 +448,7 @@ const Projects = () => {
                 viewBox="0 0 320 180"
                 style={{ overflow: 'visible' }}
               >
-                {/* Monaco Circuit Path - Full neon circuit */}
+                {/* Monaco Circuit Path */}
                 <path
                   id="monaco-circuit"
                   d="M 40,90 
@@ -433,7 +480,7 @@ const Projects = () => {
                   filter="url(#circuit-glow)"
                 />
 
-                {/* Inner track line for depth */}
+                {/* Inner track line */}
                 <path
                   d="M 45,90 
                    L 52,55 
@@ -463,7 +510,7 @@ const Projects = () => {
                   strokeLinejoin="round"
                 />
 
-                {/* Racing telemetry dot with pulse animation */}
+                {/* Racing telemetry dot */}
                 <circle r="6" fill="#00ff88" filter="url(#telemetry-glow)">
                   <animateMotion
                     dur="8s"
@@ -493,7 +540,7 @@ const Projects = () => {
                   />
                 </circle>
 
-                {/* Trail effect following the dot */}
+                {/* Trail effect */}
                 <circle r="4" fill="rgba(0,255,136,0.6)" filter="url(#trail-glow)">
                   <animateMotion
                     dur="8s"
@@ -524,27 +571,7 @@ const Projects = () => {
                   />
                 </circle>
 
-                {/* Floating radar/data nodes */}
-                <circle cx="80" cy="30" r="2" fill="rgba(0,255,136,0.4)">
-                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="150" cy="50" r="2" fill="rgba(0,255,136,0.4)">
-                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="0.5s" />
-                </circle>
-                <circle cx="220" cy="55" r="2" fill="rgba(0,255,136,0.4)">
-                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="1s" />
-                </circle>
-                <circle cx="260" cy="50" r="2" fill="rgba(0,255,136,0.4)">
-                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="1.5s" />
-                </circle>
-                <circle cx="285" cy="110" r="2" fill="rgba(0,255,136,0.4)">
-                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="2s" />
-                </circle>
-                <circle cx="235" cy="145" r="2" fill="rgba(0,255,136,0.4)">
-                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="2.5s" />
-                </circle>
-
-                {/* Enhanced glow filters */}
+                {/* Filters */}
                 <defs>
                   <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur stdDeviation="6" result="coloredBlur" />
