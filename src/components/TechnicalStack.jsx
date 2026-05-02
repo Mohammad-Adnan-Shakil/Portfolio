@@ -45,8 +45,8 @@ const TechnicalStack = () => {
           </h2>
         </div>
 
-        {/* Two Columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+        {/* Two Columns - FRONTEND | BACKEND */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16 lg:mb-20">
           {/* FRONTEND Column */}
           <div>
             <h3 
@@ -193,7 +193,7 @@ const TechnicalStack = () => {
         </div>
 
         {/* ML / DATA Section */}
-        <div className="mt-16 lg:mt-20">
+        <div className="mb-16 lg:mb-20">
           <h3 
             className="text-green-400 font-mono text-lg font-bold mb-8"
             style={{ fontFamily: 'JetBrains Mono' }}
@@ -265,7 +265,7 @@ const TechnicalStack = () => {
         </div>
 
         {/* INFRASTRUCTURE Section */}
-        <div className="mt-16 lg:mt-20">
+        <div className="mb-16 lg:mb-20">
           <h3 
             className="text-green-400 font-mono text-lg font-bold mb-8"
             style={{ fontFamily: 'JetBrains Mono' }}

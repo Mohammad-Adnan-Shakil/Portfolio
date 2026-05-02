@@ -38,10 +38,10 @@ const Contact = () => {
             // 05 — CONTACT
           </p>
           <h2 
-            className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold mb-8"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8"
             style={{ fontFamily: 'Space Grotesk' }}
           >
-            Let's build <span style={{ WebkitTextStroke: '2px #00ff7f', WebkitTextFillColor: 'transparent' }}>production systems.</span>
+            Let's build <span style={{ color: '#00ff7f' }}>production systems.</span>
           </h2>
           <p 
             className="text-gray-300 text-lg leading-relaxed max-w-2xl"
@@ -82,9 +82,9 @@ const Contact = () => {
           </a>
         </div>
 
-        {/* Footer */}
+        {/* Footer - Single line only */}
         <div className="text-center border-t border-green-900/30 pt-8">
-          <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="flex items-center justify-center gap-2">
             <p 
               className="text-gray-400 text-sm"
               style={{ fontFamily: 'JetBrains Mono' }}
@@ -97,17 +97,6 @@ const Contact = () => {
               style={{ fontFamily: 'JetBrains Mono' }}
             >
               Open to internships
-            </p>
-          </div>
-          
-          {/* Status Indicator */}
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <p 
-              className="text-gray-500 text-xs"
-              style={{ fontFamily: 'JetBrains Mono' }}
-            >
-              System Online
             </p>
           </div>
         </div>

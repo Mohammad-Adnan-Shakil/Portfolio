@@ -79,9 +79,9 @@ const Hero = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-        {/* Top Line */}
-        <div className="mb-6 sm:mb-8">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
+        {/* Top Line - Left Aligned */}
+        <div className="mb-8 text-left">
           <p 
             className="text-green-400 font-mono text-xs sm:text-sm tracking-wider opacity-90"
             style={{ fontFamily: 'JetBrains Mono' }}
@@ -90,31 +90,36 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Giant Stacked Display Type with alternating filled/outlined letters */}
-        <div className="mb-8 sm:mb-12">
+        {/* Giant Stacked Display Type */}
+        <div className="mb-12 text-center">
           <h1 className="text-white leading-none">
             <div 
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-2"
+              className="font-bold mb-4"
               style={{ 
                 fontFamily: 'Space Grotesk',
-                WebkitTextStroke: '2px #00ff7f',
+                fontSize: 'clamp(8rem, 15vw, 15rem)',
+                WebkitTextStroke: '3px #00ff7f',
                 WebkitTextFillColor: 'transparent'
               }}
             >
               ML
             </div>
             <div 
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-2"
-              style={{ fontFamily: 'Space Grotesk' }}
+              className="font-bold mb-4"
+              style={{ 
+                fontFamily: 'Space Grotesk',
+                fontSize: 'clamp(8rem, 15vw, 15rem)',
+                color: '#ffffff'
+              }}
             >
               Engineer
             </div>
             <div 
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold"
+              className="font-bold"
               style={{ 
                 fontFamily: 'Space Grotesk',
-                WebkitTextStroke: '2px #00ff7f',
-                WebkitTextFillColor: 'transparent'
+                fontSize: 'clamp(8rem, 15vw, 15rem)',
+                color: '#ffffff'
               }}
             >
               & Dev.
@@ -123,9 +128,9 @@ const Hero = () => {
         </div>
 
         {/* Subtext */}
-        <div className="mb-8 sm:mb-12 max-w-3xl mx-auto">
+        <div className="mb-12 max-w-3xl mx-auto">
           <p 
-            className="text-gray-300 text-sm sm:text-base leading-relaxed"
+            className="text-gray-300 text-sm sm:text-base leading-relaxed text-center"
             style={{ fontFamily: 'Space Grotesk' }}
           >
             Full-stack engineer building production systems that integrate ML models into real applications. 
@@ -134,9 +139,9 @@ const Hero = () => {
         </div>
 
         {/* Mono Line */}
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-12">
           <p 
-            className="text-green-400 font-mono text-xs sm:text-sm leading-relaxed opacity-80"
+            className="text-green-400 font-mono text-xs sm:text-sm leading-relaxed opacity-80 text-center"
             style={{ fontFamily: 'JetBrains Mono' }}
           >
             Currently building Deltabox: Java backend calling Python ML models via subprocess for real-time race predictions with JWT + RBAC security.
@@ -144,10 +149,10 @@ const Hero = () => {
         </div>
 
         {/* Full-width neon green CTA button */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-8 text-center">
           <button 
             onClick={scrollToProjects}
-            className="w-full sm:w-auto px-8 py-4 font-bold text-sm sm:text-base rounded-none transition-all hover:opacity-80 focus:outline-none"
+            className="px-8 py-4 font-bold text-sm sm:text-base rounded-none transition-all hover:opacity-80 focus:outline-none"
             style={{ 
               fontFamily: 'Space Grotesk',
               backgroundColor: '#00ff7f',
@@ -159,7 +164,7 @@ const Hero = () => {
         </div>
 
         {/* GitHub Link */}
-        <div className="mb-8 sm:mb-12">
+        <div className="mb-12 text-center">
           <a 
             href="https://github.com/Mohammad-Adnan-Shakil"
             target="_blank"
@@ -171,11 +176,52 @@ const Hero = () => {
           </a>
         </div>
 
-        {/* Stats Row */}
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-green-400 font-mono text-xs sm:text-sm opacity-80">
-          <div style={{ fontFamily: 'JetBrains Mono' }}>3+ PROJECTS</div>
-          <div style={{ fontFamily: 'JetBrains Mono' }}>5+ TECH STACK</div>
-          <div style={{ fontFamily: 'JetBrains Mono' }}>2nd YEAR CSE</div>
+        {/* Stats Row with Separators */}
+        <div className="flex justify-center items-center gap-8 text-green-400 font-mono text-sm">
+          <div className="text-center">
+            <div 
+              className="font-bold text-lg mb-1"
+              style={{ fontFamily: 'JetBrains Mono' }}
+            >
+              3+
+            </div>
+            <div 
+              className="text-xs opacity-80"
+              style={{ fontFamily: 'JetBrains Mono' }}
+            >
+              PROJECTS
+            </div>
+          </div>
+          <div className="w-px h-8 bg-green-400 opacity-30"></div>
+          <div className="text-center">
+            <div 
+              className="font-bold text-lg mb-1"
+              style={{ fontFamily: 'JetBrains Mono' }}
+            >
+              5+
+            </div>
+            <div 
+              className="text-xs opacity-80"
+              style={{ fontFamily: 'JetBrains Mono' }}
+            >
+              TECH STACK
+            </div>
+          </div>
+          <div className="w-px h-8 bg-green-400 opacity-30"></div>
+          <div className="text-center">
+            <div 
+              className="font-bold text-lg mb-1"
+              style={{ fontFamily: 'JetBrains Mono' }}
+            >
+              2nd
+            </div>
+            <div 
+              className="text-xs opacity-80"
+              style={{ fontFamily: 'JetBrains Mono' }}
+            >
+              YEAR CSE
+            </div>
+          </div>
         </div>
       </div>
 

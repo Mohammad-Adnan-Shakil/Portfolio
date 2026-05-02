@@ -99,7 +99,7 @@ const Projects = () => {
                 </div>
 
                 {/* Architecture */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 border-t border-green-900/20 pt-6">
                   <div className="lg:col-span-3">
                     <p 
                       className="text-green-400 font-mono text-xs uppercase tracking-wider"
@@ -119,7 +119,7 @@ const Projects = () => {
                 </div>
 
                 {/* Technology Stack */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 border-t border-green-900/20 pt-6">
                   <div className="lg:col-span-3">
                     <p 
                       className="text-green-400 font-mono text-xs uppercase tracking-wider"
@@ -139,7 +139,7 @@ const Projects = () => {
                 </div>
 
                 {/* Performance Metrics */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 border-t border-green-900/20 pt-6">
                   <div className="lg:col-span-3">
                     <p 
                       className="text-green-400 font-mono text-xs uppercase tracking-wider"
@@ -197,7 +197,7 @@ const Projects = () => {
                 </div>
 
                 {/* Buttons */}
-                <div className="flex gap-4 pt-4">
+                <div className="flex gap-4 pt-4 border-t border-green-900/20">
                   <button 
                     className="px-6 py-2 border border-green-400 text-green-400 font-mono text-sm rounded transition-all hover:bg-green-400 hover:text-black"
                     style={{ fontFamily: 'JetBrains Mono' }}
@@ -223,7 +223,25 @@ const Projects = () => {
                     className="w-full h-auto"
                     style={{ overflow: 'visible' }}
                   >
-                    {/* F1 Track Circuit */}
+                    {/* Glow filters */}
+                    <defs>
+                      <filter id="track-glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                        <feMerge>
+                          <feMergeNode in="coloredBlur"/>
+                          <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                      </filter>
+                      <filter id="dot-glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                        <feMerge>
+                          <feMergeNode in="coloredBlur"/>
+                          <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                      </filter>
+                    </defs>
+
+                    {/* F1 Track Circuit with Neon Glow */}
                     <path
                       d="M 50,150 
                        L 100,50 
@@ -239,11 +257,15 @@ const Projects = () => {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      opacity="0.8"
+                      filter="url(#track-glow)"
+                      style={{ 
+                        dropShadow: '0 0 10px rgba(0,255,127,0.8)',
+                        boxShadow: '0 0 20px rgba(0,255,127,0.6)'
+                      }}
                     />
 
-                    {/* Animated Dot */}
-                    <circle r="4" fill="#00ff7f">
+                    {/* Animated Dot with Glow */}
+                    <circle r="4" fill="#00ff7f" filter="url(#dot-glow)">
                       <animateMotion
                         dur="6s"
                         repeatCount="indefinite"
