@@ -4,7 +4,7 @@ const Projects = () => {
   const { revealRef } = useScrollReveal();
 
   const techTags = [
-    'Spring Boot', 'PostgreSQL', 'React', 'Tailwind', 
+    'Spring Boot', 'PostgreSQL', 'React', 'Tailwind',
     'XGBoost', 'Random Forest', 'Python', 'JWT'
   ];
 
@@ -59,531 +59,512 @@ const Projects = () => {
         </h2>
       </div>
 
-      {/* Featured Card - Deltabox */}
+      {/* Featured Card - Deltabox - Horizontal Split Layout */}
       <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
-          className="relative overflow-hidden transition-all duration-300 flex flex-col lg:grid lg:grid-cols-2"
+          className="relative overflow-hidden transition-all duration-300"
           style={{
-            border: '1px solid rgba(0,255,136,0.12)',
-            background: 'rgba(255,255,255,0.02)'
+            background: '#0a0a0f',
+            border: '1px solid rgba(0,255,136,0.12)'
           }}
           onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(0,255,136,0.35)'}
           onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(0,255,136,0.12)'}
         >
-          {/* Gradient overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'linear-gradient(135deg, rgba(0,255,136,0.04), transparent)'
-            }}
-          />
-
-          {/* Left Column - F1 Telemetry Dashboard */}
-          <div
-            className="relative overflow-hidden order-1 lg:order-1"
-            style={{ 
-              background: '#13131e', 
-              minHeight: 'clamp(320px, 50vh, 520px)',
-              height: 'auto'
-            }}
-          >
-            {/* F1 Telemetry Dashboard Background Grid */}
-            <div 
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                backgroundImage: `
-                  linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px)
-                `,
-                backgroundSize: '20px 20px',
-                opacity: 0.5
-              }}
-            />
-            
-            {/* Monaco Grand Prix Circuit - Scaled 2.5x */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none">
-              <svg
-                className="w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[420px] h-auto"
-                viewBox="0 0 280 160"
-                style={{ overflow: 'visible' }}
-              >
-                {/* Monaco Circuit Path - Enhanced with glow */}
-                <path
-                  id="monaco-circuit"
-                  d="M 30,80 
-                   L 35,45 
-                   Q 45,25 65,30 
-                   L 95,35 
-                   Q 115,38 125,45 
-                   L 140,65 
-                   Q 145,75 155,70 
-                   L 185,45 
-                   Q 205,35 225,40 
-                   L 245,65 
-                   Q 250,75 245,85 
-                   L 235,105 
-                   Q 225,115 210,115 
-                   L 185,110 
-                   Q 165,108 150,95 
-                   L 135,85 
-                   Q 125,78 115,80 
-                   L 95,85 
-                   Q 75,88 65,85 
-                   L 45,80 
-                   Q 35,80 30,80 Z"
-                  fill="none"
-                  stroke="rgba(0,255,136,0.4)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  filter="url(#circuit-glow)"
+          {/* Desktop: 2-column grid, Mobile: stacked */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2">
+            {/* LEFT SIDE - DELTABOX CONTENT (45-50% width) */}
+            <div className="lg:col-span-1 p-8 sm:p-10 lg:p-12 order-2 lg:order-1">
+              {/* Badge */}
+              <div className="flex items-center gap-3 mb-6">
+                <div
+                  className="rounded-full"
+                  style={{
+                    width: '6px',
+                    height: '6px',
+                    background: '#00ff88',
+                    animation: 'pulse 2s ease-in-out infinite'
+                  }}
                 />
-                
-                {/* Inner track line for depth */}
-                <path
-                  d="M 35,80 
-                   L 38,50 
-                   Q 47,32 65,36 
-                   L 93,40 
-                   Q 112,42 122,48 
-                   L 137,63 
-                   Q 142,72 152,68 
-                   L 182,48 
-                   Q 202,38 220,43 
-                   L 240,65 
-                   Q 245,73 242,82 
-                   L 232,100 
-                   Q 222,110 208,110 
-                   L 183,105 
-                   Q 163,103 148,92 
-                   L 133,83 
-                   Q 123,76 113,78 
-                   L 93,82 
-                   Q 73,85 63,82 
-                   L 43,78 
-                   Q 35,78 35,80 Z"
-                  fill="none"
-                  stroke="rgba(0,255,136,0.2)"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                
-                {/* Racing telemetry dot with enhanced glow */}
-                <circle r="5" fill="#00ff88" filter="url(#telemetry-glow)">
-                  <animateMotion
-                    dur="7s"
-                    repeatCount="indefinite"
-                    rotate="auto"
-                    path="M 30,80 
-                     L 35,45 
-                     Q 45,25 65,30 
-                     L 95,35 
-                     Q 115,38 125,45 
-                     L 140,65 
-                     Q 145,75 155,70 
-                     L 185,45 
-                     Q 205,35 225,40 
-                     L 245,65 
-                     Q 250,75 245,85 
-                     L 235,105 
-                     Q 225,115 210,115 
-                     L 185,110 
-                     Q 165,108 150,95 
-                     L 135,85 
-                     Q 125,78 115,80 
-                     L 95,85 
-                     Q 75,88 65,85 
-                     L 45,80 
-                     Q 35,80 30,80 Z"
-                  />
-                </circle>
-                
-                {/* Trail effect following the dot */}
-                <circle r="3" fill="rgba(0,255,136,0.5)" filter="url(#trail-glow)">
-                  <animateMotion
-                    dur="7s"
-                    repeatCount="indefinite"
-                    begin="0.15s"
-                    rotate="auto"
-                    path="M 30,80 
-                     L 35,45 
-                     Q 45,25 65,30 
-                     L 95,35 
-                     Q 115,38 125,45 
-                     L 140,65 
-                     Q 145,75 155,70 
-                     L 185,45 
-                     Q 205,35 225,40 
-                     L 245,65 
-                     Q 250,75 245,85 
-                     L 235,105 
-                     Q 225,115 210,115 
-                     L 185,110 
-                     Q 165,108 150,95 
-                     L 135,85 
-                     Q 125,78 115,80 
-                     L 95,85 
-                     Q 75,88 65,85 
-                     L 45,80 
-                     Q 35,80 30,80 Z"
-                  />
-                </circle>
-                
-                {/* Enhanced glow filters and radar rings */}
-                <defs>
-                  <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <filter id="trail-glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                    <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                  <radialGradient id="radar-gradient">
-                    <stop offset="0%" stopColor="rgba(0,255,136,0.3)" />
-                    <stop offset="100%" stopColor="rgba(0,255,136,0)" />
-                  </radialGradient>
-                </defs>
-                
-                {/* Animated radar rings */}
-                <circle cx="140" cy="80" r="30" fill="none" stroke="url(#radar-gradient)" strokeWidth="1" opacity="0.6">
-                  <animate attributeName="r" values="20;35;20" dur="4s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="0.6;0.2;0.6" dur="4s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="140" cy="80" r="20" fill="none" stroke="rgba(0,255,136,0.2)" strokeWidth="0.5" opacity="0.4">
-                  <animate attributeName="r" values="10;25;10" dur="4s" repeatCount="indefinite" begin="1s" />
-                  <animate attributeName="opacity" values="0.4;0.1;0.4" dur="4s" repeatCount="indefinite" begin="1s" />
-                </circle>
-                
-                {/* Blinking checkpoints on key corners */}
-                <circle cx="35" cy="45" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="65" cy="30" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.5s" />
-                </circle>
-                <circle cx="125" cy="45" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="1s" />
-                </circle>
-                <circle cx="185" cy="45" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="1.5s" />
-                </circle>
-                <circle cx="245" cy="85" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="2s" />
-                </circle>
-                <circle cx="210" cy="115" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="2.5s" />
-                </circle>
-                <circle cx="150" cy="95" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="3s" />
-                </circle>
-                <circle cx="95" cy="85" r="2" fill="rgba(0,255,136,0.6)">
-                  <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="3.5s" />
-                </circle>
-              </svg>
-            </div>
-            
-            {/* F1 Telemetry Dashboard UI */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-              {/* Scanning Line Effect */}
-              <div 
-                className="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-50"
-                style={{
-                  top: '50%',
-                  animation: 'scanLine 3s ease-in-out infinite',
-                  transform: 'translateY(-50%)'
-                }}
-              />
-              
-              {/* Top Bar - TRACK INFO */}
-              <div 
-                className="absolute top-0 left-0 right-0 flex justify-between items-center px-3 py-2"
-                style={{
-                  background: 'rgba(0,0,0,0.8)',
-                  borderBottom: '1px solid rgba(0,255,136,0.3)',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.65rem, 2vw, 0.75rem)'
-                }}
-              >
-                <div className="text-green-400">TRACK: MONACO GP</div>
-                <div className="text-green-400 hidden sm:block">SECTOR: 3</div>
-              </div>
-              
-              {/* Left Panel - MODEL INFO */}
-              <div 
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 px-3 py-2"
-                style={{
-                  background: 'rgba(0,0,0,0.7)',
-                  border: '1px solid rgba(0,255,136,0.3)',
-                  borderRight: 'none',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.6rem, 2vw, 0.7rem)',
-                  writingMode: 'vertical-rl'
-                }}
-              >
-                <div className="text-green-400 mb-2">MODEL</div>
-                <div className="text-xs text-gray-400">XGBOOST + RF</div>
-              </div>
-              
-              {/* Right Panel - CONFIDENCE */}
-              <div 
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-2"
-                style={{
-                  background: 'rgba(0,0,0,0.7)',
-                  border: '1px solid rgba(0,255,136,0.3)',
-                  borderLeft: 'none',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.6rem, 2vw, 0.7rem)'
-                }}
-              >
-                <div className="text-green-400 mb-2">CONFIDENCE</div>
-                <div className="text-xs text-gray-400">87.3%</div>
-              </div>
-              
-              {/* Bottom Bar - DATASET INFO */}
-              <div 
-                className="absolute bottom-0 left-0 right-0 flex justify-between items-center px-3 py-2"
-                style={{
-                  background: 'rgba(0,0,0,0.8)',
-                  borderTop: '1px solid rgba(0,255,136,0.3)',
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.65rem, 2vw, 0.75rem)'
-                }}
-              >
-                <div className="text-green-400">DATASET: 24 RACES</div>
-                <div className="text-green-400 hidden sm:block">STATUS: ACTIVE</div>
-              </div>
-              
-              {/* Floating Status Indicators */}
-              <div 
-                className="absolute text-xs font-mono text-green-400 opacity-0"
-                style={{
-                  top: '15%',
-                  left: '20%',
-                  animation: 'fadeInOut 4s ease-in-out infinite',
-                  fontFamily: 'JetBrains Mono'
-                }}
-              >
-                PREDICTION ACTIVE
-              </div>
-              
-              <div 
-                className="absolute text-xs font-mono text-green-400 opacity-0 hidden sm:block"
-                style={{
-                  top: '25%',
-                  right: '15%',
-                  animation: 'fadeInOut 4s ease-in-out infinite 1s',
-                  fontFamily: 'JetBrains Mono'
-                }}
-              >
-                ML ONLINE
-              </div>
-            </div>
-
-            {/* Top-left data overlay - hidden on small mobile */}
-            <div
-              className="absolute pointer-events-none hidden sm:block"
-              style={{
-                top: 'clamp(0.75rem, 2vw, 1.5rem)',
-                left: 'clamp(0.75rem, 2vw, 1.5rem)',
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.5rem, 1.5vw, 0.6rem)',
-                color: 'rgba(0,255,136,0.45)',
-                lineHeight: 1.8
-              }}
-            >
-              <div>DELTABOX_AI v1.0</div>
-              <div>RACE_PREDICTION: ACTIVE</div>
-              <div>MODEL: XGBoost + RF</div>
-            </div>
-
-            {/* Bottom-right data overlay - hidden on small mobile */}
-            <div
-              className="absolute text-right pointer-events-none hidden sm:block"
-              style={{
-                bottom: 'clamp(0.75rem, 2vw, 1.5rem)',
-                right: 'clamp(0.75rem, 2vw, 1.5rem)',
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.5rem, 1.5vw, 0.6rem)',
-                color: 'rgba(0,255,136,0.45)',
-                lineHeight: 1.8
-              }}
-            >
-              <div>CONFIDENCE: 87.3%</div>
-              <div>DRIVERS: 20</div>
-              <div>RACES: 24</div>
-            </div>
-
-            {/* Scanline effect */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.015) 2px, rgba(0,255,136,0.015) 4px)'
-              }}
-            />
-          </div>
-
-          {/* Right Column - Info Panel */}
-          <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-12 order-2 lg:order-2">
-            {/* Badge */}
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                className="rounded-full"
-                style={{
-                  width: '6px',
-                  height: '6px',
-                  background: '#00ff88',
-                  animation: 'pulse 2s ease-in-out infinite'
-                }}
-              />
-              <p
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '0.62rem',
-                  color: '#00ff88',
-                  letterSpacing: '0.18em',
-                  textTransform: 'uppercase'
-                }}
-              >
-                Featured Project
-              </p>
-            </div>
-
-            {/* Title */}
-            <h3
-              className="mb-4"
-              style={{
-                fontFamily: 'Syne',
-                fontWeight: 800,
-                fontSize: 'clamp(1.75rem, 5vw, 2.6rem)',
-                letterSpacing: '-0.02em',
-                lineHeight: 1.05
-              }}
-            >
-              Deltabox
-            </h3>
-
-            {/* Description */}
-            <div
-              className="mb-6"
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
-                color: '#5a5a70',
-                lineHeight: 1.95
-              }}
-            >
-              <p className="mb-4">
-                AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.
-              </p>
-              <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
-                <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
-                <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
-                <div>• JWT authentication + RBAC-secured APIs with 87.3% prediction confidence</div>
-              </div>
-            </div>
-
-            {/* Prediction Engine Status - compact on mobile */}
-            <div
-              className="mb-6 sm:mb-8 p-3 sm:p-4"
-              style={{
-                border: '1px solid rgba(0,255,136,0.12)',
-                background: 'rgba(0,255,136,0.02)'
-              }}
-            >
-              <div
-                className="mb-2 sm:mb-3"
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.55rem, 1.5vw, 0.65rem)',
-                  color: '#00ff88',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase'
-                }}
-              >
-                Prediction Engine
-              </div>
-              <div
-                className="grid grid-cols-2 sm:grid-cols-1 gap-1 sm:gap-0"
-                style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.65rem, 2vw, 0.72rem)',
-                  color: '#5a5a70',
-                  lineHeight: 1.6
-                }}
-              >
-                <div>Accuracy: <span style={{ color: '#e8e8f0' }}>87.3%</span></div>
-                <div className="hidden sm:block">Drivers: <span style={{ color: '#e8e8f0' }}>20</span></div>
-                <div className="hidden sm:block">Races: <span style={{ color: '#e8e8f0' }}>24</span></div>
-                <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + RF</span></div>
-              </div>
-            </div>
-
-            {/* Tech Tags */}
-            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6 sm:mb-8">
-              {techTags.map((tag) => (
-                <span
-                  key={tag}
+                <p
                   style={{
                     fontFamily: 'JetBrains Mono',
-                    fontSize: 'clamp(0.55rem, 1.8vw, 0.62rem)',
-                    color: '#00c8ff',
-                    border: '1px solid rgba(0,200,255,0.18)',
-                    padding: 'clamp(0.2rem, 1vw, 0.28rem) clamp(0.4rem, 2vw, 0.65rem)'
+                    fontSize: '0.62rem',
+                    color: '#00ff88',
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase'
                   }}
                 >
-                  {tag}
+                  Featured Project
+                </p>
+              </div>
+
+              {/* Title */}
+              <h3
+                className="mb-6"
+                style={{
+                  fontFamily: 'Syne',
+                  fontWeight: 800,
+                  fontSize: 'clamp(1.75rem, 5vw, 2.6rem)',
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.05
+                }}
+              >
+                Deltabox
+              </h3>
+
+              {/* Description */}
+              <div
+                className="mb-8"
+                style={{
+                  fontFamily: 'JetBrains Mono',
+                  fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
+                  color: '#5a5a70',
+                  lineHeight: 1.95
+                }}
+              >
+                <p className="mb-4">
+                  AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.
+                </p>
+                <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
+                  <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
+                  <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
+                  <div>• JWT authentication + RBAC-secured APIs with 87.3% prediction confidence</div>
+                </div>
+              </div>
+
+              {/* Prediction Engine Status */}
+              <div
+                className="mb-8 p-4"
+                style={{
+                  border: '1px solid rgba(0,255,136,0.12)',
+                  background: 'rgba(0,255,136,0.02)'
+                }}
+              >
+                <div
+                  className="mb-3"
+                  style={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.65rem',
+                    color: '#00ff88',
+                    letterSpacing: '0.15em',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  Prediction Engine
+                </div>
+                <div
+                  className="grid grid-cols-2 gap-2"
+                  style={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.72rem',
+                    color: '#5a5a70',
+                    lineHeight: 1.6
+                  }}
+                >
+                  <div>Accuracy: <span style={{ color: '#e8e8f0' }}>87.3%</span></div>
+                  <div>Drivers: <span style={{ color: '#e8e8f0' }}>20</span></div>
+                  <div>Races: <span style={{ color: '#e8e8f0' }}>24</span></div>
+                  <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + RF</span></div>
+                </div>
+              </div>
+
+              {/* Tech Tags */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {techTags.map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      fontFamily: 'JetBrains Mono',
+                      fontSize: '0.62rem',
+                      color: '#00c8ff',
+                      border: '1px solid rgba(0,200,255,0.18)',
+                      padding: '0.28rem 0.65rem'
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Links */}
+              <div className="flex gap-8">
+                <a
+                  href="https://github.com/Mohammad-Adnan-Shakil/DeltaBox"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-all duration-200"
+                  style={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.72rem',
+                    color: '#00ff88',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em'
+                  }}
+                  onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
+                  onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
+                >
+                  GitHub →
+                </a>
+                <span
+                  className="transition-all duration-200 cursor-pointer"
+                  style={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.72rem',
+                    color: '#00ff88',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em'
+                  }}
+                  onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
+                  onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
+                >
+                  Live Demo →
                 </span>
-              ))}
+              </div>
             </div>
 
-            {/* Links */}
-            <div className="flex gap-4 sm:gap-8">
-              <a
-                href="https://github.com/Mohammad-Adnan-Shakil/DeltaBox"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-all duration-200"
+            {/* RIGHT SIDE - ANIMATED CIRCUIT (50-55% width) */}
+            <div
+              className="lg:col-span-1 relative overflow-hidden order-1 lg:order-2"
+              style={{
+                background: 'linear-gradient(135deg, #0a0a0f 0%, #0f0f17 50%, #13131e 100%)',
+                minHeight: 'clamp(400px, 60vh, 600px)'
+              }}
+            >
+              {/* CYBER BACKGROUND LAYERS */}
+              
+              {/* Layer 2: Subtle glowing grid lines */}
+              <div
+                className="absolute inset-0 pointer-events-none"
                 style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.65rem, 2vw, 0.72rem)',
-                  color: '#00ff88',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em'
+                  backgroundImage: `
+                    linear-gradient(rgba(0,255,136,0.02) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,255,136,0.02) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '30px 30px',
+                  opacity: 0.6
                 }}
-                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
-              >
-                GitHub →
-              </a>
-              <span
-                className="transition-all duration-200 cursor-pointer"
+              />
+
+              {/* Layer 3: Tiny floating system dots and data particles */}
+              <div className="absolute inset-0 pointer-events-none">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute rounded-full"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      width: '1px',
+                      height: '1px',
+                      backgroundColor: 'rgba(0,255,136,0.3)',
+                      animation: `float ${3 + Math.random() * 2}s ease-in-out infinite`,
+                      animationDelay: `${Math.random() * 2}s`
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Layer 4: Soft green radial glow behind the circuit */}
+              <div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                 style={{
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: 'clamp(0.65rem, 2vw, 0.72rem)',
-                  color: '#00ff88',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em'
+                  width: 'clamp(300px, 50vw, 500px)',
+                  height: 'clamp(300px, 50vw, 500px)',
+                  borderRadius: '50%',
+                  background: 'radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 70%)',
+                  filter: 'blur(20px)'
                 }}
-                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
-              >
-                Live Demo →
-              </span>
+              />
+
+              {/* Layer 5: Subtle technical system labels */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '10%',
+                    left: '5%',
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.5rem',
+                    color: 'rgba(0,255,136,0.15)',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  SYNC_ACTIVE
+                </div>
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '15%',
+                    right: '8%',
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.5rem',
+                    color: 'rgba(0,255,136,0.12)',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  MODEL_RUNNING
+                </div>
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '20%',
+                    left: '7%',
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.5rem',
+                    color: 'rgba(0,255,136,0.1)',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  PREDICTION_READY
+                </div>
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '12%',
+                    right: '6%',
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: '0.5rem',
+                    color: 'rgba(0,255,136,0.08)',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  JWT_SECURED
+                </div>
+              </div>
+
+              {/* CENTERED ANIMATED CIRCUIT */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex items-center justify-center pointer-events-none">
+                <svg
+                  className="w-full max-w-[400px] sm:max-w-[450px] lg:max-w-[500px] h-auto"
+                  viewBox="0 0 320 180"
+                  style={{ overflow: 'visible' }}
+                >
+                  {/* Monaco Circuit Path - Enhanced with glow */}
+                  <path
+                    id="monaco-circuit"
+                    d="M 40,90 
+                     L 50,50 
+                     Q 60,25 80,30 
+                     L 110,35 
+                     Q 140,38 150,50 
+                     L 170,75 
+                     Q 180,85 190,80 
+                     L 220,55 
+                     Q 240,45 260,50 
+                     L 280,80 
+                     Q 290,95 285,110 
+                     L 270,130 
+                     Q 255,145 235,145 
+                     L 210,140 
+                     Q 185,138 165,125 
+                     L 145,105 
+                     Q 130,90 115,95 
+                     L 95,100 
+                     Q 75,105 65,100 
+                     L 50,90 
+                     Q 45,90 40,90 Z"
+                    fill="none"
+                    stroke="rgba(0,255,136,0.5)"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    filter="url(#circuit-glow)"
+                  />
+
+                  {/* Inner track line for depth */}
+                  <path
+                    d="M 45,90 
+                     L 52,55 
+                     Q 61,32 80,36 
+                     L 108,40 
+                     Q 137,42 147,53 
+                     L 167,73 
+                     Q 177,82 187,78 
+                     L 217,58 
+                     Q 237,48 255,53 
+                     L 275,80 
+                     Q 284,93 280,107 
+                     L 265,125 
+                     Q 250,140 232,140 
+                     L 207,135 
+                     Q 182,133 162,122 
+                     L 142,103 
+                     Q 127,88 112,93 
+                     L 92,98 
+                     Q 72,103 62,98 
+                     L 47,90 
+                     Q 42,90 45,90 Z"
+                    fill="none"
+                    stroke="rgba(0,255,136,0.25)"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+
+                  {/* Racing telemetry dot with enhanced glow */}
+                  <circle r="6" fill="#00ff88" filter="url(#telemetry-glow)">
+                    <animateMotion
+                      dur="8s"
+                      repeatCount="indefinite"
+                      rotate="auto"
+                      path="M 40,90 
+                       L 50,50 
+                       Q 60,25 80,30 
+                       L 110,35 
+                       Q 140,38 150,50 
+                       L 170,75 
+                       Q 180,85 190,80 
+                       L 220,55 
+                       Q 240,45 260,50 
+                       L 280,80 
+                       Q 290,95 285,110 
+                       L 270,130 
+                       Q 255,145 235,145 
+                       L 210,140 
+                       Q 185,138 165,125 
+                       L 145,105 
+                       Q 130,90 115,95 
+                       L 95,100 
+                       Q 75,105 65,100 
+                       L 50,90 
+                       Q 45,90 40,90 Z"
+                    />
+                  </circle>
+
+                  {/* Trail effect following the dot */}
+                  <circle r="4" fill="rgba(0,255,136,0.6)" filter="url(#trail-glow)">
+                    <animateMotion
+                      dur="8s"
+                      repeatCount="indefinite"
+                      begin="0.2s"
+                      rotate="auto"
+                      path="M 40,90 
+                       L 50,50 
+                       Q 60,25 80,30 
+                       L 110,35 
+                       Q 140,38 150,50 
+                       L 170,75 
+                       Q 180,85 190,80 
+                       L 220,55 
+                       Q 240,45 260,50 
+                       L 280,80 
+                       Q 290,95 285,110 
+                       L 270,130 
+                       Q 255,145 235,145 
+                       L 210,140 
+                       Q 185,138 165,125 
+                       L 145,105 
+                       Q 130,90 115,95 
+                       L 95,100 
+                       Q 75,105 65,100 
+                       L 50,90 
+                       Q 45,90 40,90 Z"
+                    />
+                  </circle>
+
+                  {/* Subtle floating neon data nodes */}
+                  <circle cx="80" cy="30" r="2" fill="rgba(0,255,136,0.4)">
+                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="150" cy="50" r="2" fill="rgba(0,255,136,0.4)">
+                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="0.5s" />
+                  </circle>
+                  <circle cx="220" cy="55" r="2" fill="rgba(0,255,136,0.4)">
+                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="1s" />
+                  </circle>
+                  <circle cx="260" cy="50" r="2" fill="rgba(0,255,136,0.4)">
+                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="1.5s" />
+                  </circle>
+                  <circle cx="285" cy="110" r="2" fill="rgba(0,255,136,0.4)">
+                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="2s" />
+                  </circle>
+                  <circle cx="235" cy="145" r="2" fill="rgba(0,255,136,0.4)">
+                    <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="2.5s" />
+                  </circle>
+
+                  {/* Enhanced glow filters and radar rings */}
+                  <defs>
+                    <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+                      <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                    <filter id="trail-glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                      <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                    <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                      <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                    <radialGradient id="radar-gradient">
+                      <stop offset="0%" stopColor="rgba(0,255,136,0.4)" />
+                      <stop offset="100%" stopColor="rgba(0,255,136,0)" />
+                    </radialGradient>
+                  </defs>
+
+                  {/* Animated radar rings - larger and more prominent */}
+                  <circle cx="160" cy="90" r="40" fill="none" stroke="url(#radar-gradient)" strokeWidth="1.5" opacity="0.7">
+                    <animate attributeName="r" values="30;50;30" dur="5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="5s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="160" cy="90" r="25" fill="none" stroke="rgba(0,255,136,0.3)" strokeWidth="1" opacity="0.5">
+                    <animate attributeName="r" values="15;35;15" dur="5s" repeatCount="indefinite" begin="1.5s" />
+                    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="5s" repeatCount="indefinite" begin="1.5s" />
+                  </circle>
+
+                  {/* Soft pulse animation moving across the track */}
+                  <circle r="8" fill="rgba(0,255,136,0.3)" filter="url(#telemetry-glow)">
+                    <animateMotion
+                      dur="10s"
+                      repeatCount="indefinite"
+                      begin="3s"
+                      rotate="auto"
+                      path="M 40,90 
+                       L 50,50 
+                       Q 60,25 80,30 
+                       L 110,35 
+                       Q 140,38 150,50 
+                       L 170,75 
+                       Q 180,85 190,80 
+                       L 220,55 
+                       Q 240,45 260,50 
+                       L 280,80 
+                       Q 290,95 285,110 
+                       L 270,130 
+                       Q 255,145 235,145 
+                       L 210,140 
+                       Q 185,138 165,125 
+                       L 145,105 
+                       Q 130,90 115,95 
+                       L 95,100 
+                       Q 75,105 65,100 
+                       L 50,90 
+                       Q 45,90 40,90 Z"
+                    />
+                  </circle>
+                </svg>
+              </div>
+
+              {/* Scanline effect */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.01) 2px, rgba(0,255,136,0.01) 4px)'
+                }}
+              />
             </div>
           </div>
         </div>
