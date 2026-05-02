@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
-import Skills from './components/Skills';
+import TechnicalStack from './components/TechnicalStack';
 import About from './components/About';
 import EngineeringThinking from './components/EngineeringThinking';
 import Contact from './components/Contact';
@@ -14,11 +14,11 @@ function App() {
   const { dotStyle, ringStyle, isTouchDevice } = useCustomCursor();
 
   useEffect(() => {
-    // Add Google Fonts
-    const linkSyne = document.createElement('link');
-    linkSyne.href = 'https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap';
-    linkSyne.rel = 'stylesheet';
-    document.head.appendChild(linkSyne);
+    // Add Google Fonts - Space Grotesk for display, JetBrains Mono for labels
+    const linkSpaceGrotesk = document.createElement('link');
+    linkSpaceGrotesk.href = 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap';
+    linkSpaceGrotesk.rel = 'stylesheet';
+    document.head.appendChild(linkSpaceGrotesk);
 
     const linkJetBrains = document.createElement('link');
     linkJetBrains.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap';
@@ -26,7 +26,7 @@ function App() {
     document.head.appendChild(linkJetBrains);
 
     return () => {
-      document.head.removeChild(linkSyne);
+      document.head.removeChild(linkSpaceGrotesk);
       document.head.removeChild(linkJetBrains);
     };
   }, []);
@@ -41,11 +41,11 @@ function App() {
         </>
       )}
 
-      {/* Components */}
+      {/* Components in exact order */}
       <Navbar />
       <Hero />
       <Projects />
-      <Skills />
+      <TechnicalStack />
       <About />
       <EngineeringThinking />
       <Contact />

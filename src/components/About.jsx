@@ -1,86 +1,178 @@
-import useScrollReveal from '../hooks/useScrollReveal';
+import { useState, useEffect, useRef } from 'react';
 
 const About = () => {
-  const { revealRef } = useScrollReveal();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setMousePosition({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        });
+      }
+    };
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+      return () => container.removeEventListener('mousemove', handleMouseMove);
+    }
+  }, []);
 
   return (
     <section 
-      id="about"
-      className="px-4 sm:px-6 lg:px-12 xl:px-16 py-12 sm:py-16"
-      style={{ 
-        borderTop: '1px solid rgba(0,255,136,0.12)'
-      }}
+      ref={containerRef}
+      className="relative py-20 lg:py-32"
+      style={{ background: '#0a0a0a' }}
     >
-      {/* Section Label */}
-      <div ref={revealRef(0)} className="mb-4">
-        <p
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: '0.68rem',
-            color: '#00ff88',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase'
-          }}
-        >
-          // 03 — About
-        </p>
-      </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-16 lg:mb-20">
+          <p 
+            className="text-green-400 font-mono text-sm tracking-wider mb-4"
+            style={{ fontFamily: 'JetBrains Mono' }}
+          >
+            // 03 — ABOUT
+          </p>
+          <h2 
+            className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold"
+            style={{ fontFamily: 'Space Grotesk' }}
+          >
+            The person behind the code.
+          </h2>
+        </div>
 
-      {/* Section Title */}
-      <div ref={revealRef(1)} className="mb-6">
-        <h2
-          style={{
-            fontFamily: 'Syne',
-            fontWeight: 800,
-            fontSize: 'clamp(1.8rem, 4vw, 3rem)'
-          }}
-        >
-          The person behind <span style={{ color: '#00ff88' }}>the code.</span>
-        </h2>
-      </div>
+        {/* Body Content */}
+        <div className="space-y-6">
+          <p 
+            className="text-gray-300 text-lg leading-relaxed"
+            style={{ fontFamily: 'Space Grotesk' }}
+          >
+            I'm Mohammad Adnan Shakil, a second-year CS student at Presidency University, Bengaluru. I focus on building systems where backend logic drives real decisions, not just UI. Deltabox demonstrates my approach: Java calling Python ML models for real-time predictions, with JWT + RBAC security and caching for performance. I work fast, ship aggressively, and care about clean architecture. Discipline in code, gym, and execution. Targeting software engineering internships for mid-2026.
+          </p>
+        </div>
 
-      {/* Horizontal Line */}
-      <div ref={revealRef(2)} className="mb-6">
-        <div
-          style={{
-            width: '60px',
-            height: '1px',
-            background: '#00ff88',
-            opacity: 0.4
-          }}
-        />
-      </div>
+        {/* Key Points */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="space-y-4">
+            <h3 
+              className="text-green-400 font-mono text-sm uppercase tracking-wider"
+              style={{ fontFamily: 'JetBrains Mono' }}
+            >
+              Focus Areas
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 mt-1">•</span>
+                <span 
+                  className="text-gray-300 text-sm"
+                  style={{ fontFamily: 'Space Grotesk' }}
+                >
+                  Backend systems with ML integration
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 mt-1">•</span>
+                <span 
+                  className="text-gray-300 text-sm"
+                  style={{ fontFamily: 'Space Grotesk' }}
+                >
+                  Real-time prediction systems
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 mt-1">•</span>
+                <span 
+                  className="text-gray-300 text-sm"
+                  style={{ fontFamily: 'Space Grotesk' }}
+                >
+                  Secure API architecture
+                </span>
+              </li>
+            </ul>
+          </div>
 
-      {/* Paragraphs */}
-      <div className="max-w-full sm:max-w-[720px]">
-        <p ref={revealRef(3)} className="mb-4" style={{
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
-          color: '#6b6b80',
-          lineHeight: 1.75
-        }}>
-          I'm <span style={{ color: '#e8e8f0' }}>Mohammad Adnan Shakil</span>, a second-year CS student at Presidency University, Bengaluru.
-          I focus on building systems where backend logic drives real decisions, not just UI.
-        </p>
+          <div className="space-y-4">
+            <h3 
+              className="text-green-400 font-mono text-sm uppercase tracking-wider"
+              style={{ fontFamily: 'JetBrains Mono' }}
+            >
+              Core Principles
+            </h3>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 mt-1">•</span>
+                <span 
+                  className="text-gray-300 text-sm"
+                  style={{ fontFamily: 'Space Grotesk' }}
+                >
+                  Clean, maintainable code
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 mt-1">•</span>
+                <span 
+                  className="text-gray-300 text-sm"
+                  style={{ fontFamily: 'Space Grotesk' }}
+                >
+                  Fast iteration and shipping
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-green-400 mt-1">•</span>
+                <span 
+                  className="text-gray-300 text-sm"
+                  style={{ fontFamily: 'Space Grotesk' }}
+                >
+                  Production-ready systems
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-        <p ref={revealRef(4)} className="mb-4" style={{
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
-          color: '#6b6b80',
-          lineHeight: 1.75
-        }}>
-          Deltabox demonstrates my approach: Java calling Python ML models for real-time predictions, with JWT + RBAC security and caching for performance.
-        </p>
-
-        <p ref={revealRef(5)} style={{
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
-          color: '#6b6b80',
-          lineHeight: 1.75
-        }}>
-          I work fast, ship aggressively, and care about clean architecture. Discipline in code, gym, and execution.
-          Targeting software engineering internships for mid-2026.
-        </p>
+        {/* Education Highlight */}
+        <div className="mt-16 p-6 border border-green-900/30" style={{ background: 'rgba(10, 10, 10, 0.8)' }}>
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 
+                className="text-green-400 font-mono text-sm uppercase tracking-wider mb-2"
+                style={{ fontFamily: 'JetBrains Mono' }}
+              >
+                Education
+              </h3>
+              <p 
+                className="text-white font-bold text-lg"
+                style={{ fontFamily: 'Space Grotesk' }}
+              >
+                Presidency University, Bengaluru
+              </p>
+              <p 
+                className="text-gray-400 text-sm"
+                style={{ fontFamily: 'Space Grotesk' }}
+              >
+                Computer Science & Engineering · 2nd Year
+              </p>
+            </div>
+            <div className="text-right">
+              <p 
+                className="text-green-400 font-mono text-sm"
+                style={{ fontFamily: 'JetBrains Mono' }}
+              >
+                2024 — 2028
+              </p>
+              <p 
+                className="text-gray-400 text-xs mt-2"
+                style={{ fontFamily: 'JetBrains Mono' }}
+              >
+                Expected Graduation
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
