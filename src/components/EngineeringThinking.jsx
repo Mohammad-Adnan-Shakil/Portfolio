@@ -1,230 +1,107 @@
-import { useState, useEffect, useRef } from 'react';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 const EngineeringThinking = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        });
-      }
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('mousemove', handleMouseMove);
-      return () => container.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, []);
+  const { revealRef } = useScrollReveal();
 
   return (
     <section 
-      ref={containerRef}
-      className="relative py-20 lg:py-32"
-      style={{ background: '#0a0a0a' }}
+      id="engineering"
+      className="px-4 sm:px-6 lg:px-12 xl:px-16 py-12 sm:py-16"
+      style={{ 
+        borderTop: '1px solid rgba(0,255,136,0.12)'
+      }}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-16 lg:mb-20">
-          <p 
-            className="text-green-400 font-mono text-sm tracking-wider mb-4"
-            style={{ fontFamily: 'JetBrains Mono' }}
+      {/* Section Label */}
+      <div ref={revealRef(0)} className="mb-4">
+        <p
+          style={{
+            fontFamily: 'JetBrains Mono',
+            fontSize: '0.68rem',
+            color: '#00ff88',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase'
+          }}
+        >
+          // 04 — Engineering Thinking
+        </p>
+      </div>
+
+      {/* Section Title */}
+      <div ref={revealRef(1)} className="mb-4 sm:mb-6">
+        <h2
+          style={{
+            fontFamily: 'Syne',
+            fontWeight: 800,
+            fontSize: 'clamp(1.6rem, 5vw, 3.5rem)'
+          }}
+        >
+          How I <span style={{ color: '#00ff88' }}>Build Systems.</span>
+        </h2>
+      </div>
+
+      {/* Content */}
+      <div className="max-w-full sm:max-w-[800px]">
+        <div ref={revealRef(2)} className="mb-3 sm:mb-4">
+          <h3
+            style={{
+              fontFamily: 'JetBrains Mono',
+              fontSize: 'clamp(0.7rem, 2vw, 0.82rem)',
+              color: '#00ff88',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase'
+            }}
           >
-            // 04 — ENGINEERING THINKING
-          </p>
-          <h2 
-            className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold"
-            style={{ fontFamily: 'Space Grotesk' }}
-          >
-            How I Build Systems.
-          </h2>
+            Backend + ML Integration
+          </h3>
         </div>
 
-        {/* BACKEND + ML INTEGRATION */}
-        <div className="mb-16 lg:mb-20">
-          <h3 
-            className="text-green-400 font-mono text-lg font-bold mb-8"
-            style={{ fontFamily: 'JetBrains Mono' }}
-          >
-            BACKEND + ML INTEGRATION
-          </h3>
+        <div className="space-y-2 sm:space-y-3">
+          <div ref={revealRef(3)} style={{
+            fontFamily: 'JetBrains Mono',
+            fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
+            color: '#6b6b80',
+            lineHeight: 1.65
+          }}>
+            <strong style={{ color: '#e8e8f0' }}>1. API Layer</strong> — RESTful endpoints, authentication, RBAC, request validation
+          </div>
 
-          <div className="space-y-8">
-            {/* Step 1 */}
-            <div className="flex gap-6">
-              <div className="flex-shrink-0">
-                <div 
-                  className="w-12 h-12 border-2 border-green-400 rounded-full flex items-center justify-center text-green-400 font-bold"
-                  style={{ fontFamily: 'JetBrains Mono' }}
-                >
-                  1
-                </div>
-              </div>
-              <div className="flex-1">
-                <h4 
-                  className="text-white font-bold text-lg mb-2"
-                  style={{ fontFamily: 'Space Grotesk' }}
-                >
-                  API Layer
-                </h4>
-                <p 
-                  className="text-gray-400 text-sm leading-relaxed"
-                  style={{ fontFamily: 'Space Grotesk' }}
-                >
-                  RESTful endpoints, authentication, RBAC, request validation
-                </p>
-              </div>
-            </div>
+          <div ref={revealRef(4)} style={{
+            fontFamily: 'JetBrains Mono',
+            fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
+            color: '#6b6b80',
+            lineHeight: 1.65
+          }}>
+            <strong style={{ color: '#e8e8f0' }}>2. Orchestration</strong> — Java subprocess calls to Python ML models, async processing, response caching
+          </div>
 
-            {/* Step 2 */}
-            <div className="flex gap-6">
-              <div className="flex-shrink-0">
-                <div 
-                  className="w-12 h-12 border-2 border-green-400 rounded-full flex items-center justify-center text-green-400 font-bold"
-                  style={{ fontFamily: 'JetBrains Mono' }}
-                >
-                  2
-                </div>
-              </div>
-              <div className="flex-1">
-                <h4 
-                  className="text-white font-bold text-lg mb-2"
-                  style={{ fontFamily: 'Space Grotesk' }}
-                >
-                  Orchestration
-                </h4>
-                <p 
-                  className="text-gray-400 text-sm leading-relaxed"
-                  style={{ fontFamily: 'Space Grotesk' }}
-                >
-                  Java subprocess calls to Python ML models, async processing, response caching
-                </p>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="flex gap-6">
-              <div className="flex-shrink-0">
-                <div 
-                  className="w-12 h-12 border-2 border-green-400 rounded-full flex items-center justify-center text-green-400 font-bold"
-                  style={{ fontFamily: 'JetBrains Mono' }}
-                >
-                  3
-                </div>
-              </div>
-              <div className="flex-1">
-                <h4 
-                  className="text-white font-bold text-lg mb-2"
-                  style={{ fontFamily: 'Space Grotesk' }}
-                >
-                  ML Pipeline
-                </h4>
-                <p 
-                  className="text-gray-400 text-sm leading-relaxed"
-                  style={{ fontFamily: 'Space Grotesk' }}
-                >
-                  Feature extraction → Model inference → Response formatting, confidence scoring, fallback handling
-                </p>
-              </div>
-            </div>
+          <div ref={revealRef(5)} style={{
+            fontFamily: 'JetBrains Mono',
+            fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
+            color: '#6b6b80',
+            lineHeight: 1.65
+          }}>
+            <strong style={{ color: '#e8e8f0' }}>3. ML Pipeline</strong> — Feature extraction → Model inference → Response formatting, confidence scoring, fallback handling
           </div>
         </div>
 
-        {/* Example Flow */}
-        <div className="mb-16 lg:mb-20">
-          <h3 
-            className="text-green-400 font-mono text-lg font-bold mb-8"
-            style={{ fontFamily: 'JetBrains Mono' }}
-          >
-            Example Flow
-          </h3>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 text-center">
-            <div className="px-4 py-3 border border-green-900/50 rounded">
-              <p 
-                className="text-green-400 font-mono text-sm"
-                style={{ fontFamily: 'JetBrains Mono' }}
-              >
-                User Request
-              </p>
-            </div>
-            
-            <div className="text-green-400">→</div>
-            
-            <div className="px-4 py-3 border border-green-900/50 rounded">
-              <p 
-                className="text-green-400 font-mono text-sm"
-                style={{ fontFamily: 'JetBrains Mono' }}
-              >
-                API Validation
-              </p>
-            </div>
-            
-            <div className="text-green-400">→</div>
-            
-            <div className="px-4 py-3 border border-green-900/50 rounded">
-              <p 
-                className="text-green-400 font-mono text-sm"
-                style={{ fontFamily: 'JetBrains Mono' }}
-              >
-                Subprocess to Python
-              </p>
-            </div>
-            
-            <div className="text-green-400">→</div>
-            
-            <div className="px-4 py-3 border border-green-900/50 rounded">
-              <p 
-                className="text-green-400 font-mono text-sm"
-                style={{ fontFamily: 'JetBrains Mono' }}
-              >
-                ML Prediction
-              </p>
-            </div>
-            
-            <div className="text-green-400">→</div>
-            
-            <div className="px-4 py-3 border border-green-900/50 rounded">
-              <p 
-                className="text-green-400 font-mono text-sm"
-                style={{ fontFamily: 'JetBrains Mono' }}
-              >
-                Response Cache
-              </p>
-            </div>
-            
-            <div className="text-green-400">→</div>
-            
-            <div className="px-4 py-3 border border-green-900/50 rounded">
-              <p 
-                className="text-green-400 font-mono text-sm"
-                style={{ fontFamily: 'JetBrains Mono' }}
-              >
-                JSON Response
-              </p>
-            </div>
-          </div>
+        <div ref={revealRef(6)} className="mt-4 sm:mt-6 p-3 sm:p-4" style={{
+          fontFamily: 'JetBrains Mono',
+          fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
+          color: '#6b6b80',
+          lineHeight: 1.6,
+          border: '1px solid rgba(0,255,136,0.1)',
+          background: 'rgba(0,255,136,0.02)'
+        }}>
+          <strong style={{ color: '#00ff88' }}>Example Flow:</strong> User Request → API Validation → Subprocess to Python → ML Prediction → Response Cache → JSON Response
         </div>
 
-        {/* Goal */}
-        <div className="p-8 border border-green-900/30 text-center" style={{ background: 'rgba(10, 10, 10, 0.8)' }}>
-          <h3 
-            className="text-green-400 font-mono text-sm uppercase tracking-wider mb-4"
-            style={{ fontFamily: 'JetBrains Mono' }}
-          >
-            Goal
-          </h3>
-          <p 
-            className="text-white text-xl font-bold leading-relaxed"
-            style={{ fontFamily: 'Space Grotesk' }}
-          >
-            Build systems that are secure, performant, and maintainable.
-          </p>
+        <div ref={revealRef(7)} className="mt-4 sm:mt-6" style={{
+          fontFamily: 'JetBrains Mono',
+          fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
+          color: '#6b6b80',
+          lineHeight: 1.65
+        }}>
+          <strong style={{ color: '#e8e8f0' }}>Goal:</strong> Build systems that are secure, performant, and maintainable.
         </div>
       </div>
     </section>
