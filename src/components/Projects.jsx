@@ -16,7 +16,7 @@ const Projects = () => {
       description: 'AI financial decision simulator predicting savings trajectory before spending decisions. Built full pipeline: React frontend → Node.js/Express backend → Python ML models (Scikit-learn). Implemented JWT auth and real-time risk scoring with financial health classification.',
       bullets: ['Full-stack pipeline with React + Node.js + Python ML models', 'JWT authentication + real-time risk scoring system', 'Financial health classification with instant feedback'],
       tags: ['React', 'Node.js', 'Express', 'Python', 'Scikit-learn', 'MongoDB', 'JWT'],
-      github: 'https://github.com/Mohammad-Adnan-Shakil/CentSight'
+      github: 'https://github.com/Mohammad-Adnan-Shakil/centSight'
     },
     {
       number: '03 —',
@@ -59,15 +59,15 @@ const Projects = () => {
         </h2>
       </div>
 
-      {/* Featured Card - Deltabox - Premium Cyber Background */}
+      {/* Featured Card - Deltabox - Fixed Circuit Animation */}
       <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
           className="relative overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, #0a0a0f 0%, #0f1419 35%, #1a1f29 70%, #0f1419 100%)',
             border: '1px solid rgba(0,255,136,0.12)',
-            minHeight: '550px',
-            maxHeight: '650px',
+            minHeight: '500px',
+            maxHeight: '600px',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             alignItems: 'center',
@@ -358,28 +358,50 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN - ANIMATED CIRCUIT */}
-          <div className="relative overflow-hidden">
+          {/* RIGHT COLUMN - MONACO CIRCUIT ANIMATION - FIXED VISIBILITY */}
+          <div 
+            className="relative overflow-hidden"
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
             {/* Ambient glow: Soft neon green radial glow behind animated circuit */}
             <div
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
               style={{
-                width: '450px',
-                height: '450px',
+                width: '400px',
+                height: '400px',
                 borderRadius: '50%',
                 background: 'radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 60%)',
-                filter: 'blur(25px)'
+                filter: 'blur(25px)',
+                zIndex: 1
               }}
             />
 
-            {/* CENTERED ANIMATED CIRCUIT */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center pointer-events-none">
+            {/* MONACO GRAND PRIX CIRCUIT - RESTORED WITH PROPER VISIBILITY */}
+            <div 
+              className="relative"
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 10,
+                position: 'relative'
+              }}
+            >
               <svg
-                className="w-full max-w-[500px] h-auto"
+                className="w-full max-w-[450px] h-auto"
                 viewBox="0 0 320 180"
                 style={{ overflow: 'visible' }}
               >
-                {/* Monaco Circuit Path */}
+                {/* Monaco Circuit Path - Full neon circuit */}
                 <path
                   id="monaco-circuit"
                   d="M 40,90 
@@ -404,14 +426,14 @@ const Projects = () => {
                    L 50,90 
                    Q 45,90 40,90 Z"
                   fill="none"
-                  stroke="rgba(0,255,136,0.5)"
+                  stroke="rgba(0,255,136,0.6)"
                   strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   filter="url(#circuit-glow)"
                 />
 
-                {/* Inner track line */}
+                {/* Inner track line for depth */}
                 <path
                   d="M 45,90 
                    L 52,55 
@@ -435,13 +457,13 @@ const Projects = () => {
                    L 47,90 
                    Q 42,90 45,90 Z"
                   fill="none"
-                  stroke="rgba(0,255,136,0.25)"
+                  stroke="rgba(0,255,136,0.3)"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
 
-                {/* Racing telemetry dot */}
+                {/* Racing telemetry dot with pulse animation */}
                 <circle r="6" fill="#00ff88" filter="url(#telemetry-glow)">
                   <animateMotion
                     dur="8s"
@@ -471,7 +493,7 @@ const Projects = () => {
                   />
                 </circle>
 
-                {/* Trail effect */}
+                {/* Trail effect following the dot */}
                 <circle r="4" fill="rgba(0,255,136,0.6)" filter="url(#trail-glow)">
                   <animateMotion
                     dur="8s"
@@ -502,7 +524,27 @@ const Projects = () => {
                   />
                 </circle>
 
-                {/* Filters */}
+                {/* Floating radar/data nodes */}
+                <circle cx="80" cy="30" r="2" fill="rgba(0,255,136,0.4)">
+                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="150" cy="50" r="2" fill="rgba(0,255,136,0.4)">
+                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="0.5s" />
+                </circle>
+                <circle cx="220" cy="55" r="2" fill="rgba(0,255,136,0.4)">
+                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="1s" />
+                </circle>
+                <circle cx="260" cy="50" r="2" fill="rgba(0,255,136,0.4)">
+                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="1.5s" />
+                </circle>
+                <circle cx="285" cy="110" r="2" fill="rgba(0,255,136,0.4)">
+                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="2s" />
+                </circle>
+                <circle cx="235" cy="145" r="2" fill="rgba(0,255,136,0.4)">
+                  <animate attributeName="opacity" values="0.2;0.8;0.2" dur="3s" repeatCount="indefinite" begin="2.5s" />
+                </circle>
+
+                {/* Enhanced glow filters */}
                 <defs>
                   <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur stdDeviation="6" result="coloredBlur" />
