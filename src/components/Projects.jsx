@@ -78,44 +78,53 @@ const Projects = () => {
             }}
           />
 
-          {/* Split-Screen Engineering Dashboard */}
+          {/* Premium Case-Study Layout */}
           <div
             className="flex flex-col lg:flex-row order-1 lg:order-1"
             style={{ 
               background: '#13131e', 
-              minHeight: 'clamp(400px, 60vh, 600px)',
+              minHeight: 'clamp(450px, 65vh, 650px)',
               height: 'auto'
             }}
           >
-            {/* Left Panel - Project Intelligence (40% on desktop) */}
+            {/* Left Panel - Project Case Study (45% on desktop) */}
             <div 
-              className="lg:w-2/5 w-full relative overflow-hidden border-r border-green-900/20"
+              className="lg:w-[45%] w-full relative overflow-hidden border-r border-green-900/20"
               style={{
-                background: 'linear-gradient(135deg, rgba(0,255,136,0.02) 0%, transparent 100%)'
+                background: 'linear-gradient(135deg, rgba(0,255,136,0.03) 0%, transparent 100%)'
               }}
             >
+              {/* Premium Glass Card Background */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 50%, rgba(0,255,136,0.02) 100%)',
+                  backdropFilter: 'blur(10px)'
+                }}
+              />
+              
               {/* Terminal Grid Background */}
               <div 
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   backgroundImage: `
-                    linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px)
+                    linear-gradient(rgba(0,255,136,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,255,136,0.04) 1px, transparent 1px)
                   `,
-                  backgroundSize: '15px 15px',
+                  backgroundSize: '20px 20px',
                   opacity: 0.3
                 }}
               />
               
-              {/* DELTABOX Header */}
-              <div className="relative p-4 sm:p-6 border-b border-green-900/20">
-                <div className="flex items-center justify-between mb-4">
+              {/* Project Header */}
+              <div className="relative p-6 sm:p-8 border-b border-green-900/20">
+                <div className="flex items-center justify-between mb-6">
                   <h3 
                     className="text-green-400 font-mono font-bold"
                     style={{
-                      fontSize: 'clamp(0.9rem, 3vw, 1.1rem)',
+                      fontSize: 'clamp(1.1rem, 3.5vw, 1.3rem)',
                       fontFamily: 'JetBrains Mono',
-                      textShadow: '0 0 10px rgba(0,255,136,0.5)'
+                      textShadow: '0 0 15px rgba(0,255,136,0.6)'
                     }}
                   >
                     DELTABOX v1.0
@@ -126,153 +135,146 @@ const Projects = () => {
                       className="text-green-400 text-xs font-mono"
                       style={{ fontFamily: 'JetBrains Mono' }}
                     >
-                      ONLINE
+                      ACTIVE
                     </span>
                   </div>
                 </div>
                 
-                {/* System Status */}
-                <div 
-                  className="text-green-400 font-mono text-sm mb-2"
-                  style={{ fontFamily: 'JetBrains Mono' }}
-                >
-                  RACE PREDICTION: <span className="text-white font-bold animate-pulse">ACTIVE</span>
+                {/* Problem Statement */}
+                <div className="space-y-3">
+                  <div 
+                    className="text-green-400 font-mono text-xs uppercase tracking-wider"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    Problem
+                  </div>
+                  <p 
+                    className="text-gray-200 font-mono text-sm leading-relaxed"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    Built an AI-powered F1 analytics engine that predicts race outcomes using backend + ML orchestration.
+                  </p>
                 </div>
               </div>
               
-              {/* Metrics Panel */}
-              <div className="relative p-4 sm:p-6 space-y-4">
-                {/* Model Info */}
-                <div className="space-y-2">
+              {/* Architecture Section */}
+              <div className="relative p-6 sm:p-8 border-b border-green-900/20">
+                <div className="space-y-3">
                   <div 
                     className="text-green-400 font-mono text-xs uppercase tracking-wider"
                     style={{ fontFamily: 'JetBrains Mono' }}
                   >
-                    Model Architecture
+                    Architecture
                   </div>
                   <div 
-                    className="text-white font-mono text-sm"
+                    className="text-gray-200 font-mono text-sm"
                     style={{ fontFamily: 'JetBrains Mono' }}
                   >
-                    XGBoost + Random Forest
+                    Spring Boot → Python ML → Prediction API → React UI
                   </div>
                 </div>
                 
-                {/* Confidence Metric */}
-                <div className="space-y-2">
+                {/* Tech Stack */}
+                <div className="mt-6 space-y-3">
                   <div 
                     className="text-green-400 font-mono text-xs uppercase tracking-wider"
                     style={{ fontFamily: 'JetBrains Mono' }}
                   >
-                    Prediction Confidence
+                    Technology Stack
                   </div>
-                  <div className="flex items-baseline gap-2">
+                  <div 
+                    className="text-gray-200 font-mono text-sm leading-relaxed"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    Spring Boot, PostgreSQL, Python, XGBoost, Random Forest, JWT, React
+                  </div>
+                </div>
+              </div>
+              
+              {/* Metrics Section */}
+              <div className="relative p-6 sm:p-8 space-y-6">
+                <div 
+                  className="text-green-400 font-mono text-xs uppercase tracking-wider"
+                  style={{ fontFamily: 'JetBrains Mono' }}
+                >
+                  Performance Metrics
+                </div>
+                
+                <div className="space-y-4">
+                  {/* Accuracy */}
+                  <div className="flex items-center justify-between">
                     <span 
-                      className="text-white font-mono text-2xl font-bold"
+                      className="text-gray-400 font-mono text-sm"
+                      style={{ fontFamily: 'JetBrains Mono' }}
+                    >
+                      Prediction Accuracy
+                    </span>
+                    <span 
+                      className="text-green-400 font-mono text-lg font-bold"
                       style={{ fontFamily: 'JetBrains Mono' }}
                     >
                       87.3%
                     </span>
-                    <div className="flex gap-1">
-                      <div className="w-1 h-3 bg-green-400" />
-                      <div className="w-1 h-4 bg-green-400" />
-                      <div className="w-1 h-2 bg-green-400/50" />
-                      <div className="w-1 h-1 bg-green-400/30" />
+                  </div>
+                  
+                  {/* Dataset Stats */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <div 
+                        className="text-gray-400 font-mono text-xs uppercase tracking-wider mb-1"
+                        style={{ fontFamily: 'JetBrains Mono' }}
+                      >
+                        Drivers
+                      </div>
+                      <div 
+                        className="text-white font-mono text-xl font-bold"
+                        style={{ fontFamily: 'JetBrains Mono' }}
+                      >
+                        20
+                      </div>
+                    </div>
+                    <div>
+                      <div 
+                        className="text-gray-400 font-mono text-xs uppercase tracking-wider mb-1"
+                        style={{ fontFamily: 'JetBrains Mono' }}
+                      >
+                        Races
+                      </div>
+                      <div 
+                        className="text-white font-mono text-xl font-bold"
+                        style={{ fontFamily: 'JetBrains Mono' }}
+                      >
+                        24
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                {/* Dataset Stats */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <div 
-                      className="text-green-400 font-mono text-xs uppercase tracking-wider"
-                      style={{ fontFamily: 'JetBrains Mono' }}
-                    >
-                      Drivers
-                    </div>
-                    <div 
-                      className="text-white font-mono text-lg font-bold"
-                      style={{ fontFamily: 'JetBrains Mono' }}
-                    >
-                      20
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <div 
-                      className="text-green-400 font-mono text-xs uppercase tracking-wider"
-                      style={{ fontFamily: 'JetBrains Mono' }}
-                    >
-                      Races
-                    </div>
-                    <div 
-                      className="text-white font-mono text-lg font-bold"
-                      style={{ fontFamily: 'JetBrains Mono' }}
-                    >
-                      24
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Performance Indicators */}
-                <div className="space-y-2">
-                  <div 
-                    className="text-green-400 font-mono text-xs uppercase tracking-wider"
+                {/* Action Buttons */}
+                <div className="flex gap-3 pt-4">
+                  <button 
+                    className="flex-1 px-4 py-2 border border-green-400 text-green-400 font-mono text-sm rounded transition-all hover:bg-green-400 hover:text-black"
                     style={{ fontFamily: 'JetBrains Mono' }}
                   >
-                    System Performance
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex justify-between items-center">
-                      <span 
-                        className="text-gray-400 font-mono text-xs"
-                        style={{ fontFamily: 'JetBrains Mono' }}
-                      >
-                        CPU Usage
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-16 h-1 bg-gray-700 rounded">
-                          <div className="w-3/4 h-full bg-green-400 rounded" />
-                        </div>
-                        <span 
-                          className="text-green-400 font-mono text-xs"
-                          style={{ fontFamily: 'JetBrains Mono' }}
-                        >
-                          74%
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span 
-                        className="text-gray-400 font-mono text-xs"
-                        style={{ fontFamily: 'JetBrains Mono' }}
-                      >
-                        Memory
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <div className="w-16 h-1 bg-gray-700 rounded">
-                          <div className="w-1/2 h-full bg-green-400 rounded" />
-                        </div>
-                        <span 
-                          className="text-green-400 font-mono text-xs"
-                          style={{ fontFamily: 'JetBrains Mono' }}
-                        >
-                          52%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                    GitHub
+                  </button>
+                  <button 
+                    className="flex-1 px-4 py-2 bg-green-400 text-black font-mono text-sm rounded transition-all hover:bg-green-300"
+                    style={{ fontFamily: 'JetBrains Mono' }}
+                  >
+                    Live Demo
+                  </button>
                 </div>
               </div>
             </div>
             
-            {/* Right Panel - Monaco Circuit (60% on desktop) */}
+            {/* Right Panel - Monaco Circuit Visualization (55% on desktop) */}
             <div 
-              className="lg:w-3/5 w-full relative overflow-hidden flex items-center justify-center"
+              className="lg:w-[55%] w-full relative overflow-hidden flex items-center justify-center"
               style={{
                 background: 'linear-gradient(135deg, transparent 0%, rgba(0,255,136,0.02) 100%)',
                 height: '100%',
-                minHeight: 'clamp(250px, 40vh, 400px)'
+                minHeight: 'clamp(300px, 45vh, 500px)'
               }}
             >
               {/* Circuit Background Grid */}
@@ -283,20 +285,20 @@ const Projects = () => {
                     linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
                     linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px)
                   `,
-                  backgroundSize: '20px 20px',
-                  opacity: 0.4
+                  backgroundSize: '25px 25px',
+                  opacity: 0.3
                 }}
               />
               
-              {/* Monaco Circuit Animation */}
+              {/* Monaco Circuit Animation - Scaled Down */}
               <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
                 <svg
-                  className="w-full h-auto lg:w-4/5 md:w-[70%] sm:w-[75%] w-[85%]"
+                  className="w-full h-auto lg:w-[70%] md:w-[65%] sm:w-[75%] w-[80%]"
                   viewBox="0 0 280 160"
                   preserveAspectRatio="xMidYMid meet"
                   style={{ overflow: 'visible' }}
                 >
-                  {/* Monaco Circuit Path */}
+                  {/* Monaco Circuit Path - Subtle */}
                   <path
                     id="monaco-circuit"
                     d="M 30,80 
@@ -321,8 +323,8 @@ const Projects = () => {
                      L 45,80 
                      Q 35,80 30,80 Z"
                     fill="none"
-                    stroke="rgba(0,255,136,0.5)"
-                    strokeWidth="3"
+                    stroke="rgba(0,255,136,0.4)"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     filter="url(#circuit-glow)"
@@ -352,16 +354,16 @@ const Projects = () => {
                      L 43,78 
                      Q 35,78 35,80 Z"
                     fill="none"
-                    stroke="rgba(0,255,136,0.25)"
-                    strokeWidth="2"
+                    stroke="rgba(0,255,136,0.2)"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   
-                  {/* Racing telemetry dot */}
-                  <circle r="6" fill="#00ff88" filter="url(#telemetry-glow)">
+                  {/* Racing telemetry dot - Subtle */}
+                  <circle r="4" fill="#00ff88" filter="url(#telemetry-glow)">
                     <animateMotion
-                      dur="6s"
+                      dur="8s"
                       repeatCount="indefinite"
                       rotate="auto"
                       path="M 30,80 
@@ -388,12 +390,12 @@ const Projects = () => {
                     />
                   </circle>
                   
-                  {/* Trail effect */}
-                  <circle r="4" fill="rgba(0,255,136,0.6)" filter="url(#trail-glow)">
+                  {/* Trail effect - Subtle */}
+                  <circle r="2.5" fill="rgba(0,255,136,0.4)" filter="url(#trail-glow)">
                     <animateMotion
-                      dur="6s"
+                      dur="8s"
                       repeatCount="indefinite"
-                      begin="0.1s"
+                      begin="0.2s"
                       rotate="auto"
                       path="M 30,80 
                        L 35,45 
@@ -419,69 +421,69 @@ const Projects = () => {
                     />
                   </circle>
                   
-                  {/* Glow filters */}
+                  {/* Glow filters - Reduced intensity */}
                   <defs>
                     <filter id="telemetry-glow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-                      <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                      </feMerge>
-                    </filter>
-                    <filter id="trail-glow" x="-50%" y="-50%" width="200%" height="200%">
                       <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
                       <feMerge>
                         <feMergeNode in="coloredBlur"/>
                         <feMergeNode in="SourceGraphic"/>
                       </feMerge>
                     </filter>
+                    <filter id="trail-glow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                      <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
                     <filter id="circuit-glow" x="-50%" y="-50%" width="200%" height="200%">
-                      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
                       <feMerge>
                         <feMergeNode in="coloredBlur"/>
                         <feMergeNode in="SourceGraphic"/>
                       </feMerge>
                     </filter>
                     <radialGradient id="radar-gradient">
-                      <stop offset="0%" stopColor="rgba(0,255,136,0.4)" />
+                      <stop offset="0%" stopColor="rgba(0,255,136,0.3)" />
                       <stop offset="100%" stopColor="rgba(0,255,136,0)" />
                     </radialGradient>
                   </defs>
                   
-                  {/* Animated radar rings */}
-                  <circle cx="140" cy="80" r="35" fill="none" stroke="url(#radar-gradient)" strokeWidth="1.5" opacity="0.7">
-                    <animate attributeName="r" values="25;45;25" dur="4s" repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="4s" repeatCount="indefinite" />
+                  {/* Animated radar rings - Subtle */}
+                  <circle cx="140" cy="80" r="30" fill="none" stroke="url(#radar-gradient)" strokeWidth="1" opacity="0.5">
+                    <animate attributeName="r" values="20;35;20" dur="5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="5s" repeatCount="indefinite" />
                   </circle>
-                  <circle cx="140" cy="80" r="25" fill="none" stroke="rgba(0,255,136,0.3)" strokeWidth="1" opacity="0.5">
-                    <animate attributeName="r" values="15;35;15" dur="4s" repeatCount="indefinite" begin="1s" />
-                    <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4s" repeatCount="indefinite" begin="1s" />
+                  <circle cx="140" cy="80" r="20" fill="none" stroke="rgba(0,255,136,0.2)" strokeWidth="0.5" opacity="0.3">
+                    <animate attributeName="r" values="10;25;10" dur="5s" repeatCount="indefinite" begin="1.5s" />
+                    <animate attributeName="opacity" values="0.3;0.1;0.3" dur="5s" repeatCount="indefinite" begin="1.5s" />
                   </circle>
                   
-                  {/* Blinking checkpoints */}
-                  <circle cx="35" cy="45" r="3" fill="rgba(0,255,136,0.8)">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
+                  {/* Blinking checkpoints - Subtle */}
+                  <circle cx="35" cy="45" r="2" fill="rgba(0,255,136,0.6)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" />
                   </circle>
-                  <circle cx="65" cy="30" r="3" fill="rgba(0,255,136,0.8)">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="0.5s" />
+                  <circle cx="65" cy="30" r="2" fill="rgba(0,255,136,0.6)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="0.75s" />
                   </circle>
-                  <circle cx="125" cy="45" r="3" fill="rgba(0,255,136,0.8)">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1s" />
+                  <circle cx="125" cy="45" r="2" fill="rgba(0,255,136,0.6)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="1.5s" />
                   </circle>
-                  <circle cx="185" cy="45" r="3" fill="rgba(0,255,136,0.8)">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="1.5s" />
+                  <circle cx="185" cy="45" r="2" fill="rgba(0,255,136,0.6)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="2.25s" />
                   </circle>
-                  <circle cx="245" cy="85" r="3" fill="rgba(0,255,136,0.8)">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="2s" />
+                  <circle cx="245" cy="85" r="2" fill="rgba(0,255,136,0.6)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="3s" />
                   </circle>
-                  <circle cx="210" cy="115" r="3" fill="rgba(0,255,136,0.8)">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="2.5s" />
+                  <circle cx="210" cy="115" r="2" fill="rgba(0,255,136,0.6)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="3.75s" />
                   </circle>
-                  <circle cx="150" cy="95" r="3" fill="rgba(0,255,136,0.8)">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="3s" />
+                  <circle cx="150" cy="95" r="2" fill="rgba(0,255,136,0.6)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="4.5s" />
                   </circle>
-                  <circle cx="95" cy="85" r="3" fill="rgba(0,255,136,0.8)">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" begin="3.5s" />
+                  <circle cx="95" cy="85" r="2" fill="rgba(0,255,136,0.6)">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite" begin="5.25s" />
                   </circle>
                 </svg>
               </div>
