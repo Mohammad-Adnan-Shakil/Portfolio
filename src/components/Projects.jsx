@@ -62,14 +62,15 @@ const Projects = () => {
       {/* Featured Card - Deltabox - Fixed Spacing and Composition */}
       <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
-          className="relative overflow-hidden"
+          className="relative overflow-visible"
           style={{
             minHeight: '480px',
             maxHeight: '550px',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            display: 'flex',
+            flexDirection: 'row',
             alignItems: 'center',
-            gap: '1rem'
+            gap: '2rem',
+            width: '100%'
           }}
         >
           {/* LAYER 1 — Base: Deep gradient #05070A to #07111C */}
@@ -256,8 +257,8 @@ const Projects = () => {
             />
           </div>
 
-          {/* LEFT COLUMN - DELTABOX CONTENT - Fixed spacing and vertical centering */}
-          <div className="p-6 pl-6 sm:pl-8 lg:p-8 relative z-20 flex flex-col justify-center">
+          {/* LEFT COLUMN - DELTABOX CONTENT */}
+          <div className="p-6 pl-6 sm:pl-8 lg:p-8 relative z-20 flex flex-col justify-center w-1/2">
             {/* Badge */}
             <div className="flex items-center gap-3 mb-4">
               <div
@@ -406,34 +407,13 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN - MONACO CIRCUIT - Scaled up 20% and centered */}
-          <div 
-            className="relative overflow-hidden"
-            style={{
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 10
-            }}
-          >
-            {/* MONACO GRAND PRIX CIRCUIT - Scaled 20% larger */}
-            <div 
-              className="relative"
-              style={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
+          {/* RIGHT COLUMN - SUZUKA SVG */}
+          <div className="flex items-center justify-center w-1/2 mt-[-40px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 500 500"
-                className="w-full max-w-sm"
+                className="w-full overflow-visible"
+                style={{ overflow: 'visible' }}
               >
                 <defs>
                   <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
