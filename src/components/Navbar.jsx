@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const navLinks = ['Projects', 'Skills', 'About', 'Engineering', 'Contact'];
+  const navLinks = ['Projects', 'Skills', 'About', 'Process', 'Contact'];
 
   // Close menu on ESC key
   useEffect(() => {

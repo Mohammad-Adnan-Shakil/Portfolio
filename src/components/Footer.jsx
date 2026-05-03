@@ -13,7 +13,7 @@ const Footer = () => {
           color: '#6b6b80'
         }}
       >
-        © 2025 Mohammad Adnan Shakil
+        © 2026 Mohammad Adnan Shakil
       </p>
 
       <div className="flex items-center gap-2">

@@ -222,7 +222,7 @@ const Hero = () => {
                 color: '#00ff88'
               }}
             >
-              3+
+              3
             </div>
             <div
               style={{
@@ -245,7 +245,7 @@ const Hero = () => {
                 color: '#00ff88'
               }}
             >
-              5+
+              5
             </div>
             <div
               style={{

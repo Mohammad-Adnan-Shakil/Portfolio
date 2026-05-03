@@ -337,7 +337,7 @@ const Projects = () => {
                 Prediction Engine
               </div>
               <div
-                className="grid grid-cols-2 gap-2"
+                className="grid grid-cols-2 gap-2 grid-cols-1 sm:grid-cols-2"
                 style={{
                   fontFamily: 'JetBrains Mono',
                   fontSize: '0.72rem',
