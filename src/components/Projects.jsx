@@ -288,7 +288,7 @@ const Projects = () => {
               style={{
                 fontFamily: 'Syne',
                 fontWeight: 800,
-                fontSize: 'clamp(1.75rem, 5vw, 2.6rem)',
+                fontSize: 'clamp(2.45rem, 7vw, 3.64rem)',
                 letterSpacing: '-0.02em',
                 lineHeight: 1.05
               }}
@@ -433,7 +433,7 @@ const Projects = () => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 500 500"
-                className="w-full max-w-md"
+                className="w-full max-w-sm"
               >
                 <defs>
                   <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
