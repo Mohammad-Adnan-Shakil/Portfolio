@@ -86,8 +86,9 @@ const Contact = () => {
             lineHeight: 1.6
           }}
         >
-          Actively looking for software engineering internships (mid-2026).
-          Open to backend, full-stack, or ML infrastructure roles.
+          Second-year CSE student at Presidency University, Bengaluru.
+          Available for backend, full-stack, or ML infrastructure internships
+          from June 2026. Open to remote or Bengaluru-based roles.
         </p>
       </div>
 

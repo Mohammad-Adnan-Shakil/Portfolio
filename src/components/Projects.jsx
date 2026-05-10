@@ -21,11 +21,12 @@ const Projects = () => {
     {
       number: '03 —',
       title: 'FakeOut AI',
-      badge: '🏆 Hackathon Project',
+      badge: '🏆 [Experiment]',
       description: 'Voice deepfake detection system using dual-model ML ensemble (XGBoost + Random Forest). Extracted 40 MFCC coefficients and spectral features from audio for classification. FastAPI backend serving ML inference with React frontend for audio upload/analysis.',
       bullets: ['Dual-model ensemble (XGBoost + Random Forest) for classification', '40 MFCC coefficients + spectral features from audio', 'FastAPI backend serving ML inference with React frontend'],
       tags: ['React', 'FastAPI', 'Python', 'XGBoost', 'Random Forest', 'Librosa', 'TailwindCSS'],
-      github: 'https://github.com/FuncLexa/FakeOut-AI'
+      github: 'https://github.com/FuncLexa/FakeOut-AI',
+      isExperiment: true
     }
   ];
 
@@ -292,10 +293,10 @@ const Projects = () => {
           <div
             key={project.title}
             ref={revealRef(4 + index)}
-            className="relative overflow-hidden transition-all duration-300 w-full"
+            className={`relative overflow-hidden transition-all duration-300 w-full ${project.isExperiment ? 'opacity-75' : ''}`}
             style={{ background: '#0a0a0f', padding: 'clamp(1.5rem, 4vw, 2.5rem)' }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#0f0f17';
+              e.currentTarget.style.background = project.isExperiment ? '#0a0a0f' : '#0f0f17';
               e.currentTarget.querySelector('.hover-line').style.width = '100%';
             }}
             onMouseLeave={(e) => {
@@ -334,17 +335,31 @@ const Projects = () => {
               ))}
             </div>
 
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-all duration-200"
-              style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#00ff88', textTransform: 'uppercase', letterSpacing: '0.1em' }}
-              onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-              onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
-            >
-              GitHub →
-            </a>
+            {!project.isExperiment ? (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-200"
+                style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#00ff88', textTransform: 'uppercase', letterSpacing: '0.1em' }}
+                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
+                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
+              >
+                GitHub →
+              </a>
+            ) : (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-200"
+                style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#6b6b80', textTransform: 'uppercase', letterSpacing: '0.1em' }}
+                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
+                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
+              >
+                GitHub →
+              </a>
+            )}
           </div>
         ))}
       </div>

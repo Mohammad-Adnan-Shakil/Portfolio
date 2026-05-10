@@ -58,8 +58,8 @@ const Skills = () => {
         </h2>
       </div>
 
-      {/* Skills Grid - 2 columns on mobile, 4 on desktop */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      {/* Skills Grid - 1 column on mobile, 2 on sm, 4 on desktop */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
         {skillGroups.map((group, groupIndex) => (
           <div key={group.title} ref={revealRef(2 + groupIndex)}>
             {/* Group Title */}

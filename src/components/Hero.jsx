@@ -204,9 +204,9 @@ const Hero = () => {
           </a>
         </motion.div>
 
-        {/* Stats - horizontal row on mobile, vertical on desktop */}
+        {/* Stats - vertical on mobile, horizontal on desktop */}
         <div
-          className="flex flex-row sm:flex-col justify-between sm:justify-start gap-4 sm:gap-6 sm:absolute sm:text-right mt-6 sm:mt-0 w-full sm:w-auto px-2 sm:px-0"
+          className="flex flex-col sm:flex-row justify-between sm:justify-start gap-4 sm:gap-6 sm:absolute sm:text-right mt-6 sm:mt-0 w-full sm:w-auto px-2 sm:px-0"
           style={{
             bottom: 'clamp(0.5rem, 4vh, 3rem)',
             right: 'clamp(0.5rem, 4vw, 4rem)',

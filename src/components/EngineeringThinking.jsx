@@ -22,7 +22,7 @@ const EngineeringThinking = () => {
             textTransform: 'uppercase'
           }}
         >
-          // 04 — Engineering Thinking
+          // 04 — ENGINEERING THINKING
         </p>
       </div>
 
@@ -51,7 +51,7 @@ const EngineeringThinking = () => {
               textTransform: 'uppercase'
             }}
           >
-            Backend + ML Integration
+            DELTABOX ARCHITECTURE DECISION
           </h3>
         </div>
 
@@ -62,7 +62,7 @@ const EngineeringThinking = () => {
             color: '#6b6b80',
             lineHeight: 1.65
           }}>
-            <strong style={{ color: '#e8e8f0' }}>1. API Layer</strong> — RESTful endpoints, authentication, RBAC, request validation
+            <strong style={{ color: '#e8e8f0' }}>The problem:</strong> Running ML inference inside a Java Spring Boot service.
           </div>
 
           <div ref={revealRef(4)} style={{
@@ -71,7 +71,7 @@ const EngineeringThinking = () => {
             color: '#6b6b80',
             lineHeight: 1.65
           }}>
-            <strong style={{ color: '#e8e8f0' }}>2. Orchestration</strong> — Java subprocess calls to Python ML models, async processing, response caching
+            <strong style={{ color: '#e8e8f0' }}>The decision:</strong> Cross-language subprocess execution via ProcessBuilder — Java serializes request to JSON, writes to Python's STDIN, reads the prediction from STDOUT, and deserializes the response.
           </div>
 
           <div ref={revealRef(5)} style={{
@@ -80,11 +80,20 @@ const EngineeringThinking = () => {
             color: '#6b6b80',
             lineHeight: 1.65
           }}>
-            <strong style={{ color: '#e8e8f0' }}>3. ML Pipeline</strong> — Feature extraction → Model inference → Response formatting, confidence scoring, fallback handling
+            <strong style={{ color: '#e8e8f0' }}>Why not a REST microservice?</strong> Eliminated network latency and deployment complexity for a single-server setup. Traded horizontal scalability for simplicity and speed at this scale.
+          </div>
+
+          <div ref={revealRef(6)} style={{
+            fontFamily: 'JetBrains Mono',
+            fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
+            color: '#6b6b80',
+            lineHeight: 1.65
+          }}>
+            <strong style={{ color: '#e8e8f0' }}>The result:</strong> Sub-200ms ML inference integrated directly into the API response cycle with no external service dependency.
           </div>
         </div>
 
-        <div ref={revealRef(6)} className="mt-4 sm:mt-6 p-3 sm:p-4" style={{
+        <div ref={revealRef(7)} className="mt-4 sm:mt-6 p-3 sm:p-4" style={{
           fontFamily: 'JetBrains Mono',
           fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
           color: '#6b6b80',
@@ -92,16 +101,7 @@ const EngineeringThinking = () => {
           border: '1px solid rgba(0,255,136,0.1)',
           background: 'rgba(0,255,136,0.02)'
         }}>
-          <strong style={{ color: '#00ff88' }}>Example Flow:</strong> User Request → API Validation → Subprocess to Python → ML Prediction → Response Cache → JSON Response
-        </div>
-
-        <div ref={revealRef(7)} className="mt-4 sm:mt-6" style={{
-          fontFamily: 'JetBrains Mono',
-          fontSize: 'clamp(0.75rem, 2.5vw, 0.83rem)',
-          color: '#6b6b80',
-          lineHeight: 1.65
-        }}>
-          <strong style={{ color: '#e8e8f0' }}>Goal:</strong> Build systems that are secure, performant, and maintainable.
+          <strong style={{ color: '#00ff88' }}>Goal:</strong> Every architectural decision has a reason. Build systems that are secure, performant, and maintainable.
         </div>
       </div>
     </section>
