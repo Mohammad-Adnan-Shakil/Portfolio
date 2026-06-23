@@ -147,7 +147,7 @@ const Hero = () => {
               lineHeight: 1.7
             }}
           >
-            Currently building Deltabox: Java backend calling Python ML models via subprocess for real-time race predictions with JWT + RBAC security.
+            Software Engineering Intern building production serverless AI infrastructure at Dyslexia Reading Tutor AI. DeltaBox, my flagship project, is deployed and live — an F1 intelligence platform with a 79.6% Top-3 finish prediction accuracy ML engine.
           </p>
         </motion.div>
 
@@ -222,7 +222,7 @@ const Hero = () => {
                 color: '#00ff88'
               }}
             >
-              3
+              2
             </div>
             <div
               style={{

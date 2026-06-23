@@ -42,21 +42,12 @@ Includes real production-style projects such as:
 
 AI-powered F1 analytics platform featuring:
 
-* Real-time race data processing across 20+ drivers and 24 races
+* Real-time race data processing across 20+ drivers and 24 races per season
 * XGBoost + Random Forest prediction models
 * Java (Spring Boot) ↔ Python ML subprocess orchestration
 * JWT authentication + RBAC security
 * What-if simulation engine
 * Confidence scoring + caching
-
-#### 💰 CentSight
-
-AI financial decision support platform featuring:
-
-* React + Node.js + Python ML pipeline
-* Financial risk classification
-* Real-time decision scoring
-* JWT-secured backend APIs
 
 #### 🎙️ FakeOut AI
 
@@ -115,9 +106,9 @@ Response Layer
 ### Infrastructure
 
 * PostgreSQL
-* MongoDB
 * Git / GitHub
 * Vercel
+* AWS Lambda / API Gateway / DynamoDB
 
 ---
 
@@ -146,7 +137,7 @@ npm run dev
 
 ## 🎯 Current Goal
 
-Actively targeting software engineering internships for **mid-2026**, with strong interest in:
+Currently a Software Engineering Intern at Dyslexia Reading Tutor AI, building production AWS voice-AI infrastructure. Strong interest in:
 
 * Backend Engineering
 * Full-Stack Development

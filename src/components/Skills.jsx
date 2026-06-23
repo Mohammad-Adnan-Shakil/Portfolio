@@ -14,11 +14,11 @@ const Skills = () => {
     },
     {
       title: 'ML / Data',
-      skills: ['Python — XGBoost, Random Forest, and inference pipelines', 'Scikit-learn — feature engineering and model training', 'Librosa — audio feature extraction', 'Linear Regression']
+      skills: ['Python — XGBoost, Random Forest, and inference pipelines', 'Scikit-learn — feature engineering and model training', 'Librosa — audio feature extraction']
     },
     {
       title: 'Infrastructure',
-      skills: ['PostgreSQL — relational data with complex queries', 'MongoDB — document storage with flexible schemas', 'Git / GitHub — version control and CI/CD', 'Vercel — deployment and edge caching', 'Maven', 'Postman']
+      skills: ['PostgreSQL — relational data with complex queries', 'Git / GitHub — version control and CI/CD', 'Vercel — deployment and edge caching', 'AWS Lambda / API Gateway / DynamoDB — serverless event-driven architecture', 'Maven', 'Postman']
     }
   ];
 

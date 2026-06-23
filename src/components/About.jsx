@@ -69,7 +69,7 @@ const About = () => {
           color: '#6b6b80',
           lineHeight: 1.75
         }}>
-          Deltabox demonstrates my approach: Java calling Python ML models for real-time predictions, with JWT + RBAC security and caching for performance.
+          DeltaBox demonstrates my approach: a full-stack F1 intelligence platform with a blended XGBoost + Random Forest ML engine (79.6% Top-3 accuracy, R² 0.62), Java calling Python directly via subprocess for real-time predictions, and JWT + RBAC security built from scratch.
         </p>
 
         <p ref={revealRef(5)} style={{
@@ -79,7 +79,7 @@ const About = () => {
           lineHeight: 1.75
         }}>
           I work fast, ship aggressively, and care about clean architecture. Discipline in code, gym, and execution.
-          Targeting software engineering internships for mid-2026.
+          Currently a Software Engineering Intern at Dyslexia Reading Tutor AI, building production AWS voice-AI infrastructure.
         </p>
       </div>
     </section>

@@ -11,15 +11,6 @@ const Projects = () => {
   const secondaryProjects = [
     {
       number: '02 —',
-      title: 'CentSight',
-      badge: '🏆 Hackathon — Build With TRAE · Future Finance Theme',
-      description: 'AI financial decision simulator predicting savings trajectory before spending decisions. Built full pipeline: React frontend → Node.js/Express backend → Python ML models (Scikit-learn). Implemented JWT auth and real-time risk scoring with financial health classification.',
-      bullets: ['Full-stack pipeline with React + Node.js + Python ML models', 'JWT authentication + real-time risk scoring system', 'Financial health classification with instant feedback'],
-      tags: ['React', 'Node.js', 'Express', 'Python', 'Scikit-learn', 'MongoDB', 'JWT'],
-      github: 'https://github.com/Mohammad-Adnan-Shakil/centSight'
-    },
-    {
-      number: '03 —',
       title: 'FakeOut AI',
       badge: '🏆 [Experiment]',
       description: 'Voice deepfake detection system using dual-model ML ensemble (XGBoost + Random Forest). Extracted 40 MFCC coefficients and spectral features from audio for classification. FastAPI backend serving ML inference with React frontend for audio upload/analysis.',
@@ -200,7 +191,7 @@ const Projects = () => {
               <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
                 <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
                 <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
-                <div>• JWT authentication + RBAC-secured APIs with 87.3% prediction confidence</div>
+                <div>• JWT authentication + RBAC-secured APIs from scratch</div>
               </div>
             </div>
 
@@ -210,10 +201,10 @@ const Projects = () => {
                 Prediction Engine
               </div>
               <div className="grid grid-cols-2 gap-2" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#5a5a70', lineHeight: 1.6 }}>
-                <div>Accuracy: <span style={{ color: '#e8e8f0' }}>87.3%</span></div>
-                <div>Drivers: <span style={{ color: '#e8e8f0' }}>20</span></div>
-                <div>Races: <span style={{ color: '#e8e8f0' }}>24</span></div>
-                <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + RF</span></div>
+                <div>Top-3 Accuracy: <span style={{ color: '#e8e8f0' }}>79.6%</span></div>
+                <div>R²: <span style={{ color: '#e8e8f0' }}>0.62</span></div>
+                <div>Latency: <span style={{ color: '#e8e8f0' }}>13.4ms</span></div>
+                <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + RF (blended)</span></div>
               </div>
             </div>
 
@@ -229,7 +220,7 @@ const Projects = () => {
             {/* Links */}
             <div className="flex gap-8">
               <a
-                href="https://github.com/Mohammad-Adnan-Shakil/deltaBox"
+                href="https://github.com/Mohammad-Adnan-Shakil/deltabox"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-all duration-200"
@@ -239,14 +230,17 @@ const Projects = () => {
               >
                 GitHub →
               </a>
-              <span
-                className="transition-all duration-200 cursor-pointer"
+              <a
+                href="https://deltabox.onrender.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-200"
                 style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#00ff88', textTransform: 'uppercase', letterSpacing: '0.1em' }}
                 onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
                 onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
               >
                 Live Demo →
-              </span>
+              </a>
             </div>
           </div>
 
