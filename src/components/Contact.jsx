@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const Contact = () => {
   const { revealRef } = useScrollReveal();
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [sent, setSent] = useState(false);
 
   const contactLinks = [
     {
@@ -36,97 +39,104 @@ const Contact = () => {
     }
   ];
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSent(true);
+    setTimeout(() => setSent(false), 3000);
+  };
+
+  const inputClass = "w-full bg-transparent border rounded-lg px-4 py-3 font-mono text-[0.8rem] text-primary transition-all duration-200 placeholder:text-muted/60 focus:outline-none focus:border-accent focus:shadow-[0_0_12px_rgba(0,255,136,0.08)]";
+
   return (
-    <section 
+    <section
       id="contact"
       className="px-4 sm:px-6 lg:px-12 xl:px-16 py-12 sm:py-16"
-      style={{ 
-        borderTop: '1px solid rgba(0,255,136,0.12)',
-        textAlign: 'center'
-      }}
+      style={{ borderTop: '1px solid rgba(0,255,136,0.12)', textAlign: 'center' }}
     >
-      {/* Section Label */}
       <div ref={revealRef(0)} className="mb-4">
-        <p
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: '0.68rem',
-            color: '#00ff88',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase'
-          }}
-        >
+        <p className="font-mono text-[0.68rem] text-accent tracking-[0.2em] uppercase">
           // 05 — Contact
         </p>
       </div>
 
-      {/* Headline */}
       <div ref={revealRef(1)} className="mb-3 sm:mb-4 px-2 sm:px-0">
-        <h2
-          style={{
-            fontFamily: 'Syne',
-            fontWeight: 800,
-            fontSize: 'clamp(1.8rem, 6vw, 5rem)',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1
-          }}
-        >
-          Let's build <span style={{ color: '#00ff88' }}>production systems.</span>
+        <h2 className="font-heading font-extrabold text-[clamp(1.8rem,6vw,5rem)] tracking-[-0.02em] leading-tight">
+          Let's build <span className="text-accent">production systems.</span>
         </h2>
       </div>
 
-      {/* Sub */}
       <div ref={revealRef(2)} className="mb-8 sm:mb-12 px-4 sm:px-0">
-        <p
-          className="max-w-[90vw] sm:max-w-none mx-auto"
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: 'clamp(0.72rem, 2.5vw, 0.82rem)',
-            color: '#6b6b80',
-            lineHeight: 1.6
-          }}
-        >
+        <p className="font-mono text-[clamp(0.72rem,2.5vw,0.82rem)] text-muted leading-relaxed max-w-lg mx-auto">
           Second-year CSE student at Presidency University, Bengaluru.
           Available for backend, full-stack, or ML infrastructure internships
           from June 2026. Open to remote or Bengaluru-based roles.
         </p>
       </div>
 
-      {/* Contact Buttons - stack on mobile, row on desktop */}
-      <div ref={revealRef(3)} className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-6 px-4 sm:px-0">
-        {contactLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center sm:justify-start gap-3 transition-all duration-250"
+      {/* Contact form + links in a row on desktop */}
+      <div ref={revealRef(3)} className="max-w-2xl mx-auto">
+        <form onSubmit={handleSubmit} className="mb-8 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <input
+              type="text"
+              placeholder="Name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className={inputClass}
+              style={{ borderColor: 'rgba(0,255,136,0.15)' }}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className={inputClass}
+              style={{ borderColor: 'rgba(0,255,136,0.15)' }}
+              required
+            />
+          </div>
+          <textarea
+            placeholder="Message"
+            rows={4}
+            value={formData.message}
+            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            className={`${inputClass} mb-4 resize-none`}
+            style={{ borderColor: 'rgba(0,255,136,0.15)' }}
+            required
+          />
+          <button
+            type="submit"
+            className="w-full font-mono text-[0.75rem] font-bold uppercase tracking-[0.1em] py-3.5 rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-glow"
             style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'clamp(0.7rem, 2.5vw, 0.78rem)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
-              color: '#6b6b80',
-              border: '1px solid rgba(0,255,136,0.12)',
-              padding: 'clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 2rem)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = '#00ff88';
-              e.currentTarget.style.borderColor = 'rgba(0,255,136,0.4)';
-              e.currentTarget.style.background = 'rgba(0,255,136,0.04)';
-              e.currentTarget.style.transform = 'translateY(-3px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = '#6b6b80';
-              e.currentTarget.style.borderColor = 'rgba(0,255,136,0.12)';
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.transform = 'translateY(0)';
+              background: '#00ff88',
+              color: '#000',
             }}
           >
-            <span className="flex-shrink-0">{link.icon}</span>
-            {link.label}
-          </a>
-        ))}
+            {sent ? '✓ Message Sent' : 'Send Message →'}
+          </button>
+        </form>
+
+        {/* Social links row */}
+        <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-3 sm:gap-6">
+          {contactLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center sm:justify-start gap-3 transition-all duration-200 hover:text-accent hover:border-accent/40 hover:bg-accent/5 hover:-translate-y-0.5 font-mono text-[clamp(0.7rem,2.5vw,0.78rem)] uppercase tracking-[0.1em] text-muted"
+              style={{
+                border: '1px solid rgba(0,255,136,0.12)',
+                padding: 'clamp(0.75rem, 3vw, 1rem) clamp(1rem, 4vw, 2rem)',
+                borderRadius: '8px',
+              }}
+            >
+              <span className="flex-shrink-0">{link.icon}</span>
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );

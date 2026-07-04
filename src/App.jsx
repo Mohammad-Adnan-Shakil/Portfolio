@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
@@ -13,27 +12,12 @@ import './index.css';
 function App() {
   const { dotStyle, ringStyle, isTouchDevice } = useCustomCursor();
 
-  useEffect(() => {
-    // Add Google Fonts
-    const linkSyne = document.createElement('link');
-    linkSyne.href = 'https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap';
-    linkSyne.rel = 'stylesheet';
-    document.head.appendChild(linkSyne);
-
-    const linkJetBrains = document.createElement('link');
-    linkJetBrains.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap';
-    linkJetBrains.rel = 'stylesheet';
-    document.head.appendChild(linkJetBrains);
-
-    return () => {
-      document.head.removeChild(linkSyne);
-      document.head.removeChild(linkJetBrains);
-    };
-  }, []);
-
   return (
     <>
-      {/* Custom Cursor - only render on non-touch devices */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to content
+      </a>
+
       {!isTouchDevice && (
         <>
           <div style={dotStyle} />
@@ -41,14 +25,15 @@ function App() {
         </>
       )}
 
-      {/* Components */}
       <Navbar />
-      <Hero />
-      <Projects />
-      <Skills />
-      <About />
-      <EngineeringThinking />
-      <Contact />
+      <main id="main-content">
+        <Hero />
+        <Projects />
+        <Skills />
+        <About />
+        <EngineeringThinking />
+        <Contact />
+      </main>
       <Footer />
     </>
   );

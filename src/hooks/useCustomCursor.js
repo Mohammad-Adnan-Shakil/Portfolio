@@ -6,12 +6,9 @@ const useCustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(true);
-  const dotRef = useRef(null);
-  const ringRef = useRef(null);
   const rafRef = useRef(null);
 
   useEffect(() => {
-    // Check for touch device on mount and resize
     const checkTouchDevice = () => {
       const hasTouch = window.matchMedia('(pointer: coarse)').matches ||
                        window.matchMedia('(hover: none)').matches ||
@@ -25,10 +22,7 @@ const useCustomCursor = () => {
   }, []);
 
   useEffect(() => {
-    // Disable custom cursor on touch devices
-    if (isTouchDevice) {
-      return;
-    }
+    if (isTouchDevice) return;
 
     let lastX = -100;
     let lastY = -100;
@@ -37,18 +31,13 @@ const useCustomCursor = () => {
       lastX = e.clientX;
       lastY = e.clientY;
 
-      // Use requestAnimationFrame for smooth updates
       if (!rafRef.current) {
         rafRef.current = requestAnimationFrame(() => {
           setPosition({ x: lastX, y: lastY });
-
-          setRingPosition(prev => {
-            const lerpFactor = 0.15;
-            return {
-              x: prev.x + (lastX - prev.x) * lerpFactor,
-              y: prev.y + (lastY - prev.y) * lerpFactor
-            };
-          });
+          setRingPosition(prev => ({
+            x: prev.x + (lastX - prev.x) * 0.15,
+            y: prev.y + (lastY - prev.y) * 0.15,
+          }));
           rafRef.current = null;
         });
       }
@@ -58,33 +47,29 @@ const useCustomCursor = () => {
     const handleMouseUp = () => setIsMouseDown(false);
 
     const handleMouseOver = (e) => {
-      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' ||
-          e.target.closest('a') || e.target.closest('button')) {
+      const target = e.target;
+      if (target.matches('a, button, [role="button"], input, textarea, select, [data-cursor="pointer"], .cursor-pointer') ||
+          target.closest('a') || target.closest('button') || target.closest('[role="button"]')) {
         setIsHovering(true);
       }
     };
 
     const handleMouseOut = (e) => {
-      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' ||
-          e.target.closest('a') || e.target.closest('button')) {
+      const target = e.target;
+      if (target.matches('a, button, [role="button"], input, textarea, select, [data-cursor="pointer"], .cursor-pointer') ||
+          target.closest('a') || target.closest('button') || target.closest('[role="button"]')) {
         setIsHovering(false);
       }
     };
 
-    // Only add listeners after initial render to prevent stuck cursor
-    const timer = setTimeout(() => {
-      document.addEventListener('mousemove', handleMouseMove, { passive: true });
-      document.addEventListener('mousedown', handleMouseDown);
-      document.addEventListener('mouseup', handleMouseUp);
-      document.addEventListener('mouseover', handleMouseOver);
-      document.addEventListener('mouseout', handleMouseOut);
-    }, 100);
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('mouseover', handleMouseOver);
+    document.addEventListener('mouseout', handleMouseOut);
 
     return () => {
-      clearTimeout(timer);
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
@@ -93,7 +78,6 @@ const useCustomCursor = () => {
     };
   }, [isTouchDevice]);
 
-  // Memoize styles to prevent unnecessary re-renders
   const dotStyle = useMemo(() => ({
     position: 'fixed',
     top: 0,

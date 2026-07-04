@@ -1,23 +1,80 @@
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 
+function useCountUp(end, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const counted = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !counted.current) {
+          counted.current = true;
+          const start = performance.now();
+          const animate = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.floor(eased * end));
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [end, duration]);
+
+  return { count, ref };
+}
+
+const StatItem = ({ end, label }) => {
+  const { count, ref } = useCountUp(end);
+  return (
+    <div ref={ref} className="text-center sm:text-right flex-1 sm:flex-none">
+      <div className="font-heading font-extrabold text-accent" style={{ fontSize: 'clamp(1.3rem, 4vw, 2.2rem)' }}>
+        {count}{typeof end === 'string' && isNaN(end) ? end : ''}
+      </div>
+      <div className="font-mono text-muted uppercase tracking-[0.08em]" style={{ fontSize: 'clamp(0.5rem, 2vw, 0.62rem)' }}>
+        {label}
+      </div>
+    </div>
+  );
+};
+
 const Hero = () => {
-  const particles = Array.from({ length: 12 }, (_, i) => ({
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouse = (e) => {
+      setMousePos({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
+    };
+    window.addEventListener('mousemove', handleMouse, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouse);
+  }, []);
+
+  const particles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
     top: Math.random() * 100,
-    duration: 4 + Math.random() * 4,
-    delay: Math.random() * 2,
-    opacity: 0.2 + Math.random() * 0.2
+    duration: 4 + Math.random() * 6,
+    delay: Math.random() * 3,
+    size: 1 + Math.random() * 2,
+    opacity: 0.15 + Math.random() * 0.2,
+    driftX: (Math.random() - 0.5) * 30,
+    driftY: (Math.random() - 0.5) * 30,
   }));
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
+      transition: { staggerChildren: 0.15 }
     }
   };
 
@@ -26,289 +83,188 @@ const Hero = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     }
   };
 
   return (
-    <section 
-      className="relative flex flex-col justify-center overflow-hidden px-4 sm:px-6 lg:px-12 xl:px-16"
-      style={{ 
+    <section
+      className="relative flex flex-col justify-center overflow-hidden"
+      style={{
         minHeight: '100vh',
         paddingTop: '6rem',
-        paddingBottom: '2rem'
+        paddingBottom: '2rem',
+        paddingLeft: 'clamp(1rem, 4vw, 4rem)',
+        paddingRight: 'clamp(1rem, 4vw, 4rem)',
       }}
       id="hero"
     >
-      {/* Radial Glow - scaled for mobile */}
+      {/* Spotlight glow following mouse */}
       <div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        className="absolute pointer-events-none"
+        style={{
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 60%)',
+          left: `${mousePos.x * 100}%`,
+          top: `${mousePos.y * 100}%`,
+          transform: 'translate(-50%, -50%)',
+          transition: 'left 0.8s ease-out, top 0.8s ease-out',
+          willChange: 'left, top',
+        }}
+      />
+
+      {/* Central glow */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{
           width: 'clamp(300px, 80vw, 700px)',
           height: 'clamp(300px, 80vw, 700px)',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(0,255,136,0.07) 0%, transparent 70%)'
+          background: 'radial-gradient(circle, rgba(0,255,136,0.07) 0%, transparent 70%)',
         }}
       />
 
-      {/* Floating Particles - hidden on mobile */}
+      {/* Animated particles */}
       <div className="hidden sm:block">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute pointer-events-none rounded-full"
+        {particles.map((p) => (
+          <motion.div
+            key={p.id}
+            className="absolute pointer-events-none rounded-full bg-accent"
             style={{
-              left: `${particle.left}%`,
-              top: `${particle.top}%`,
-              width: '2px',
-              height: '2px',
-              backgroundColor: '#00ff88',
-              opacity: particle.opacity,
-              animation: `float ${particle.duration}s ease-in-out infinite`,
-              animationDelay: `${particle.delay}s`
+              left: `${p.left}%`,
+              top: `${p.top}%`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              opacity: p.opacity,
+            }}
+            animate={{
+              x: [0, p.driftX, 0],
+              y: [0, p.driftY, 0],
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              delay: p.delay,
+              ease: 'easeInOut',
             }}
           />
         ))}
       </div>
 
-      {/* Content */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="relative z-10 w-full max-w-7xl mx-auto"
       >
-        {/* Tag Line */}
         <motion.div variants={itemVariants} className="mb-6">
-          <p
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: '0.72rem',
-              color: '#00ff88',
-              letterSpacing: '0.2em'
-            }}
-          >
-            <span style={{ color: '#6b6b80' }}>&gt; </span>
+          <p className="font-mono text-accent tracking-[0.2em]" style={{ fontSize: 'clamp(0.72rem, 2vw, 0.78rem)' }}>
+            <span className="text-muted">&gt; </span>
             Mohammad Adnan Shakil · Full-Stack + ML Systems · Bengaluru
           </p>
         </motion.div>
 
-        {/* Main Heading - mobile-optimized sizes */}
         <motion.div variants={itemVariants} className="mb-5 sm:mb-8">
           <h1
-            className="text-center sm:text-left"
-            style={{
-              fontFamily: 'Syne',
-              fontWeight: 800,
-              fontSize: 'clamp(2.2rem, 10vw, 8rem)',
-              lineHeight: 0.95,
-              letterSpacing: '-0.02em'
-            }}
+            className="text-center sm:text-left font-heading font-extrabold leading-[0.95] tracking-[-0.02em]"
+            style={{ fontSize: 'clamp(2.2rem, 10vw, 8rem)' }}
           >
-            <div className="whitespace-nowrap">ML</div>
+            <div>ML</div>
             <div
-              className="whitespace-nowrap"
               style={{
                 WebkitTextStroke: '1.5px rgba(0,255,136,0.5)',
-                color: 'transparent'
+                color: 'transparent',
               }}
             >
               Engineer
             </div>
-            <div className="whitespace-nowrap">& Dev.</div>
+            <div>& Dev.</div>
           </h1>
         </motion.div>
 
-        {/* Primary Line */}
         <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
           <p
-            className="text-center sm:text-left max-w-[90vw] sm:max-w-xl mx-auto sm:mx-0"
-            style={{
-              fontFamily: 'Syne',
-              fontWeight: 600,
-              fontSize: 'clamp(0.85rem, 3.5vw, 1.15rem)',
-              color: '#e8e8f0',
-              lineHeight: 1.55
-            }}
+            className="text-center sm:text-left mx-auto sm:mx-0 font-heading font-semibold text-primary leading-relaxed"
+            style={{ fontSize: 'clamp(0.85rem, 3.5vw, 1.15rem)', maxWidth: 'min(90vw, 36rem)' }}
           >
             Full-stack engineer building production systems that integrate ML models into real applications.
             Working with Spring Boot, React, and Python to ship systems that make decisions — not just display data.
           </p>
         </motion.div>
 
-        {/* Sub Line */}
         <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
           <p
-            className="text-center sm:text-left max-w-[85vw] sm:max-w-lg mx-auto sm:mx-0"
-            style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: 'clamp(0.7rem, 2.5vw, 0.82rem)',
-              color: '#6b6b80',
-              lineHeight: 1.7
-            }}
+            className="text-center sm:text-left mx-auto sm:mx-0 font-mono text-secondary leading-relaxed"
+            style={{ fontSize: 'clamp(0.7rem, 2.5vw, 0.82rem)', maxWidth: 'min(85vw, 32rem)' }}
           >
             Software Engineering Intern building production serverless AI infrastructure at Dyslexia Reading Tutor AI. DeltaBox, my flagship project, is deployed and live — an F1 intelligence platform with a 79.6% Top-3 finish prediction accuracy ML engine.
           </p>
         </motion.div>
 
-        {/* CTA Buttons - optimized for mobile */}
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-10 items-stretch sm:items-start w-full sm:w-auto">
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-10 items-stretch sm:items-start w-full sm:w-auto"
+        >
           <Link
             to="projects"
             smooth={true}
             duration={500}
-            className="cursor-pointer transition-transform duration-200 hover:-translate-y-1 w-full sm:w-auto text-center"
+            className="group cursor-pointer transition-all duration-200 hover:-translate-y-0.5 w-full sm:w-auto text-center font-mono font-bold uppercase tracking-[0.1em]"
             style={{
               background: '#00ff88',
               color: '#000',
-              fontFamily: 'JetBrains Mono',
               fontSize: 'clamp(0.7rem, 2.5vw, 0.78rem)',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
               padding: 'clamp(0.75rem, 3vw, 0.9rem) clamp(1.5rem, 5vw, 2.2rem)',
-              clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))'
+              clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
+              boxShadow: '0 0 20px rgba(0,255,136,0.15)',
             }}
-            onMouseEnter={(e) => e.target.style.background = '#ffffff'}
-            onMouseLeave={(e) => e.target.style.background = '#00ff88'}
           >
-            View Systems ↓
+            <span className="group-hover:brightness-0 transition-all duration-200">View Systems ↓</span>
           </Link>
           <a
             href="https://github.com/Mohammad-Adnan-Shakil"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-transform duration-200 hover:-translate-y-1 w-full sm:w-auto text-center"
+            className="group cursor-pointer transition-all duration-200 hover:-translate-y-0.5 w-full sm:w-auto text-center font-mono font-bold uppercase tracking-[0.1em]"
             style={{
               background: 'transparent',
               border: '1px solid rgba(0,255,136,0.2)',
               color: '#00ff88',
-              fontFamily: 'JetBrains Mono',
               fontSize: 'clamp(0.7rem, 2.5vw, 0.78rem)',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.1em',
               padding: 'clamp(0.75rem, 3vw, 0.9rem) clamp(1.5rem, 5vw, 2.2rem)',
-              clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.borderColor = '#00ff88';
-              e.target.style.background = 'rgba(0,255,136,0.06)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.borderColor = 'rgba(0,255,136,0.2)';
-              e.target.style.background = 'transparent';
+              clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))',
             }}
           >
-            GitHub ↗
+            <span className="group-hover:brightness-110 transition-all duration-200">GitHub ↗</span>
           </a>
         </motion.div>
 
-        {/* Stats - vertical on mobile, horizontal on desktop */}
         <div
-          className="flex flex-col sm:flex-row justify-between sm:justify-start gap-4 sm:gap-6 sm:absolute sm:text-right mt-6 sm:mt-0 w-full sm:w-auto px-2 sm:px-0"
+          className="flex flex-col sm:flex-row justify-between sm:justify-start gap-4 sm:gap-6 sm:absolute sm:text-right mt-6 sm:mt-0 w-full sm:w-auto"
           style={{
             bottom: 'clamp(0.5rem, 4vh, 3rem)',
             right: 'clamp(0.5rem, 4vw, 4rem)',
-            zIndex: 2
+            zIndex: 2,
+            paddingLeft: '0.5rem',
+            paddingRight: '0.5rem',
           }}
         >
-          <div className="text-center sm:text-right flex-1 sm:flex-none">
-            <div
-              style={{
-                fontFamily: 'Syne',
-                fontSize: 'clamp(1.3rem, 4vw, 2.2rem)',
-                fontWeight: 800,
-                color: '#00ff88'
-              }}
-            >
-              2
-            </div>
-            <div
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.5rem, 2vw, 0.62rem)',
-                color: '#6b6b80',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase'
-              }}
-            >
-              Projects
-            </div>
-          </div>
-          <div className="text-center sm:text-right flex-1 sm:flex-none">
-            <div
-              style={{
-                fontFamily: 'Syne',
-                fontSize: 'clamp(1.3rem, 4vw, 2.2rem)',
-                fontWeight: 800,
-                color: '#00ff88'
-              }}
-            >
-              5
-            </div>
-            <div
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.5rem, 2vw, 0.62rem)',
-                color: '#6b6b80',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase'
-              }}
-            >
-              Tech Stack
-            </div>
-          </div>
-          <div className="text-center sm:text-right flex-1 sm:flex-none">
-            <div
-              style={{
-                fontFamily: 'Syne',
-                fontSize: 'clamp(1.3rem, 4vw, 2.2rem)',
-                fontWeight: 800,
-                color: '#00ff88'
-              }}
-            >
-              2nd
-            </div>
-            <div
-              style={{
-                fontFamily: 'JetBrains Mono',
-                fontSize: 'clamp(0.5rem, 2vw, 0.62rem)',
-                color: '#6b6b80',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase'
-              }}
-            >
-              Year CSE
-            </div>
-          </div>
+          <StatItem end={2} label="Projects" />
+          <StatItem end={5} label="Tech Stack" />
+          <StatItem end="2nd" label="Year CSE" />
         </div>
       </motion.div>
 
-      {/* Scroll Indicator - hidden on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4 }}
         className="hidden lg:flex absolute bottom-8 left-16 items-center gap-4"
       >
-        <div
-          className="w-10"
-          style={{
-            height: '1px',
-            background: '#00ff88',
-            animation: 'pulse 2s ease-in-out infinite'
-          }}
-        />
-        <p
-          style={{
-            fontFamily: 'JetBrains Mono',
-            fontSize: '0.65rem',
-            color: '#6b6b80',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase'
-          }}
-        >
+        <div className="w-10 h-px bg-accent animate-pulse" />
+        <p className="font-mono text-[0.65rem] text-muted tracking-[0.15em] uppercase">
           scroll to explore
         </p>
       </motion.div>

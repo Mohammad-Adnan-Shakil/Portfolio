@@ -24,25 +24,25 @@ const Projects = () => {
   return (
     <section id="projects" className="px-4 sm:px-6 lg:px-12 xl:px-16 py-12 sm:py-16 lg:py-20">
 
-      {/* Section Label */}
       <div ref={revealRef(0)} className="mb-4">
-        <p style={{ fontFamily: 'JetBrains Mono', fontSize: '0.68rem', color: '#00ff88', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+        <p className="font-mono text-[0.68rem] text-accent tracking-[0.2em] uppercase">
           // 01 — Selected Work
         </p>
       </div>
 
-      {/* Section Title */}
       <div ref={revealRef(1)} className="mb-12">
-        <h2 style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>
-          Projects that <span style={{ color: '#00ff88' }}>ship.</span>
+        <h2 className="font-heading font-extrabold text-[clamp(2rem,5vw,3.5rem)]">
+          Projects that <span className="text-accent">ship.</span>
         </h2>
       </div>
 
       {/* Featured Card - Deltabox */}
       <div ref={revealRef(2)} className="mb-12 sm:mb-16">
         <div
-          className="relative overflow-visible"
+          className="relative overflow-hidden rounded-xl"
           style={{
+            background: '#0c0d12',
+            border: '1px solid rgba(0,255,136,0.08)',
             minHeight: '480px',
             display: 'flex',
             flexDirection: 'row',
@@ -51,90 +51,36 @@ const Projects = () => {
             width: '100%'
           }}
         >
-          {/* LAYER 1 — Background gradient */}
+          {/* Subtle gradient background */}
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'linear-gradient(135deg, #05070A 0%, #07111C 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #07080a 0%, #0c0d12 100%)' }}
           />
 
-          {/* LAYER 2 — Tactical grid */}
+          {/* Subtle grid overlay */}
           <div
-            className="absolute inset-0 pointer-events-none"
+            className="absolute inset-0 pointer-events-none opacity-30"
             style={{
-              backgroundImage: `
-                linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px)
-              `,
+              backgroundImage: 'linear-gradient(rgba(0,255,136,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.02) 1px, transparent 1px)',
               backgroundSize: '45px 45px',
-              opacity: 0.6
             }}
           />
 
-          {/* LAYER 3 — Animated telemetry dots + scan lines */}
-          <div className="absolute inset-0 pointer-events-none">
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute rounded-full"
-                style={{
-                  left: `${10 + (i * 12)}%`,
-                  top: `${20 + (i * 6)}%`,
-                  width: '2px',
-                  height: '2px',
-                  backgroundColor: 'rgba(0,255,136,0.4)',
-                  animation: `pulse ${2 + (i * 0.3)}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.2}s`
-                }}
-              />
-            ))}
-            <div
-              className="absolute w-full h-0.5"
-              style={{
-                top: '30%',
-                background: 'linear-gradient(90deg, transparent, rgba(0,255,136,0.3), transparent)',
-                animation: 'scanLine 4s linear infinite'
-              }}
-            />
-            <div
-              className="absolute w-full h-0.5"
-              style={{
-                top: '60%',
-                background: 'linear-gradient(90deg, transparent, rgba(0,200,255,0.2), transparent)',
-                animation: 'scanLine 4s linear infinite 1.5s'
-              }}
-            />
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute rounded-full"
-                style={{
-                  left: `${(i * 10) % 100}%`,
-                  top: `${(i * 17) % 100}%`,
-                  width: i % 3 === 0 ? '2px' : '1px',
-                  height: i % 3 === 0 ? '2px' : '1px',
-                  backgroundColor: `rgba(0,255,136,${0.15 + (i * 0.02)})`,
-                  animation: `float ${3 + (i * 0.2)}s ease-in-out infinite`,
-                  animationDelay: `${i * 0.2}s`
-                }}
-              />
-            ))}
-          </div>
-
-          {/* LAYER 4 — AI glow */}
+          {/* AI glow */}
           <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             style={{
               width: '380px',
               height: '380px',
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 65%)',
+              background: 'radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 65%)',
               filter: 'blur(30px)',
               animation: 'breathe 6s ease-in-out infinite',
               zIndex: 2
             }}
           />
 
-          {/* LAYER 5 — Hidden system text */}
+          {/* System status labels */}
           <div className="absolute inset-0 pointer-events-none">
             {[
               { top: '6%', left: '3%', text: 'SYNC_ACTIVE', opacity: 0.08 },
@@ -144,49 +90,32 @@ const Projects = () => {
             ].map(({ text, opacity, ...pos }) => (
               <div
                 key={text}
-                style={{
-                  position: 'absolute',
-                  ...pos,
-                  fontFamily: 'JetBrains Mono',
-                  fontSize: '0.42rem',
-                  color: `rgba(0,255,136,${opacity})`,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  fontWeight: 500
-                }}
+                className="absolute font-mono text-[0.42rem] uppercase tracking-[0.15em] font-medium"
+                style={{ ...pos, color: `rgba(0,255,136,${opacity})` }}
               >
                 {text}
               </div>
             ))}
           </div>
 
-          {/* LAYER 6 — Hex geometry */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div style={{ position: 'absolute', top: '15%', left: '8%', width: '55px', height: '48px', border: '1px solid rgba(0,255,136,0.08)', clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)', opacity: 0.25 }} />
-            <div style={{ position: 'absolute', top: '65%', right: '10%', width: '40px', height: '35px', border: '1px solid rgba(0,200,255,0.06)', clipPath: 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)', opacity: 0.2 }} />
-          </div>
-
-          {/* LEFT COLUMN — Text content */}
+          {/* LEFT COLUMN - Text content */}
           <div className="relative z-20 flex flex-col justify-center w-1/2 p-6 pl-6 sm:pl-8 lg:p-8">
 
-            {/* Badge */}
             <div className="flex items-center gap-3 mb-4">
-              <div className="rounded-full" style={{ width: '6px', height: '6px', background: '#00ff88', animation: 'pulse 2s ease-in-out infinite' }} />
-              <p style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#00ff88', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+              <div className="rounded-full w-1.5 h-1.5 bg-accent animate-pulse" />
+              <p className="font-mono text-[0.62rem] text-accent tracking-[0.18em] uppercase">
                 Featured Project
               </p>
             </div>
 
-            {/* Title */}
             <h3
-              className="mb-4"
-              style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: 'clamp(2.45rem, 7vw, 3.64rem)', letterSpacing: '-0.02em', lineHeight: 1.05 }}
+              className="font-heading font-extrabold mb-4 tracking-[-0.02em] leading-tight"
+              style={{ fontSize: 'clamp(2.45rem, 7vw, 3.64rem)' }}
             >
               Deltabox
             </h3>
 
-            {/* Description */}
-            <div className="mb-4" style={{ fontFamily: 'JetBrains Mono', fontSize: 'clamp(0.7rem, 2vw, 0.8rem)', color: '#5a5a70', lineHeight: 1.95 }}>
+            <div className="mb-4 font-body text-muted leading-relaxed" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}>
               <p className="mb-3">AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.</p>
               <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
                 <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
@@ -195,56 +124,47 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* Prediction Engine */}
-            <div className="mb-4 p-3" style={{ border: '1px solid rgba(0,255,136,0.12)', background: 'rgba(0,255,136,0.02)' }}>
-              <div className="mb-2" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.65rem', color: '#00ff88', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+            <div className="mb-4 p-3" style={{ border: '1px solid rgba(0,255,136,0.12)', background: 'rgba(0,255,136,0.02)', borderRadius: '8px' }}>
+              <div className="mb-2 font-mono text-[0.65rem] text-accent tracking-[0.15em] uppercase">
                 Prediction Engine
               </div>
-              <div className="grid grid-cols-2 gap-2" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#5a5a70', lineHeight: 1.6 }}>
-                <div>Top-3 Accuracy: <span style={{ color: '#e8e8f0' }}>79.6%</span></div>
-                <div>R²: <span style={{ color: '#e8e8f0' }}>0.62</span></div>
-                <div>Latency: <span style={{ color: '#e8e8f0' }}>13.4ms</span></div>
-                <div>Models: <span style={{ color: '#e8e8f0' }}>XGBoost + RF (blended)</span></div>
+              <div className="grid grid-cols-2 gap-2 font-mono text-[0.72rem] text-muted leading-relaxed">
+                <div>Top-3 Accuracy: <span className="text-primary">79.6%</span></div>
+                <div>R²: <span className="text-primary">0.62</span></div>
+                <div>Latency: <span className="text-primary">13.4ms</span></div>
+                <div>Models: <span className="text-primary">XGBoost + RF (blended)</span></div>
               </div>
             </div>
 
-            {/* Tech Tags */}
             <div className="flex flex-wrap gap-2 mb-4">
               {techTags.map((tag) => (
-                <span key={tag} style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#00c8ff', border: '1px solid rgba(0,200,255,0.18)', padding: '0.28rem 0.65rem' }}>
+                <span key={tag} className="font-mono text-[0.62rem] text-[#00c8ff] border border-[rgba(0,200,255,0.18)] px-[0.65rem] py-[0.28rem] rounded-sm transition-all duration-200 hover:border-[rgba(0,200,255,0.4)] hover:bg-[rgba(0,200,255,0.04)]">
                   {tag}
                 </span>
               ))}
             </div>
 
-            {/* Links */}
             <div className="flex gap-8">
               <a
                 href="https://github.com/Mohammad-Adnan-Shakil/deltabox"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-200"
-                style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#00ff88', textTransform: 'uppercase', letterSpacing: '0.1em' }}
-                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
+                className="group font-mono text-[0.72rem] text-accent uppercase tracking-[0.1em] transition-all duration-200"
               >
-                GitHub →
+                GitHub <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">→</span>
               </a>
               <a
                 href="https://deltabox.onrender.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-200"
-                style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#00ff88', textTransform: 'uppercase', letterSpacing: '0.1em' }}
-                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
+                className="group font-mono text-[0.72rem] text-accent uppercase tracking-[0.1em] transition-all duration-200"
               >
-                Live Demo →
+                Live Demo <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">→</span>
               </a>
             </div>
           </div>
 
-          {/* RIGHT COLUMN — Suzuka SVG */}
+          {/* RIGHT COLUMN - Suzuka SVG */}
           <div className="relative z-20 flex items-center justify-center w-1/2 overflow-visible">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -282,37 +202,29 @@ const Projects = () => {
       </div>
 
       {/* Secondary Cards Grid */}
-      <div ref={revealRef(3)} className="grid grid-cols-1 md:grid-cols-2 gap-0">
+      <div ref={revealRef(3)} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {secondaryProjects.map((project, index) => (
           <div
             key={project.title}
             ref={revealRef(4 + index)}
-            className={`relative overflow-hidden transition-all duration-300 w-full ${project.isExperiment ? 'opacity-75' : ''}`}
-            style={{ background: '#0a0a0f', padding: 'clamp(1.5rem, 4vw, 2.5rem)' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = project.isExperiment ? '#0a0a0f' : '#0f0f17';
-              e.currentTarget.querySelector('.hover-line').style.width = '100%';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#0a0a0f';
-              e.currentTarget.querySelector('.hover-line').style.width = '0';
-            }}
+            className="relative overflow-hidden transition-all duration-300 rounded-xl hover:-translate-y-0.5 hover:shadow-lg"
+            style={{ background: '#0c0d12', border: '1px solid rgba(0,255,136,0.08)', padding: 'clamp(1.5rem, 4vw, 2.5rem)' }}
           >
-            <div className="hover-line absolute bottom-0 left-0 transition-all duration-450" style={{ width: '0', height: '1px', background: '#00ff88' }} />
+            <div className="absolute bottom-0 left-0 h-px bg-accent transition-all duration-500" style={{ width: '0%' }} />
 
-            <p className="mb-6" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#6b6b80', letterSpacing: '0.18em' }}>
+            <p className="font-mono text-[0.62rem] text-muted tracking-[0.18em] mb-6">
               {project.number}
             </p>
 
-            <p className="mb-3" style={{ fontFamily: 'JetBrains Mono', fontSize: '0.58rem', color: '#00ff88' }}>
+            <p className="font-mono text-[0.58rem] text-accent mb-3">
               {project.badge}
             </p>
 
-            <h3 className="mb-3" style={{ fontFamily: 'Syne', fontWeight: 700, fontSize: 'clamp(1.1rem, 3vw, 1.35rem)', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
+            <h3 className="font-heading font-bold mb-3 tracking-[-0.01em] leading-snug" style={{ fontSize: 'clamp(1.1rem, 3vw, 1.35rem)' }}>
               {project.title}
             </h3>
 
-            <div className="mb-6" style={{ fontFamily: 'JetBrains Mono', fontSize: 'clamp(0.7rem, 2vw, 0.76rem)', color: '#5a5a70', lineHeight: 1.85 }}>
+            <div className="mb-6 font-body text-muted leading-relaxed" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.85rem)' }}>
               <p className="mb-3">{project.description}</p>
               <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
                 {project.bullets.map((bullet, idx) => (
@@ -323,37 +235,21 @@ const Projects = () => {
 
             <div className="flex flex-wrap gap-2 mb-6">
               {project.tags.map((tag) => (
-                <span key={tag} style={{ fontFamily: 'JetBrains Mono', fontSize: '0.62rem', color: '#00c8ff', border: '1px solid rgba(0,200,255,0.18)', padding: '0.28rem 0.65rem' }}>
+                <span key={tag} className="font-mono text-[0.62rem] text-[#00c8ff] border border-[rgba(0,200,255,0.18)] px-[0.65rem] py-[0.28rem] rounded-sm transition-all duration-200 hover:border-[rgba(0,200,255,0.4)] hover:bg-[rgba(0,200,255,0.04)]">
                   {tag}
                 </span>
               ))}
             </div>
 
-            {!project.isExperiment ? (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-all duration-200"
-                style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#00ff88', textTransform: 'uppercase', letterSpacing: '0.1em' }}
-                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
-              >
-                GitHub →
-              </a>
-            ) : (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-all duration-200"
-                style={{ fontFamily: 'JetBrains Mono', fontSize: '0.72rem', color: '#6b6b80', textTransform: 'uppercase', letterSpacing: '0.1em' }}
-                onMouseEnter={(e) => e.target.style.transform = 'translateX(6px)'}
-                onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
-              >
-                GitHub →
-              </a>
-            )}
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group font-mono text-[0.72rem] uppercase tracking-[0.1em] transition-all duration-200"
+              style={{ color: project.isExperiment ? '#6b6b80' : '#00ff88' }}
+            >
+              GitHub <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">→</span>
+            </a>
           </div>
         ))}
       </div>
