@@ -15,8 +15,16 @@ export default {
           dim: 'rgba(0,255,136,0.4)',
           glow: 'rgba(0,255,136,0.15)',
         },
-        'accent-blue': '#00b8ff',
-        'accent-purple': '#8b5cf6',
+        'accent-blue': {
+          DEFAULT: '#00b8ff',
+          dim: 'rgba(0,184,255,0.4)',
+          glow: 'rgba(0,184,255,0.15)',
+        },
+        'accent-purple': {
+          DEFAULT: '#8b5cf6',
+          dim: 'rgba(139,92,246,0.4)',
+          glow: 'rgba(139,92,246,0.15)',
+        },
         primary: '#e8e8f0',
         secondary: '#9494a8',
         muted: '#5a5a70',
@@ -61,6 +69,14 @@ export default {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
         },
+        chevronBounce: {
+          '0%, 100%': { transform: 'translateY(0)', opacity: '0.4' },
+          '50%': { transform: 'translateY(6px)', opacity: '1' },
+        },
+        glowPulse: {
+          '0%, 100%': { transform: 'translate(-50%, -50%) scale(1)', opacity: '0.5' },
+          '50%': { transform: 'translate(-50%, -50%) scale(1.15)', opacity: '0.9' },
+        },
       },
       animation: {
         float: 'float 4s ease-in-out infinite',
@@ -69,6 +85,8 @@ export default {
         breathe: 'breathe 6s ease-in-out infinite',
         scanLine: 'scanLine 4s linear infinite',
         shimmer: 'shimmer 3s linear infinite',
+        'chevron-bounce': 'chevronBounce 2s ease-in-out infinite',
+        'glow-pulse': 'glowPulse 4s ease-in-out infinite',
       },
     },
   },

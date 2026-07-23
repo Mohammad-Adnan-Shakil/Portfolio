@@ -1,39 +1,51 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const Footer = () => {
-  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const email = 'muhammedadnanshakil456@gmail.com';
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 400);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <footer
       className="px-4 sm:px-6 lg:px-12 xl:px-16 py-6 sm:py-8 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4 sm:gap-0 relative"
-      style={{ borderTop: '1px solid rgba(0,255,136,0.12)' }}
+      style={{
+        borderTop: '1px solid rgba(0,255,136,0.12)',
+      }}
     >
+      {/* Animated gradient border overlay */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+        style={{
+          background: 'linear-gradient(90deg, transparent, rgba(0,255,136,0.3), rgba(0,184,255,0.3), rgba(139,92,246,0.3), transparent)',
+          backgroundSize: '200% 100%',
+          animation: 'shimmer 4s linear infinite',
+        }}
+      />
+
       <p className="font-mono text-[0.68rem] text-muted">
         © 2026 Mohammad Adnan Shakil
       </p>
 
       <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
+        <button
+          onClick={handleCopyEmail}
+          className="flex items-center gap-2 bg-none border-none cursor-pointer"
+          aria-label="Copy email to clipboard"
+          style={{ padding: 0 }}
+        >
           <div className="rounded-full w-1.5 h-1.5 bg-accent animate-pulse" />
-          <p className="font-mono text-[0.68rem] text-accent">
-            Open to internships
+          <p className="font-mono text-[0.68rem] text-accent transition-all duration-200 hover:text-accent/80">
+            {copied ? '✓ Email copied' : 'Open to internships'}
           </p>
-        </div>
+        </button>
 
         <div className="hidden sm:flex items-center gap-3 pl-4" style={{ borderLeft: '1px solid rgba(0,255,136,0.12)' }}>
-          <a href="mailto:muhammedadnanshakil456@gmail.com" className="text-muted hover:text-accent transition-colors duration-200" aria-label="Email">
+          <a href={`mailto:${email}`} className="text-muted hover:text-accent transition-colors duration-200" aria-label="Email">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
@@ -53,23 +65,6 @@ const Footer = () => {
           </a>
         </div>
       </div>
-
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:-translate-y-1 hover:shadow-glow"
-          style={{
-            background: '#0c0d12',
-            border: '1px solid rgba(0,255,136,0.2)',
-            color: '#00ff88',
-          }}
-          aria-label="Back to top"
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M18 15l-6-6-6 6" />
-          </svg>
-        </button>
-      )}
     </footer>
   );
 };

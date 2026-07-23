@@ -39,8 +39,7 @@ const About = () => {
           </p>
 
           <p ref={revealRef(5)} className="font-mono text-[clamp(0.75rem,2.5vw,0.83rem)] text-muted leading-relaxed">
-            I work fast, ship aggressively, and care about clean architecture. Discipline in code, gym, and execution.
-            Currently a Software Engineering Intern at Dyslexia Reading Tutor AI, building production AWS voice-AI infrastructure.
+            Previously a Software Engineering Intern at Dyslexia Reading Tutor AI, where I built a production serverless voice-AI pipeline on AWS (Lambda, DynamoDB, EventBridge, ElevenLabs) end-to-end. Currently building Cypher, an autonomous multi-agent job intelligence system, and competing in the CockroachDB × AWS Hackathon with commute-memory-agent. Open to part-time backend or ML engineering roles.
           </p>
         </div>
 

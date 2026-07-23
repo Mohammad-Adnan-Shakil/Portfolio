@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from './Logo';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -75,28 +76,32 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 z-50 w-full flex justify-between items-center transition-all duration-300 ${
-          scrolled ? 'bg-[#07080a]/80 backdrop-blur-xl shadow-lg shadow-black/20' : 'bg-transparent'
+        className={`fixed top-0 left-0 z-50 w-full flex justify-between items-center ${
+          scrolled ? 'bg-[#07080a]/80 backdrop-blur-2xl shadow-lg shadow-black/20' : 'bg-transparent'
         }`}
-        style={{ padding: scrolled ? 'clamp(0.6rem, 3vw, 0.9rem) clamp(1rem, 4vw, 2rem)' : 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 2rem)' }}
+        style={{
+          padding: scrolled ? 'clamp(0.6rem, 3vw, 0.9rem) clamp(1rem, 4vw, 2rem)' : 'clamp(1rem, 4vw, 1.5rem) clamp(1rem, 4vw, 2rem)',
+          transition: 'background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease',
+        }}
       >
         <div className="flex items-center gap-3 sm:gap-4">
-          <div
-            className="font-bold cursor-pointer select-none"
-            style={{ fontFamily: 'JetBrains Mono', fontSize: 'clamp(0.8rem, 2.5vw, 0.9rem)', color: '#00ff88' }}
+          <button
             onClick={scrollToTop}
+            className="cursor-pointer bg-none border-none p-0"
+            style={{ height: 'clamp(28px, 4vw, 36px)', width: 'auto' }}
+            aria-label="Go to top"
           >
-            MAS.dev
-          </div>
+            <Logo />
+          </button>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden flex flex-col gap-[4px] p-1.5 bg-none border-none"
+            className="lg:hidden flex flex-col justify-center items-center w-8 h-8 bg-none border-none relative"
             aria-label="Toggle menu"
           >
-            <span className={`block w-5 h-[2px] bg-accent rounded-sm transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-[6px]' : ''}`} />
-            <span className={`block h-[2px] bg-accent rounded-sm transition-all duration-300 ${menuOpen ? 'opacity-0 w-0' : 'w-5'}`} />
-            <span className={`block w-5 h-[2px] bg-accent rounded-sm transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-[6px]' : ''}`} />
+            <span className={`block absolute w-5 h-[2px] bg-accent rounded-sm transition-all duration-300 ease-out ${menuOpen ? 'rotate-45' : ''}`} />
+            <span className={`block absolute w-5 h-[2px] bg-accent rounded-sm transition-all duration-300 ease-out ${menuOpen ? 'opacity-0' : ''}`} style={{ transform: menuOpen ? 'none' : 'translateY(6px)' }} />
+            <span className={`block absolute w-5 h-[2px] bg-accent rounded-sm transition-all duration-300 ease-out ${menuOpen ? '-rotate-45' : ''}`} style={{ transform: menuOpen ? 'none' : 'translateY(-6px)' }} />
           </button>
         </div>
 
@@ -105,7 +110,7 @@ const Navbar = () => {
             <button
               key={link}
               onClick={() => scrollToSection(link)}
-              className={`nav-link px-3 py-2 text-xs font-mono uppercase tracking-[0.1em] transition-all duration-200 rounded-md ${
+              className={`nav-link px-3 py-2 text-xs font-mono uppercase tracking-[0.1em] transition-all duration-200 rounded-md relative ${
                 activeSection === link
                   ? 'text-accent'
                   : 'text-secondary hover:text-primary'
@@ -114,6 +119,15 @@ const Navbar = () => {
             >
               <span className="text-accent/60 mr-1">//</span>
               {link}
+              {activeSection === link && (
+                <span
+                  className="absolute -bottom-0.5 left-3 right-3 h-[2px] rounded-full"
+                  style={{
+                    background: '#00ff88',
+                    boxShadow: '0 0 8px rgba(0,255,136,0.5)',
+                  }}
+                />
+              )}
             </button>
           ))}
         </div>
@@ -154,13 +168,14 @@ const Navbar = () => {
               className="flex items-center gap-4"
               style={{ padding: '1.5rem 2rem', borderBottom: '1px solid rgba(0,255,136,0.1)' }}
             >
-              <div
-                className="font-bold cursor-pointer select-none"
-                style={{ fontFamily: 'JetBrains Mono', fontSize: '0.9rem', color: '#00ff88' }}
+              <button
                 onClick={scrollToTop}
+                className="cursor-pointer bg-none border-none p-0"
+                style={{ height: '32px', width: 'auto' }}
+                aria-label="Go to top"
               >
-                MAS.dev
-              </div>
+                <Logo />
+              </button>
               <button
                 onClick={() => setMenuOpen(false)}
                 className="ml-auto bg-none border-none p-2"
@@ -181,7 +196,12 @@ const Navbar = () => {
                   key={link}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  transition={{
+                    delay: index * 0.05,
+                    type: 'spring',
+                    stiffness: 200,
+                    damping: 20,
+                  }}
                   onClick={() => scrollToSection(link)}
                   className="menu-item font-mono uppercase text-left bg-none border-none text-[#e8e8f0] transition-all duration-300 border-l-2 border-transparent hover:text-accent hover:translate-x-2 hover:border-l-accent"
                   style={{

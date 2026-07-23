@@ -36,7 +36,7 @@ function useCountUp(end, duration = 2000) {
 const StatItem = ({ end, label }) => {
   const { count, ref } = useCountUp(end);
   return (
-    <div ref={ref} className="text-center sm:text-right flex-1 sm:flex-none">
+    <div ref={ref} className="text-left sm:text-right flex-1 sm:flex-none">
       <div className="font-heading font-extrabold text-accent" style={{ fontSize: 'clamp(1.3rem, 4vw, 2.2rem)' }}>
         {count}{typeof end === 'string' && isNaN(end) ? end : ''}
       </div>
@@ -44,6 +44,138 @@ const StatItem = ({ end, label }) => {
         {label}
       </div>
     </div>
+  );
+};
+
+const TypewriterText = () => {
+  const lines = [
+    'Built Deltabox — AI F1 platform with 79.6% accuracy',
+    'Shipped Cypher — autonomous 5-agent job intelligence',
+    'Built production serverless voice-AI pipeline on AWS',
+  ];
+  const [lineIndex, setLineIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentLine = lines[lineIndex];
+    let timeout;
+
+    if (!isDeleting && charIndex < currentLine.length) {
+      timeout = setTimeout(() => setCharIndex((i) => i + 1), 30);
+    } else if (!isDeleting && charIndex === currentLine.length) {
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && charIndex > 0) {
+      timeout = setTimeout(() => setCharIndex((i) => i - 1), 15);
+    } else if (isDeleting && charIndex === 0) {
+      setIsDeleting(false);
+      setLineIndex((i) => (i + 1) % lines.length);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, lineIndex, lines]);
+
+  return (
+    <p className="font-mono text-accent/80" style={{ fontSize: 'clamp(0.65rem, 2vw, 0.75rem)', minHeight: '1.4em' }}>
+      <span className="text-accent">&gt; </span>
+      {lines[lineIndex].substring(0, charIndex)}
+      <span className="animate-pulse">▊</span>
+    </p>
+  );
+};
+
+const CanvasParticles = () => {
+  const canvasRef = useRef(null);
+  const mouseRef = useRef({ x: -1000, y: -1000 });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let animId;
+    let particles = [];
+    const PARTICLE_COUNT = 60;
+    const CONNECTION_DIST = 120;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: 1 + Math.random() * 1.5,
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        const dx = p.x - mouseRef.current.x;
+        const dy = p.y - mouseRef.current.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          p.vx += dx * 0.00005;
+          p.vy += dy * 0.00005;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,255,136,0.4)';
+        ctx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECTION_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0,255,136,${0.08 * (1 - dist / CONNECTION_DIST)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(animate);
+    };
+    animate();
+
+    const handleMouse = (e) => {
+      mouseRef.current.x = e.clientX;
+      mouseRef.current.y = e.clientY;
+    };
+    window.addEventListener('mousemove', handleMouse, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', handleMouse);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 pointer-events-none z-0 hidden sm:block"
+      aria-hidden="true"
+    />
   );
 };
 
@@ -57,18 +189,6 @@ const Hero = () => {
     window.addEventListener('mousemove', handleMouse, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouse);
   }, []);
-
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    left: Math.random() * 100,
-    top: Math.random() * 100,
-    duration: 4 + Math.random() * 6,
-    delay: Math.random() * 3,
-    size: 1 + Math.random() * 2,
-    opacity: 0.15 + Math.random() * 0.2,
-    driftX: (Math.random() - 0.5) * 30,
-    driftY: (Math.random() - 0.5) * 30,
-  }));
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -99,6 +219,9 @@ const Hero = () => {
       }}
       id="hero"
     >
+      {/* Canvas particle network */}
+      <CanvasParticles />
+
       {/* Spotlight glow following mouse */}
       <div
         className="absolute pointer-events-none"
@@ -115,8 +238,8 @@ const Hero = () => {
         }}
       />
 
-      {/* Central glow */}
-      <div
+      {/* Central glow — animated with Framer Motion */}
+      <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{
           width: 'clamp(300px, 80vw, 700px)',
@@ -124,34 +247,16 @@ const Hero = () => {
           borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(0,255,136,0.07) 0%, transparent 70%)',
         }}
+        animate={{
+          scale: [1, 1.12, 1],
+          opacity: [0.5, 0.85, 0.5],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
       />
-
-      {/* Animated particles */}
-      <div className="hidden sm:block">
-        {particles.map((p) => (
-          <motion.div
-            key={p.id}
-            className="absolute pointer-events-none rounded-full bg-accent"
-            style={{
-              left: `${p.left}%`,
-              top: `${p.top}%`,
-              width: `${p.size}px`,
-              height: `${p.size}px`,
-              opacity: p.opacity,
-            }}
-            animate={{
-              x: [0, p.driftX, 0],
-              y: [0, p.driftY, 0],
-            }}
-            transition={{
-              duration: p.duration,
-              repeat: Infinity,
-              delay: p.delay,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
-      </div>
 
       <motion.div
         variants={containerVariants}
@@ -166,42 +271,60 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="mb-5 sm:mb-8">
-          <h1
-            className="text-center sm:text-left font-heading font-extrabold leading-[0.95] tracking-[-0.02em]"
-            style={{ fontSize: 'clamp(2.2rem, 10vw, 8rem)' }}
-          >
-            <div>ML</div>
-            <div
-              style={{
-                WebkitTextStroke: '1.5px rgba(0,255,136,0.5)',
-                color: 'transparent',
-              }}
-            >
-              Engineer
-            </div>
-            <div>& Dev.</div>
-          </h1>
-        </motion.div>
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+          <div className="flex-1">
+            <motion.div variants={itemVariants} className="mb-5 sm:mb-8">
+              <h1
+                className="text-center sm:text-left font-heading font-extrabold leading-[0.95] tracking-[-0.02em]"
+                style={{ fontSize: 'clamp(2.2rem, 10vw, 8rem)' }}
+              >
+                <div>ML</div>
+                <div
+                  style={{
+                    WebkitTextStroke: '1.5px rgba(0,255,136,0.5)',
+                    color: 'transparent',
+                  }}
+                >
+                  Engineer
+                </div>
+                <div>& Dev.</div>
+              </h1>
+            </motion.div>
 
-        <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
-          <p
-            className="text-center sm:text-left mx-auto sm:mx-0 font-heading font-semibold text-primary leading-relaxed"
-            style={{ fontSize: 'clamp(0.85rem, 3.5vw, 1.15rem)', maxWidth: 'min(90vw, 36rem)' }}
-          >
-            Full-stack engineer building production systems that integrate ML models into real applications.
-            Working with Spring Boot, React, and Python to ship systems that make decisions — not just display data.
-          </p>
-        </motion.div>
+            <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
+              <p
+                className="text-center sm:text-left mx-auto sm:mx-0 font-heading font-semibold text-primary leading-relaxed"
+                style={{ fontSize: 'clamp(0.85rem, 3.5vw, 1.15rem)', maxWidth: 'min(90vw, 36rem)' }}
+              >
+                Full-stack engineer building production systems that integrate ML models into real applications.
+                Working with Spring Boot, React, and Python to ship systems that make decisions — not just display data.
+              </p>
+            </motion.div>
 
-        <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
-          <p
-            className="text-center sm:text-left mx-auto sm:mx-0 font-mono text-secondary leading-relaxed"
-            style={{ fontSize: 'clamp(0.7rem, 2.5vw, 0.82rem)', maxWidth: 'min(85vw, 32rem)' }}
+            <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
+              <p
+                className="text-center sm:text-left mx-auto sm:mx-0 font-mono text-secondary leading-relaxed"
+                style={{ fontSize: 'clamp(0.7rem, 2.5vw, 0.82rem)', maxWidth: 'min(85vw, 32rem)' }}
+              >
+                Previously: Software Engineering Intern at Dyslexia Reading Tutor AI — built a production serverless voice-AI pipeline on AWS end-to-end. Currently building Cypher (autonomous job intelligence agent) and commute-memory-agent (CockroachDB × AWS Hackathon, Aug 2026).
+              </p>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mb-6">
+              <TypewriterText />
+            </motion.div>
+          </div>
+
+          {/* Stats — inline with heading on desktop */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-row sm:flex-col gap-6 sm:gap-5 mt-2 sm:mt-6 self-start"
           >
-            Software Engineering Intern building production serverless AI infrastructure at Dyslexia Reading Tutor AI. DeltaBox, my flagship project, is deployed and live — an F1 intelligence platform with a 79.6% Top-3 finish prediction accuracy ML engine.
-          </p>
-        </motion.div>
+            <StatItem end={5} label="Projects" />
+            <StatItem end={5} label="Tech Stack" />
+            <StatItem end="2nd" label="Year CSE" />
+          </motion.div>
+        </div>
 
         <motion.div
           variants={itemVariants}
@@ -240,30 +363,28 @@ const Hero = () => {
             <span className="group-hover:brightness-110 transition-all duration-200">GitHub ↗</span>
           </a>
         </motion.div>
-
-        <div
-          className="flex flex-col sm:flex-row justify-between sm:justify-start gap-4 sm:gap-6 sm:absolute sm:text-right mt-6 sm:mt-0 w-full sm:w-auto"
-          style={{
-            bottom: 'clamp(0.5rem, 4vh, 3rem)',
-            right: 'clamp(0.5rem, 4vw, 4rem)',
-            zIndex: 2,
-            paddingLeft: '0.5rem',
-            paddingRight: '0.5rem',
-          }}
-        >
-          <StatItem end={2} label="Projects" />
-          <StatItem end={5} label="Tech Stack" />
-          <StatItem end="2nd" label="Year CSE" />
-        </div>
       </motion.div>
 
+      {/* Bouncing chevron */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4 }}
         className="hidden lg:flex absolute bottom-8 left-16 items-center gap-4"
       >
-        <div className="w-10 h-px bg-accent animate-pulse" />
+        <div className="w-10 h-px bg-accent/60" />
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#00ff88"
+          strokeWidth="2"
+          className="animate-chevron-bounce"
+          aria-hidden="true"
+        >
+          <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+        </svg>
         <p className="font-mono text-[0.65rem] text-muted tracking-[0.15em] uppercase">
           scroll to explore
         </p>

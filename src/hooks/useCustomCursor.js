@@ -6,6 +6,9 @@ const useCustomCursor = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
   const rafRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +25,14 @@ const useCustomCursor = () => {
   }, []);
 
   useEffect(() => {
-    if (isTouchDevice) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handler = (e) => setReducedMotion(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice || reducedMotion) return;
 
     let lastX = -100;
     let lastY = -100;
@@ -91,9 +101,9 @@ const useCustomCursor = () => {
     transform: `translate3d(${position.x - 5}px, ${position.y - 5}px, 0) scale(${isMouseDown ? 0.8 : isHovering ? 2 : 1})`,
     transition: 'transform 0.1s ease-out',
     mixBlendMode: 'difference',
-    opacity: isTouchDevice ? 0 : 1,
-    visibility: isTouchDevice ? 'hidden' : 'visible'
-  }), [position.x, position.y, isMouseDown, isHovering, isTouchDevice]);
+    opacity: isTouchDevice || reducedMotion ? 0 : 1,
+    visibility: isTouchDevice || reducedMotion ? 'hidden' : 'visible'
+  }), [position.x, position.y, isMouseDown, isHovering, isTouchDevice, reducedMotion]);
 
   const ringStyle = useMemo(() => ({
     position: 'fixed',
@@ -107,9 +117,9 @@ const useCustomCursor = () => {
     zIndex: 9998,
     transform: `translate3d(${ringPosition.x - 17}px, ${ringPosition.y - 17}px, 0) scale(${isHovering ? 1.5 : 1})`,
     transition: 'transform 0.15s ease-out',
-    opacity: isTouchDevice ? 0 : 0.5,
-    visibility: isTouchDevice ? 'hidden' : 'visible'
-  }), [ringPosition.x, ringPosition.y, isHovering, isTouchDevice]);
+    opacity: isTouchDevice || reducedMotion ? 0 : 0.5,
+    visibility: isTouchDevice || reducedMotion ? 'hidden' : 'visible'
+  }), [ringPosition.x, ringPosition.y, isHovering, isTouchDevice, reducedMotion]);
 
   return { dotStyle, ringStyle, isTouchDevice };
 };
