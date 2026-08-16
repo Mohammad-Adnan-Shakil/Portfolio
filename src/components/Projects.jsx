@@ -2,7 +2,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 
 const techTagColor = (tag) => {
   const lower = tag.toLowerCase();
-  if (['python', 'google adk', 'langgraph', 'xgboost', 'random forest', 'librosa', 'scikit-learn'].some(t => lower.includes(t))) {
+  if (['python', 'google adk', 'langgraph', 'xgboost', 'random forest', 'librosa', 'scikit-learn', 'qlora', 'huggingface', 'ragas', 'yolov8'].some(t => lower.includes(t))) {
     return {
       color: '#a78bfa',
       border: 'rgba(139,92,246,0.25)',
@@ -52,21 +52,36 @@ const Projects = () => {
   const secondaryProjects = [
     {
       number: '02 —',
-      title: 'bengaluru-commute-agent',
-      category: 'backend',
-      badge: 'Google AI Agent Builder 2026 · Top 100',
-      description: 'Multi-agent commute planning AI for Bengaluru. Strict separation of concerns: orchestrator routes between route_agent (data only) and advisor_agent (decisions only). Real road geometry via OpenRouteService, color-coded congestion map via React-Leaflet.',
+      title: 'Pitwall',
+      category: 'ml',
+      badge: 'Agentic RAG · Live',
+      description: 'Agentic RAG system for F1 race intelligence. The agent evaluates retrieval sufficiency before answering — if retrieved chunks don\'t cover the question, it reformulates and retrieves again rather than hallucinating. Measured with RAGAS metrics.',
       bullets: [
-        'Shortlisted Top 100 at Google AI Agent Builder Series 2026 (HiDevs × Google for Developers)',
-        "Grand Finale at Google's Bengaluru office, August 2026",
-        'Deployed: Backend on Render, Frontend on Vercel'
+        'Agent decides whether to retrieve or answer from context — not a fixed pipeline',
+        'pgvector similarity search over historical F1 race data, telemetry, and strategy documents',
+        'RAGAS evaluation: faithfulness · answer relevance · context precision · hallucination rate',
       ],
-      tags: ['Python', 'Google ADK', 'FastAPI', 'React'],
-      github: 'https://github.com/Mohammad-Adnan-Shakil/bengaluru-commute-agent',
-      live: 'https://bengaluru-commute-agent.vercel.app'
+      tags: ['Python', 'LangGraph', 'FastAPI', 'pgvector', 'PostgreSQL', 'React'],
+      github: 'https://github.com/Mohammad-Adnan-Shakil/PitWall',
+      live: 'https://pit-wall-lemon.vercel.app'
     },
     {
       number: '03 —',
+      title: 'Jurix',
+      category: 'ml',
+      badge: '⚖️ Fine-Tuned LLM · Shipped',
+      description: 'Domain-specific LLM fine-tuned on Indian court judgements via QLoRA. Agentic RAG layer over 20M+ Indian Kanoon legal records, with RAGAS evaluation comparing Jurix vs. Mistral base vs. GPT-4o on Indian legal Q&A.',
+      bullets: [
+        'QLoRA fine-tuning on Mistral 7B / Llama 3.1 8B — 4-bit quantization + LoRA adapters on consumer GPU',
+        'Data source: Indian Kanoon — 20M+ court judgements, acts, and legal precedents',
+        'RAGAS benchmark comparison: Jurix vs. Mistral base vs. GPT-4o on Indian legal Q&A',
+      ],
+      tags: ['Python', 'QLoRA', 'HuggingFace', 'RAGAS', 'pgvector', 'FastAPI', 'React'],
+      github: 'https://github.com/Mohammad-Adnan-Shakil/Jurix',
+      live: ''
+    },
+    {
+      number: '04 —',
       title: 'Cypher',
       category: 'backend',
       badge: 'Autonomous Agent · Live',
@@ -82,26 +97,47 @@ const Projects = () => {
       live: 'https://cypher-navy.vercel.app'
     },
     {
-      number: '04 —',
-      title: 'commute-memory-agent',
-      category: 'infrastructure',
-      badge: 'CockroachDB × AWS Hackathon · In Progress',
-      description: 'Extends bengaluru-commute-agent with persistent agentic memory via CockroachDB Distributed Vector Indexing + MCP Server. Agent remembers past commutes, preferred routes, and outcome history to improve recommendations over time.',
-      bullets: [],
-      tags: ['Python', 'CockroachDB', 'AWS', 'LangGraph'],
-      github: '',
+      number: '05 —',
+      title: 'bengaluru-commute-agent',
+      category: 'backend',
+      badge: 'Google AI Agent Builder 2026 · Ranked 144th',
+      description: 'Multi-agent commute planning AI for Bengaluru. Strict separation of concerns: orchestrator routes between route_agent (data only) and advisor_agent (decisions only). Real road geometry via OpenRouteService, color-coded congestion map via React-Leaflet.',
+      bullets: [
+        'Ranked 144th at Google AI Agent Builder Series 2026 (HiDevs × Google for Developers)',
+        'Honest fallback — agent explicitly states when it lacks corridor data, no hallucination',
+        'Deployed: Backend on Render, Frontend on Vercel'
+      ],
+      tags: ['Python', 'Google ADK', 'FastAPI', 'React'],
+      github: 'https://github.com/Mohammad-Adnan-Shakil/bengaluru-commute-agent',
       live: ''
     },
     {
-      number: '05 —',
+      number: '06 —',
+      title: 'commute-memory-agent',
+      category: 'infrastructure',
+      badge: '🏆 CockroachDB × AWS Hackathon · Shipped',
+      description: 'Extends bengaluru-commute-agent with persistent agentic memory via CockroachDB Distributed Vector Indexing + MCP Server. Agent remembers past commutes, preferred routes, and outcome history to improve recommendations over time.',
+      bullets: [
+        'Memory types: conversation history (transactional) · route preference embeddings (vector) · outcome tracking',
+        'CockroachDB MCP Server + Distributed Vector Indexing — mandatory hackathon tools',
+      ],
+      tags: ['Python', 'CockroachDB', 'AWS', 'LangGraph'],
+      github: 'https://github.com/Mohammad-Adnan-Shakil/commute-memory-agent',
+      live: ''
+    },
+    {
+      number: '07 —',
       title: 'FakeOut AI',
       category: 'ml',
-      badge: '🏆 [Experiment]',
-      description: 'Voice deepfake detection system using dual-model ML ensemble (XGBoost + Random Forest). Extracted 40 MFCC coefficients and spectral features from audio for classification. FastAPI backend serving ML inference with React frontend for audio upload/analysis.',
-      bullets: ['Dual-model ensemble (XGBoost + Random Forest) for classification', '40 MFCC coefficients + spectral features from audio', 'FastAPI backend serving ML inference with React frontend'],
-      tags: ['React', 'FastAPI', 'Python', 'XGBoost', 'Random Forest', 'Librosa', 'TailwindCSS'],
+      badge: '🎙️ FusionX Hackathon 2026 · Top Score',
+      description: 'Voice deepfake detection system using dual-model ML ensemble (XGBoost + Random Forest + wav2vec2 embeddings). Majority-vote ensemble flags model disagreement as low-confidence rather than forcing a decision.',
+      bullets: [
+        '40 MFCC coefficients + spectral centroid + rolloff + zero crossing rate + wav2vec2 embeddings',
+        'Top score in first technical evaluation round — judged on functionality and technical depth',
+      ],
+      tags: ['React', 'FastAPI', 'Python', 'XGBoost', 'Random Forest', 'Librosa'],
       github: 'https://github.com/FuncLexa/FakeOut-AI',
-      isExperiment: true
+      live: ''
     }
   ];
 
@@ -135,13 +171,11 @@ const Projects = () => {
             width: '100%'
           }}
         >
-          {/* Subtle gradient background */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(135deg, #07080a 0%, #0c0d12 100%)' }}
           />
 
-          {/* Subtle grid overlay */}
           <div
             className="absolute inset-0 pointer-events-none opacity-30"
             style={{
@@ -150,7 +184,6 @@ const Projects = () => {
             }}
           />
 
-          {/* AI glow */}
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             style={{
@@ -164,7 +197,6 @@ const Projects = () => {
             }}
           />
 
-          {/* System status labels */}
           <div className="absolute inset-0 pointer-events-none">
             {[
               { top: '6%', left: '3%', text: 'SYNC_ACTIVE', opacity: 0.08 },
@@ -182,9 +214,8 @@ const Projects = () => {
             ))}
           </div>
 
-          {/* LEFT COLUMN - Text content */}
+          {/* LEFT COLUMN */}
           <div className="relative z-20 flex flex-col justify-center w-1/2 p-6 pl-6 sm:pl-8 lg:p-8">
-
             <div className="flex items-center gap-3 mb-4">
               <div className="rounded-full w-1.5 h-1.5 bg-accent animate-pulse" />
               <p className="font-mono text-[0.62rem] text-accent tracking-[0.18em] uppercase">
@@ -196,15 +227,15 @@ const Projects = () => {
               className="font-heading font-extrabold mb-4 tracking-[-0.02em] leading-tight"
               style={{ fontSize: 'clamp(2.45rem, 7vw, 3.64rem)' }}
             >
-              Deltabox
+              DeltaBox
             </h3>
 
             <div className="mb-4 font-body text-muted leading-relaxed" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}>
               <p className="mb-3">AI-powered F1 analytics platform processing race data across 20+ drivers and 24 races per season.</p>
               <div style={{ paddingLeft: 'clamp(0.5rem, 2vw, 1rem)' }}>
-                <div className="mb-2">• Spring Boot backend + Python ML integration via subprocess orchestration</div>
-                <div className="mb-2">• What-if simulation engine + caching layer for performance optimization</div>
-                <div>• JWT authentication + RBAC-secured APIs from scratch</div>
+                <div className="mb-2">• Spring Boot backend + Python ML integration via ProcessBuilder subprocess (JSON over STDIN/STDOUT)</div>
+                <div className="mb-2">• What-if simulation engine + Delta Analyst (Groq-powered AI chat)</div>
+                <div>• JWT authentication + RBAC-secured APIs built from scratch</div>
               </div>
             </div>
 
@@ -215,8 +246,8 @@ const Projects = () => {
               <div className="grid grid-cols-2 gap-2 font-mono text-[0.72rem] text-muted leading-relaxed">
                 <div>Top-3 Accuracy: <span className="text-primary">79.6%</span></div>
                 <div>R²: <span className="text-primary">0.62</span></div>
-                <div>Latency: <span className="text-primary">13.4ms</span></div>
-                <div>Models: <span className="text-primary">XGBoost + RF (blended)</span></div>
+                <div>Latency: <span className="text-primary">13.4ms blended</span></div>
+                <div>Models: <span className="text-primary">XGBoost + RF</span></div>
               </div>
             </div>
 
@@ -249,7 +280,7 @@ const Projects = () => {
                 GitHub <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">→</span>
               </a>
               <a
-                href="https://deltabox.onrender.com"
+                href="https://deltabox-2.onrender.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group font-mono text-[0.72rem] text-accent uppercase tracking-[0.1em] transition-all duration-200"
@@ -259,9 +290,8 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN - Suzuka SVG + Architecture Diagram */}
+          {/* RIGHT COLUMN - SVG diagrams */}
           <div className="relative z-20 flex flex-col items-center justify-center w-1/2 overflow-visible gap-4 p-4">
-            {/* Architecture pipeline diagram */}
             <svg
               viewBox="0 0 440 60"
               className="w-full max-w-md"
@@ -282,32 +312,24 @@ const Projects = () => {
                   </feMerge>
                 </filter>
               </defs>
-              {/* Spring Boot */}
               <rect x="0" y="18" width="80" height="24" rx="4" fill="none" stroke="#00ff88" strokeWidth="1" strokeOpacity="0.5" />
               <text x="40" y="33" textAnchor="middle" fill="#00ff88" fontSize="8" fontFamily="JetBrains Mono" opacity="0.8">Spring Boot</text>
-              {/* Arrow */}
               <path d="M82 30 h18" stroke="#00ff88" strokeWidth="1" strokeOpacity="0.3" strokeDasharray="3 3" />
               <polygon points="102,26 110,30 102,34" fill="#00ff88" fillOpacity="0.3" />
-              {/* ProcessBuilder */}
               <rect x="112" y="14" width="88" height="32" rx="4" fill="none" stroke="#00b8ff" strokeWidth="1" strokeOpacity="0.5" />
               <text x="156" y="29" textAnchor="middle" fill="#00b8ff" fontSize="7" fontFamily="JetBrains Mono" opacity="0.8">ProcessBuilder</text>
               <text x="156" y="40" textAnchor="middle" fill="#00b8ff" fontSize="5" fontFamily="JetBrains Mono" opacity="0.5">JSON → STDIN</text>
-              {/* Arrow */}
               <path d="M202 30 h18" stroke="#00b8ff" strokeWidth="1" strokeOpacity="0.3" strokeDasharray="3 3" />
               <polygon points="222,26 230,30 222,34" fill="#00b8ff" fillOpacity="0.3" />
-              {/* Python ML */}
               <rect x="232" y="14" width="76" height="32" rx="4" fill="none" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.5" />
               <text x="270" y="29" textAnchor="middle" fill="#a78bfa" fontSize="7" fontFamily="JetBrains Mono" opacity="0.8">Python ML</text>
               <text x="270" y="40" textAnchor="middle" fill="#a78bfa" fontSize="5" fontFamily="JetBrains Mono" opacity="0.5">STDOUT → JSON</text>
-              {/* Arrow */}
               <path d="M310 30 h18" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.3" strokeDasharray="3 3" />
               <polygon points="330,26 338,30 330,34" fill="#a78bfa" fillOpacity="0.3" />
-              {/* Response */}
               <rect x="340" y="18" width="60" height="24" rx="4" fill="none" stroke="#00ff88" strokeWidth="1" strokeOpacity="0.5" />
               <text x="370" y="33" textAnchor="middle" fill="#00ff88" fontSize="7" fontFamily="JetBrains Mono" opacity="0.8">Response</text>
             </svg>
 
-            {/* Suzuka track SVG — smaller inset */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 500 500"
@@ -341,7 +363,6 @@ const Projects = () => {
               </circle>
             </svg>
           </div>
-
         </div>
       </div>
 
@@ -361,7 +382,6 @@ const Projects = () => {
                 padding: 'clamp(1.5rem, 4vw, 2.5rem)',
               }}
             >
-              {/* Gradient header bar */}
               <div
                 className="absolute top-0 left-0 right-0 h-1"
                 style={{ background: grad }}
@@ -417,8 +437,7 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group font-mono text-[0.72rem] uppercase tracking-[0.1em] transition-all duration-200"
-                    style={{ color: project.isExperiment ? '#6b6b80' : '#00ff88' }}
+                    className="group font-mono text-[0.72rem] text-accent uppercase tracking-[0.1em] transition-all duration-200"
                   >
                     GitHub <span className="group-hover:translate-x-1 inline-block transition-transform duration-200">→</span>
                   </a>

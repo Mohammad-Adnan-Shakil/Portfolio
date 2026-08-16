@@ -3,11 +3,12 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 
 function useCountUp(end, duration = 2000) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(typeof end === 'number' ? 0 : end);
   const ref = useRef(null);
   const counted = useRef(false);
 
   useEffect(() => {
+    if (typeof end !== 'number') return;
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
@@ -33,12 +34,13 @@ function useCountUp(end, duration = 2000) {
   return { count, ref };
 }
 
-const StatItem = ({ end, label }) => {
+const StatItem = ({ end, label, suffix = '' }) => {
   const { count, ref } = useCountUp(end);
+  const display = typeof end === 'number' ? `${count}${suffix}` : end;
   return (
     <div ref={ref} className="text-left sm:text-right flex-1 sm:flex-none">
       <div className="font-heading font-extrabold text-accent" style={{ fontSize: 'clamp(1.3rem, 4vw, 2.2rem)' }}>
-        {count}{typeof end === 'string' && isNaN(end) ? end : ''}
+        {display}
       </div>
       <div className="font-mono text-muted uppercase tracking-[0.08em]" style={{ fontSize: 'clamp(0.5rem, 2vw, 0.62rem)' }}>
         {label}
@@ -49,9 +51,10 @@ const StatItem = ({ end, label }) => {
 
 const TypewriterText = () => {
   const lines = [
-    'Built Deltabox — AI F1 platform with 79.6% accuracy',
-    'Shipped Cypher — autonomous 5-agent job intelligence',
+    'Built DeltaBox — AI F1 platform with 79.6% Top-3 accuracy',
+    'Shipped Jurix — fine-tuned LLM on Indian legal corpus via QLoRA',
     'Built production serverless voice-AI pipeline on AWS',
+    'Shipped Cypher — autonomous 5-agent job intelligence system',
   ];
   const [lineIndex, setLineIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -73,7 +76,7 @@ const TypewriterText = () => {
     }
 
     return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, lineIndex, lines]);
+  }, [charIndex, isDeleting, lineIndex]);
 
   return (
     <p className="font-mono text-accent/80" style={{ fontSize: 'clamp(0.65rem, 2vw, 0.75rem)', minHeight: '1.4em' }}>
@@ -219,10 +222,8 @@ const Hero = () => {
       }}
       id="hero"
     >
-      {/* Canvas particle network */}
       <CanvasParticles />
 
-      {/* Spotlight glow following mouse */}
       <div
         className="absolute pointer-events-none"
         style={{
@@ -238,7 +239,6 @@ const Hero = () => {
         }}
       />
 
-      {/* Central glow — animated with Framer Motion */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{
@@ -267,7 +267,7 @@ const Hero = () => {
         <motion.div variants={itemVariants} className="mb-6">
           <p className="font-mono text-accent tracking-[0.2em]" style={{ fontSize: 'clamp(0.72rem, 2vw, 0.78rem)' }}>
             <span className="text-muted">&gt; </span>
-            Mohammad Adnan Shakil · Full-Stack + ML Systems · Bengaluru
+            Mohammad Adnan Shakil · Backend & ML Systems · Bengaluru
           </p>
         </motion.div>
 
@@ -306,7 +306,7 @@ const Hero = () => {
                 className="text-center sm:text-left mx-auto sm:mx-0 font-mono text-secondary leading-relaxed"
                 style={{ fontSize: 'clamp(0.7rem, 2.5vw, 0.82rem)', maxWidth: 'min(85vw, 32rem)' }}
               >
-                Previously: Software Engineering Intern at Dyslexia Reading Tutor AI — built a production serverless voice-AI pipeline on AWS end-to-end. Currently building Cypher (autonomous job intelligence agent) and commute-memory-agent (CockroachDB × AWS Hackathon, Aug 2026).
+                Previously: Software Engineering Intern at Dyslexia Reading Tutor AI — designed and shipped a production serverless voice-AI pipeline on AWS end-to-end. Currently building Jurix (fine-tuned LLM on Indian legal corpus via QLoRA) and a Road Damage Detection system for Indian roads.
               </p>
             </motion.div>
 
@@ -315,14 +315,14 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Stats — inline with heading on desktop */}
+          {/* Stats */}
           <motion.div
             variants={itemVariants}
             className="flex flex-row sm:flex-col gap-6 sm:gap-5 mt-2 sm:mt-6 self-start"
           >
-            <StatItem end={5} label="Projects" />
-            <StatItem end={5} label="Tech Stack" />
-            <StatItem end="2nd" label="Year CSE" />
+            <StatItem end={7} label="Projects" />
+            <StatItem end={8} label="Tech Stack" />
+            <StatItem end={2} label="Year CSE" suffix="nd" />
           </motion.div>
         </div>
 
@@ -365,7 +365,6 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      {/* Bouncing chevron */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
