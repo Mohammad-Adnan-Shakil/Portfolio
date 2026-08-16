@@ -31,9 +31,9 @@ export default {
         danger: '#ff4466',
       },
       fontFamily: {
-        heading: ['Syne', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        heading: ['IBM Plex Mono', 'monospace'],
+        body: ['IBM Plex Mono', 'monospace'],
+        mono: ['IBM Plex Mono', 'JetBrains Mono', 'monospace'],
       },
       borderRadius: {
         sm: '4px',
